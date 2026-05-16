@@ -14,11 +14,12 @@ header p { margin-top:5px; font-size:16px; }
 .container { max-width:800px; margin:20px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
 h2 { color: var(--tigo-blue); }
 p.micro { font-size:14px; color:#555; margin-top:5px; }
-select { width:100%; padding:10px; margin:10px 0 20px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; }
+select { width:100%; padding:10px; margin:10px 0 10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; }
 .summary { border-radius:6px; background:#eaf1fb; border:1px solid #91d5ff; padding:15px; margin-top:20px; display:flex; align-items:center; gap:10px; }
 .summary img { height:60px; border-radius:5px; }
 .wa-button { display:inline-block; padding:12px 20px; background:var(--tigo-green); color:white; text-decoration:none; border-radius:5px; font-weight:bold; margin-top:10px; }
 .hidden { display:none; }
+.preview-img { height:40px; margin-left:10px; vertical-align:middle; border-radius:4px; }
 </style>
 </head>
 <body>
@@ -39,14 +40,17 @@ select { width:100%; padding:10px; margin:10px 0 20px 0; border-radius:5px; bord
   </select>
 
   <h2>2. Elige tu servicio</h2>
-  <p class="micro">Primero selecciona la categoría, luego tu opción deseada.</p>
+  <p class="micro">Primero selecciona la categoría, luego tu opción deseada. Mira la miniatura para visualizar cada plan.</p>
   <select id="categoria">
     <option value="">--Selecciona categoría--</option>
   </select>
 
-  <select id="opcion" class="hidden">
-    <option value="">--Selecciona tu plan--</option>
-  </select>
+  <div style="display:flex; align-items:center;">
+    <select id="opcion" class="hidden">
+      <option value="">--Selecciona tu plan--</option>
+    </select>
+    <img id="preview" class="preview-img hidden" src="" alt="Preview">
+  </div>
 
   <div id="resumen" class="summary hidden">
     <img id="resumen-img" src="" alt="Imagen del plan">
@@ -59,6 +63,7 @@ select { width:100%; padding:10px; margin:10px 0 20px 0; border-radius:5px; bord
 const zonaSelect = document.getElementById('zona');
 const categoriaSelect = document.getElementById('categoria');
 const opcionSelect = document.getElementById('opcion');
+const previewImg = document.getElementById('preview');
 const resumenDiv = document.getElementById('resumen');
 const resumenText = document.getElementById('resumen-text');
 const resumenImg = document.getElementById('resumen-img');
@@ -100,9 +105,11 @@ const opciones = {
   ]
 };
 
+// Zona seleccionada
 zonaSelect.addEventListener('change',()=>{
   categoriaSelect.innerHTML='<option value="">--Selecciona categoría--</option>';
   opcionSelect.classList.add('hidden');
+  previewImg.classList.add('hidden');
   resumenDiv.classList.add('hidden');
   const zona = zonaSelect.value;
   if(zona && categorias[zona]){
@@ -115,32 +122,42 @@ zonaSelect.addEventListener('change',()=>{
   }
 });
 
+// Categoría seleccionada
 categoriaSelect.addEventListener('change',()=>{
   opcionSelect.innerHTML='<option value="">--Selecciona tu plan--</option>';
+  previewImg.classList.add('hidden');
   const cat = categoriaSelect.value;
   if(cat && opciones[cat]){
     opciones[cat].forEach(op=>{
       const el=document.createElement('option');
       el.value=op.nombre;
       el.textContent=`${op.nombre} - ${op.precio} (${op.detalle})`;
+      el.dataset.img = op.img;
       opcionSelect.appendChild(el);
     });
     opcionSelect.classList.remove('hidden');
-    resumenDiv.classList.add('hidden');
-  } else { opcionSelect.classList.add('hidden'); resumenDiv.classList.add('hidden'); }
+  } else {
+    opcionSelect.classList.add('hidden');
+  }
+  resumenDiv.classList.add('hidden');
 });
 
+// Mostrar preview al cambiar opción
 opcionSelect.addEventListener('change',()=>{
-  const cat = categoriaSelect.value;
-  const sel = opcionSelect.value;
-  if(sel){
-    const opObj = opciones[cat].find(o=>o.nombre===sel);
+  const selectedOption = opcionSelect.options[opcionSelect.selectedIndex];
+  if(selectedOption && selectedOption.value){
+    previewImg.src = selectedOption.dataset.img;
+    previewImg.classList.remove('hidden');
     resumenDiv.classList.remove('hidden');
-    resumenText.textContent=`Has seleccionado: ${opObj.nombre} - ${opObj.detalle} - ${opObj.precio}`;
-    resumenImg.src=opObj.img;
-    waLink.href='https://wa.me/595984049651?text=Hola, quiero contratar: '+encodeURIComponent(opObj.nombre);
-  } else { resumenDiv.classList.add('hidden'); }
+    resumenImg.src = selectedOption.dataset.img;
+    resumenText.textContent=`Has seleccionado: ${selectedOption.text}`;
+    waLink.href='https://wa.me/595984049651?text=Hola, quiero contratar: '+encodeURIComponent(selectedOption.text);
+  } else {
+    previewImg.classList.add('hidden');
+    resumenDiv.classList.add('hidden');
+  }
 });
 </script>
+
 </body>
 </html>
