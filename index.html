@@ -1,145 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tigo PJC - Internet y TV</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-      color: #0a0a0a;
-    }
-    header {
-      background-color: #003399;
-      color: white;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    header img {
-      height: 40px;
-    }
-    header h1 {
-      font-size: 20px;
-      margin: 0;
-    }
-    .hero {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      gap: 20px;
-    }
-    .hero img {
-      max-width: 200px;
-      height: auto;
-    }
-    .combos {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
-    }
-    .combo-card {
-      background: white;
-      border-radius: 8px;
-      padding: 15px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .combo-card img {
-      width: 100%;
-      max-height: 120px;
-      object-fit: contain;
-    }
-    .combo-card h3 {
-      font-size: 18px;
-      margin: 10px 0 5px;
-    }
-    .combo-card p {
-      font-size: 16px;
-      margin: 5px 0;
-      color: #003399;
-      font-weight: bold;
-    }
-    .combo-card button {
-      background-color: #ffcc00;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .simulador {
-      background: white;
-      margin: 20px auto;
-      padding: 20px;
-      max-width: 400px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .simulador select, .simulador button {
-      padding: 10px;
-      width: 80%;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tigo PJC - Simulador de Combo</title>
+<style>
+:root{
+  --tigo-blue:#004aad;
+  --tigo-yellow:#ffc900;
+  --tigo-lightblue:#00c0f0;
+}
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f5f5f5;
+  color:#0a0a0a;
+}
+header{
+  background: var(--tigo-blue);
+  color:white;
+  padding: 15px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+header img{height:50px;}
+header h1{font-size:20px;margin:0;}
+main{padding:10px;}
+section{margin-bottom:20px;}
+h2{color:var(--tigo-blue);}
+button{
+  background-color: var(--tigo-yellow);
+  border:none;
+  padding:10px 15px;
+  cursor:pointer;
+  border-radius:5px;
+  font-weight:bold;
+}
+button:hover{background-color:#e6c200;}
+.cards-container{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:10px;
+}
+.card{
+  background:white;
+  border-radius:8px;
+  flex:1 1 200px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.card img{
+  width:100%;
+  height:120px;
+  object-fit:contain;
+  margin-bottom:0.5rem;
+}
+.hidden{display:none;}
+.resumen{
+  background:white;
+  padding:15px;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+.resumen ul{list-style:none;padding:0;}
+.resumen li{margin-bottom:5px;font-weight:bold;}
+</style>
 </head>
 <body>
 
 <header>
-  <img src="images/logo-tigo.png" alt="Logo Tigo">
+  <img src="images/logo-tigo.png" alt="Tigo Logo">
   <h1>Tigo PJC - Internet y TV</h1>
 </header>
 
-<div class="hero">
-  <img src="images/combo-popular.png" alt="Combo Popular">
-  <img src="images/antena-satelital.png" alt="Antena Satelital">
-</div>
+<main>
+  <!-- Selección de zona -->
+  <section id="zonaSection">
+    <h2>Selecciona tu zona</h2>
+    <label for="zonaSelect">Zona:</label>
+    <select id="zonaSelect">
+      <option value="urbana">Urbana</option>
+      <option value="rural">Rural</option>
+    </select>
+    <button id="zonaBtn">Siguiente</button>
+  </section>
 
-<section class="combos">
-  <div class="combo-card">
-    <img src="images/combo-popular.png" alt="Internet 100 Mbps">
-    <h3>Internet 100 Mbps</h3>
-    <p>Gs. 120.000</p>
-    <button onclick="alert('Seleccionaste Internet 100 Mbps')">Seleccionar / Simular</button>
-  </div>
+  <!-- Selección de servicios -->
+  <section id="servicios" class="hidden">
+    <h2>Elige tu servicio o combo</h2>
+    <div id="cardsContainer" class="cards-container"></div>
+  </section>
 
-  <div class="combo-card">
-    <img src="images/combo-popular.png" alt="TV Familiar">
-    <h3>TV Familiar</h3>
-    <p>Gs. 139.000</p>
-    <button onclick="alert('Seleccionaste TV Familiar')">Seleccionar / Simular</button>
-  </div>
+  <!-- Resumen final -->
+  <section id="resumen" class="resumen hidden">
+    <h2>Resumen de tu combo</h2>
+    <ul id="resumenList"></ul>
+    <p>Total: <span id="totalCost">0</span> Gs.</p>
+    <button id="whatsappBtn">Enviar a WhatsApp</button>
+  </section>
+</main>
 
-  <div class="combo-card">
-    <img src="images/combo-popular.png" alt="Internet + TV">
-    <h3>Internet + TV</h3>
-    <p>Gs. 180.000</p>
-    <button onclick="alert('Seleccionaste Internet + TV')">Seleccionar / Simular</button>
-  </div>
-</section>
+<script>
+// Datos de servicios
+const servicios = {
+  urbana:[
+    {id:1,nombre:"Internet 100 Mbps",tipo:"internet",costo:120000,img:"images/combo-popular.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]},
+    {id:2,nombre:"TV Familiar",tipo:"tv",costo:139000,img:"images/combo-popular.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]},
+    {id:3,nombre:"Internet + TV",tipo:"combo",costo:180000,img:"images/combo-popular.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]},
+    {id:4,nombre:"Oferta Especial",tipo:"combo",costo:180000,img:"images/combo-popular.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]}
+  ],
+  rural:[
+    {id:5,nombre:"TV Satelital Inicial",tipo:"tv",costo:99000,img:"images/antena-satelital.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]},
+    {id:6,nombre:"TV Satelital Familiar",tipo:"tv",costo:139000,img:"images/antena-satelital.png",requisitos:["Cédula Vigente","Mayor de Edad","Abono Primera Cuota"]}
+  ]
+};
 
-<section class="simulador">
-  <h2>Simulador de Combo Avanzado</h2>
-  <label for="zona">Zona:</label><br>
-  <select id="zona">
-    <option value="urbana">Urbana</option>
-    <option value="rural">Rural</option>
-  </select><br>
-  <button onclick="alert('Zona seleccionada: ' + document.getElementById('zona').value)">Siguiente</button>
-</section>
+let comboSeleccionado=[];
+
+const zonaBtn = document.getElementById('zonaBtn');
+const zonaSelect = document.getElementById('zonaSelect');
+const serviciosSection = document.getElementById('servicios');
+const cardsContainer = document.getElementById('cardsContainer');
+const resumenSection = document.getElementById('resumen');
+const resumenList = document.getElementById('resumenList');
+const totalCostEl = document.getElementById('totalCost');
+const whatsappBtn = document.getElementById('whatsappBtn');
+
+zonaBtn.addEventListener('click',()=>{
+  const zona = zonaSelect.value;
+  cargarServicios(zona);
+  serviciosSection.classList.remove('hidden');
+  resumenSection.classList.remove('hidden');
+});
+
+function cargarServicios(zona){
+  cardsContainer.innerHTML="";
+  comboSeleccionado=[];
+  servicios[zona].forEach(serv=>{
+    const card=document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML=`
+      <img src="${serv.img}" alt="${serv.nombre}">
+      <h3>${serv.nombre}</h3>
+      <p>Gs. ${serv.costo.toLocaleString()}</p>
+      <button onclick="agregarAlCombo(${serv.id},'${zona}')">Seleccionar / Simular</button>
+    `;
+    cardsContainer.appendChild(card);
+  });
+  actualizarResumen();
+}
+
+function agregarAlCombo(id,zona){
+  const servicio = servicios[zona].find(s=>s.id===id);
+  if(!comboSeleccionado.includes(servicio)){
+    comboSeleccionado.push(servicio);
+  }
+  actualizarResumen();
+}
+
+function actualizarResumen(){
+  resumenList.innerHTML="";
+  let total=0;
+  comboSeleccionado.forEach(serv=>{
+    const li=document.createElement('li');
+    li.textContent=`${serv.nombre} - Gs. ${serv.costo.toLocaleString()}`;
+    resumenList.appendChild(li);
+    total+=serv.costo;
+  });
+  totalCostEl.textContent=total.toLocaleString();
+}
+
+whatsappBtn.addEventListener('click',()=>{
+  if(comboSeleccionado.length===0){
+    alert("Selecciona al menos un servicio");
+    return;
+  }
+  let mensaje="Hola, quiero contratar:\n";
+  comboSeleccionado.forEach(serv=>{
+    mensaje+=`- ${serv.nombre} Gs. ${serv.costo.toLocaleString()}\n`;
+  });
+  mensaje+=`Total: Gs. ${comboSeleccionado.reduce((acc,s)=>acc+s.costo,0).toLocaleString()}`;
+  window.open(`https://wa.me/595984049651?text=${encodeURIComponent(mensaje)}`,'_blank');
+});
+</script>
 
 </body>
 </html>
