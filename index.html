@@ -2,23 +2,24 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Tigo PJC - Simulador</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tigo PJC - Simulador de Combo</title>
 <style>
-body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
-header { background-color: #002e5d; color: #fff; padding: 10px 20px; display: flex; align-items: center; }
-header img { height: 50px; margin-right: 15px; }
-.container { max-width: 800px; margin: 30px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-h2 { color: #002e5d; }
-select, button { padding: 10px; font-size: 16px; margin: 10px 0; width: 100%; }
-button { background-color: #00b14f; color: #fff; border: none; cursor: pointer; border-radius: 5px; }
-button:hover { opacity: 0.9; }
-#resumen { margin-top: 20px; padding: 15px; background: #e6f7ff; border-radius: 5px; border: 1px solid #91d5ff; }
-img.service-img { width: 100px; display: block; margin-bottom: 10px; }
+  body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+  header { background: #0b2c5a; color: white; padding: 15px; display: flex; align-items: center; }
+  header img { height: 40px; margin-right: 10px; }
+  .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+  h2 { color: #0b2c5a; }
+  select { width: 100%; padding: 10px; margin: 10px 0 20px; border-radius: 5px; border: 1px solid #ccc; }
+  .summary { background: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px; }
+  .wa-button { background: #25d366; color: white; padding: 12px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px; }
+  .hidden { display: none; }
 </style>
 </head>
 <body>
+
 <header>
-  <img src="images/logo-tigo.png" alt="Tigo Logo">
+  <img src="images/logo-tigo.png" alt="Logo Tigo">
   <h1>Tigo PJC - Simulador de Combo</h1>
 </header>
 
@@ -30,74 +31,110 @@ img.service-img { width: 100px; display: block; margin-bottom: 10px; }
     <option value="rural">Rural</option>
   </select>
 
-  <div id="servicio-container" style="display:none;">
+  <div id="categoria-container" class="hidden">
     <h2>2. Elige tu servicio</h2>
-    <select id="servicio">
+    <select id="categoria">
       <option value="">-- Selecciona --</option>
+    </select>
+
+    <select id="opcion" class="hidden">
+      <option value="">-- Selecciona opción --</option>
     </select>
   </div>
 
-  <div id="resumen" style="display:none;">
+  <div id="resumen" class="summary hidden">
     <h2>Resumen de tu selección</h2>
     <p id="resumen-text"></p>
-    <a id="whatsapp-link" href="#" target="_blank">
-      <button>Contactar por WhatsApp</button>
-    </a>
+    <a id="wa-link" class="wa-button" target="_blank" href="#">Contactar por WhatsApp</a>
   </div>
 </div>
 
 <script>
-const serviciosData = {
-  rural: [
-    { nombre: "TV Satelital Inicial", costo: "99.000", descripcion: "46 canales", img: "images/antena-satelital.png" },
-    { nombre: "TV Satelital Familiar", costo: "139.000", descripcion: "73 canales", img: "images/antena-satelital.png" }
-  ],
-  urbana: [
-    { nombre: "WiFi 100 Mbps", costo: "120.000", descripcion: "Internet Ilimitado", img: "images/combo-popular.png" },
-    { nombre: "WiFi 200 Mbps + TV Inicial", costo: "180.000", descripcion: "Internet + TV Inicial", img: "images/combo-popular.png" },
-    { nombre: "WiFi 200 Mbps + TV Familiar + Disney", costo: "215.000", descripcion: "Internet + TV Familiar + Disney", img: "images/combo-popular.png" },
-    { nombre: "TV Cable Inicial", costo: "119.000", descripcion: "Canales Básicos", img: "images/combo-popular.png" },
-    { nombre: "TV Cable Familiar", costo: "139.000", descripcion: "Canales Familiares", img: "images/combo-popular.png" }
-  ]
-};
+  const zonaSelect = document.getElementById('zona');
+  const categoriaContainer = document.getElementById('categoria-container');
+  const categoriaSelect = document.getElementById('categoria');
+  const opcionSelect = document.getElementById('opcion');
+  const resumenDiv = document.getElementById('resumen');
+  const resumenText = document.getElementById('resumen-text');
+  const waLink = document.getElementById('wa-link');
 
-const zonaSelect = document.getElementById("zona");
-const servicioContainer = document.getElementById("servicio-container");
-const servicioSelect = document.getElementById("servicio");
-const resumenDiv = document.getElementById("resumen");
-const resumenText = document.getElementById("resumen-text");
-const whatsappLink = document.getElementById("whatsapp-link");
+  const opcionesServicios = {
+    'wifi': [
+      {name: '100 Mb', detail: 'WIFI ilimitado', precio: 'Gs. 120.000'},
+      {name: '200 Mb', detail: 'WIFI ilimitado', precio: 'Gs. 180.000'},
+      {name: '300 Mb', detail: 'WIFI ilimitado', precio: 'Gs. 215.000'}
+    ],
+    'tv-satelital': [
+      {name: 'TV Inicial', detail: '46 canales', precio: 'Gs. 99.000'},
+      {name: 'TV Familiar', detail: '73 canales', precio: 'Gs. 139.000'}
+    ],
+    'tv-cable': [
+      {name: 'TV Inicial', detail: 'Canales básicos', precio: 'Gs. 119.000'},
+      {name: 'TV Familiar', detail: 'Canales familiares', precio: 'Gs. 139.000'}
+    ],
+    'combo': [
+      {name: '100 Mb + TV Inicial', detail: 'Internet + TV Inicial', precio: 'Gs. 180.000'},
+      {name: '200 Mb + TV Familiar + Disney', detail: 'Internet + TV Familiar + Disney', precio: 'Gs. 215.000'}
+    ],
+    'oferta': [
+      {name: 'WiFi + TV', detail: 'Oferta especial', precio: 'Gs. 180.000'}
+    ]
+  };
 
-zonaSelect.addEventListener("change", () => {
-  const zona = zonaSelect.value;
-  servicioSelect.innerHTML = '<option value="">-- Selecciona --</option>';
-  resumenDiv.style.display = "none";
+  zonaSelect.addEventListener('change', () => {
+    categoriaSelect.innerHTML = '<option value="">-- Selecciona --</option>';
+    opcionSelect.classList.add('hidden');
+    resumenDiv.classList.add('hidden');
 
-  if(zona && serviciosData[zona]) {
-    serviciosData[zona].forEach((s, index) => {
-      const option = document.createElement("option");
-      option.value = index;
-      option.text = `${s.nombre} - Gs. ${s.costo} (${s.descripcion})`;
-      servicioSelect.add(option);
-    });
-    servicioContainer.style.display = "block";
-  } else {
-    servicioContainer.style.display = "none";
-  }
-});
+    if (zonaSelect.value) {
+      categoriaContainer.classList.remove('hidden');
 
-servicioSelect.addEventListener("change", () => {
-  const zona = zonaSelect.value;
-  const servicioIndex = servicioSelect.value;
-  if(servicioIndex !== "") {
-    const s = serviciosData[zona][servicioIndex];
-    resumenText.innerHTML = `<strong>${s.nombre}</strong><br>Costo: Gs. ${s.costo}<br>Detalle: ${s.descripcion}`;
-    whatsappLink.href = `https://wa.me/595984049651?text=Hola%20Isidro,%20quiero%20informacion%20sobre%20el%20servicio%20${encodeURIComponent(s.nombre)}`;
-    resumenDiv.style.display = "block";
-  } else {
-    resumenDiv.style.display = "none";
-  }
-});
+      if (zonaSelect.value === 'urbana') {
+        categoriaSelect.innerHTML += `
+          <option value="wifi">WiFi Ilimitado</option>
+          <option value="tv-satelital">TV Satelital</option>
+          <option value="tv-cable">TV Cable</option>
+          <option value="combo">Combos</option>
+          <option value="oferta">Oferta Especial</option>
+        `;
+      } else if (zonaSelect.value === 'rural') {
+        categoriaSelect.innerHTML += `<option value="tv-satelital">TV Satelital</option>`;
+      }
+    } else {
+      categoriaContainer.classList.add('hidden');
+    }
+  });
+
+  categoriaSelect.addEventListener('change', () => {
+    opcionSelect.innerHTML = '<option value="">-- Selecciona opción --</option>';
+    const cat = categoriaSelect.value;
+    if (cat && opcionesServicios[cat]) {
+      opcionesServicios[cat].forEach(opt => {
+        const el = document.createElement('option');
+        el.value = opt.name;
+        el.textContent = `${opt.name} - ${opt.precio} (${opt.detail})`;
+        opcionSelect.appendChild(el);
+      });
+      opcionSelect.classList.remove('hidden');
+      resumenDiv.classList.add('hidden');
+    } else {
+      opcionSelect.classList.add('hidden');
+      resumenDiv.classList.add('hidden');
+    }
+  });
+
+  opcionSelect.addEventListener('change', () => {
+    const cat = categoriaSelect.value;
+    const selected = opcionesServicios[cat].find(opt => opt.name === opcionSelect.value);
+    if (selected) {
+      resumenDiv.classList.remove('hidden');
+      resumenText.textContent = `Has seleccionado: ${selected.name} - ${selected.detail} - ${selected.precio}`;
+      waLink.href = `https://wa.me/595984049651?text=Hola%20Isidro,%20quiero%20contratar%20${encodeURIComponent(selected.name)}%20de%20Tigo`;
+    } else {
+      resumenDiv.classList.add('hidden');
+    }
+  });
 </script>
+
 </body>
 </html>
