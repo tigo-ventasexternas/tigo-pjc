@@ -1,123 +1,145 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tigo PJC - Simula tu Combo Avanzado</title>
-<style>
-:root{
-  --tigo-blue:#004aad;
-  --tigo-yellow:#ffc900;
-  --tigo-lightblue:#00c0f0;
-}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#333;}
-header{background:var(--tigo-blue);color:white;padding:1rem;display:flex;align-items:center;gap:1rem;}
-header img{height:50px;}
-.hero{position:relative;text-align:center;margin:1rem;}
-.hero img{max-width:100%;border-radius:10px;}
-.hero h2{position:absolute;top:15%;left:50%;transform:translateX(-50%);color:white;font-size:2rem;background:rgba(0,0,0,0.5);padding:0.5rem 1rem;border-radius:5px;}
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;padding:1rem;}
-.card{background:white;border-radius:10px;width:260px;padding:1rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.card img{width:80px;margin-bottom:1rem;}
-.card h3{color:var(--tigo-blue);margin:0.5rem 0;}
-.card p{margin:0.5rem 0;}
-.card button{margin-top:0.5rem;background:var(--tigo-yellow);border:none;padding:0.5rem 1rem;cursor:pointer;border-radius:5px;font-weight:bold;}
-.simulador{max-width:700px;margin:2rem auto;background:white;padding:2rem;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.simulador h3{text-align:center;color:var(--tigo-blue);}
-.step{display:none;}
-.step.active{display:block;}
-.step label{display:block;margin:0.5rem 0 0.2rem;}
-.step input,.step select{width:100%;padding:0.5rem;margin-bottom:1rem;border-radius:5px;border:1px solid #ccc;}
-.buttons{display:flex;justify-content:space-between;}
-.buttons button{padding:0.5rem 1rem;border:none;border-radius:5px;cursor:pointer;font-weight:bold;}
-.buttons .next{background:var(--tigo-yellow);}
-.buttons .prev{background:#ccc;}
-.summary{background:#e6f0ff;padding:1rem;border-radius:10px;margin-top:1rem;text-align:center;}
-.summary p{margin:0.5rem 0;}
-.summary a{display:inline-block;margin-top:1rem;background:var(--tigo-blue);color:white;padding:0.5rem 1rem;border-radius:5px;text-decoration:none;font-weight:bold;}
-footer{background:var(--tigo-blue);color:white;text-align:center;padding:1rem;margin-top:2rem;font-size:0.9rem;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tigo PJC - Internet y TV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #0a0a0a;
+    }
+    header {
+      background-color: #003399;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    header img {
+      height: 40px;
+    }
+    header h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+    }
+    .hero img {
+      max-width: 200px;
+      height: auto;
+    }
+    .combos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+    .combo-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .combo-card img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+    }
+    .combo-card h3 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+    .combo-card p {
+      font-size: 16px;
+      margin: 5px 0;
+      color: #003399;
+      font-weight: bold;
+    }
+    .combo-card button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .simulador {
+      background: white;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 400px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .simulador select, .simulador button {
+      padding: 10px;
+      width: 80%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
-  <img src="images/logo-tigo.png" alt="Tigo Logo">
+  <img src="images/logo-tigo.png" alt="Logo Tigo">
   <h1>Tigo PJC - Internet y TV</h1>
 </header>
 
-<section class="hero">
-  <img src="images/combo-popular.jpg" alt="Combo Popular">
-  <img src="images/antena-satelital.jpg" alt="Antena Satelital" style="position:absolute;right:5%;top:25%;width:120px;border-radius:10px;">
-  <h2>Internet y TV ilimitados. ¡Simula tu combo ahora!</h2>
-</section>
+<div class="hero">
+  <img src="images/combo-popular.png" alt="Combo Popular">
+  <img src="images/antena-satelital.png" alt="Antena Satelital">
+</div>
 
-<section class="cards">
-  <div class="card">
-    <img src="images/internet-icon.png" alt="Internet">
+<section class="combos">
+  <div class="combo-card">
+    <img src="images/combo-popular.png" alt="Internet 100 Mbps">
     <h3>Internet 100 Mbps</h3>
     <p>Gs. 120.000</p>
-    <button onclick="selectCombo('Internet 100 Mbps')">Seleccionar / Simular</button>
+    <button onclick="alert('Seleccionaste Internet 100 Mbps')">Seleccionar / Simular</button>
   </div>
-  <div class="card">
-    <img src="images/tv-icon.png" alt="TV">
+
+  <div class="combo-card">
+    <img src="images/combo-popular.png" alt="TV Familiar">
     <h3>TV Familiar</h3>
     <p>Gs. 139.000</p>
-    <button onclick="selectCombo('TV Familiar')">Seleccionar / Simular</button>
+    <button onclick="alert('Seleccionaste TV Familiar')">Seleccionar / Simular</button>
   </div>
-  <div class="card">
-    <img src="images/combo-icon.png" alt="Combo">
+
+  <div class="combo-card">
+    <img src="images/combo-popular.png" alt="Internet + TV">
     <h3>Internet + TV</h3>
     <p>Gs. 180.000</p>
-    <button onclick="selectCombo('Combo Internet+TV')">Seleccionar / Simular</button>
+    <button onclick="alert('Seleccionaste Internet + TV')">Seleccionar / Simular</button>
   </div>
 </section>
 
-<section class="simulador" id="simulador">
-  <h3>Simulador de Combo Avanzado</h3>
-  <div class="step active" id="step1">
-    <label>Zona:</label>
-    <select id="zona">
-      <option value="urbana">Urbana</option>
-      <option value="rural">Rural (requiere antena)</option>
-    </select>
-    <div class="buttons">
-      <button class="next" onclick="nextStep(2)">Siguiente</button>
-    </div>
-  </div>
-  <div class="step" id="step2">
-    <label>Selecciona tu combo:</label>
-    <select id="combo">
-      <option value="internet100">Internet 100 Mbps</option>
-      <option value="tvFamiliar">TV Familiar</option>
-      <option value="combo">Internet + TV</option>
-    </select>
-    <div class="buttons">
-      <button class="prev" onclick="prevStep(1)">Atrás</button>
-      <button class="next" onclick="nextStep(3)">Siguiente</button>
-    </div>
-  </div>
-  <div class="step" id="step3">
-    <h4>Resumen</h4>
-    <div class="summary" id="summary"></div>
-    <div class="buttons">
-      <button class="prev" onclick="prevStep(2)">Atrás</button>
-      <a href="https://wa.me/595984049651" target="_blank">Contactar por WhatsApp</a>
-    </div>
-  </div>
+<section class="simulador">
+  <h2>Simulador de Combo Avanzado</h2>
+  <label for="zona">Zona:</label><br>
+  <select id="zona">
+    <option value="urbana">Urbana</option>
+    <option value="rural">Rural</option>
+  </select><br>
+  <button onclick="alert('Zona seleccionada: ' + document.getElementById('zona').value)">Siguiente</button>
 </section>
-
-<footer>
-  © 2026 Tigo Paraguay - Cobertura nacional - Asesor de Ventas Externas Autorizado
-</footer>
-
-<script>
-let selectedCombo='';
-function goToSimulador(){document.getElementById('simulador').scrollIntoView({behavior:'smooth'});}
-function selectCombo(comboName){selectedCombo=comboName;document.getElementById('combo').value=comboName.includes('Internet')?'internet100':comboName.includes('Familiar')?'tvFamiliar':'combo';goToSimulador();}
-function nextStep(step){document.querySelector('.step.active').classList.remove('active');document.getElementById('step'+step).classList.add('active');if(step===3)updateSummary();}
-function prevStep(step){document.querySelector('.step.active').classList.remove('active');document.getElementById('step'+step).classList.add('active');}
-function updateSummary(){const zona=document.getElementById('zona').value;const combo=document.getElementById('combo').value;let precio=0;let desc='';if(combo==='internet100'){precio=120000;desc='Internet 100 Mbps';}if(combo==='tvFamiliar'){precio=139000;desc='TV Familiar';}if(combo==='combo'){precio=180000;desc='Internet + TV';}const antenna=zona==='rural'?' (requiere antena satelital)':'';document.getElementById('summary').innerHTML=`<p>Zona: ${zona}</p><p>Combo: ${desc}${antenna}</p><p>Precio: Gs. ${precio.toLocaleString()}</p>`;}
-</script>
 
 </body>
 </html>
