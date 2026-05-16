@@ -8,50 +8,25 @@
 :root{
   --tigo-blue:#004aad;
   --tigo-yellow:#ffc900;
+  --tigo-green:#25d366;
 }
-body{
-  font-family: Arial, sans-serif;
-  margin:0;
-  background:#f5f5f5;
-  color:#0a0a0a;
-}
-header{
-  background: var(--tigo-blue);
-  color:white;
-  padding: 15px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
+body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#0a0a0a;}
+header{background:var(--tigo-blue);color:white;padding:15px;display:flex;align-items:center;gap:15px;}
 header img{height:50px;}
 header h1{font-size:20px;margin:0;}
-main{padding:10px; max-width:700px; margin:auto;}
+main{padding:10px;max-width:700px;margin:auto;}
 h2{color:var(--tigo-blue);}
-label{display:block; margin-top:10px;}
+label{display:block;margin-top:10px;}
 select, button{
-  padding:8px;
-  margin-top:5px;
-  width:100%;
-  border-radius:4px;
-  border:1px solid #ccc;
-  font-size:16px;
+  padding:8px;margin-top:5px;width:100%;border-radius:4px;border:1px solid #ccc;font-size:16px;
 }
-button{
-  background-color: var(--tigo-yellow);
-  border:none;
-  font-weight:bold;
-  cursor:pointer;
-}
-.resumen{
-  background:white;
-  padding:15px;
-  border-radius:8px;
-  margin-top:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
-.resumen ul{list-style:none; padding:0;}
-.resumen li{margin-bottom:5px;font-weight:bold;}
+button{cursor:pointer;font-weight:bold;}
+button:hover{opacity:0.9;}
+#whatsappBtn{background-color:var(--tigo-green);color:white;border:none;padding:10px;font-weight:bold;border-radius:5px;margin-top:10px;}
 .hidden{display:none;}
+.resumen{background:white;padding:15px;border-radius:8px;margin-top:20px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+.resumen ul{list-style:none;padding:0;}
+.resumen li{margin-bottom:5px;font-weight:bold;}
 </style>
 </head>
 <body>
@@ -73,160 +48,141 @@ button{
   </section>
 
   <!-- Modalidades -->
-  <section id="modalidades">
+  <section id="modalidades" class="hidden">
     <h2>Elige tus servicios</h2>
 
-    <div id="tvSatelitalDiv" class="modalidad">
+    <!-- TV Satelital -->
+    <div id="tvSatelitalDiv" class="modalidad hidden">
       <label for="tvSatelital">TV Satelital:</label>
       <select id="tvSatelital">
         <option value="">-- Selecciona --</option>
-        <option value="Inicial">Inicial - 46 canales - 99.000 Gs</option>
-        <option value="Familiar">Familiar - 73 canales - 139.000 Gs</option>
+        <option value="TV Satelital Inicial">Inicial - 46 canales - 99.000 Gs</option>
+        <option value="TV Satelital Familiar">Familiar - 73 canales - 139.000 Gs</option>
       </select>
     </div>
 
-    <div id="tvCableDiv" class="modalidad">
+    <!-- TV Cable -->
+    <div id="tvCableDiv" class="modalidad hidden">
       <label for="tvCable">TV Cable:</label>
       <select id="tvCable">
         <option value="">-- Selecciona --</option>
-        <option value="Inicial">Inicial - 119.000 Gs</option>
-        <option value="Familiar">Familiar - 139.000 Gs</option>
+        <option value="TV Cable Inicial">Inicial - 119.000 Gs</option>
+        <option value="TV Cable Familiar">Familiar - 139.000 Gs</option>
       </select>
     </div>
 
-    <div id="wifiDiv" class="modalidad">
+    <!-- WiFi -->
+    <div id="wifiDiv" class="modalidad hidden">
       <label for="wifi">Internet WiFi:</label>
       <select id="wifi">
         <option value="">-- Selecciona --</option>
-        <option value="100mb">100 Mbps - 120.000 Gs</option>
-        <option value="200mb">200 Mbps - 180.000 Gs</option>
-        <option value="300mb">300 Mbps - 215.000 Gs</option>
+        <option value="WiFi 100 Mbps">100 Mbps - 120.000 Gs</option>
+        <option value="WiFi 200 Mbps">200 Mbps - 180.000 Gs</option>
+        <option value="WiFi 300 Mbps">300 Mbps - 215.000 Gs</option>
       </select>
     </div>
 
-    <div id="combosDiv" class="modalidad">
+    <!-- Combos -->
+    <div id="comboDiv" class="modalidad hidden">
       <label for="combo">Combos:</label>
       <select id="combo">
         <option value="">-- Selecciona --</option>
-        <option value="combo1">100 Mbps + TV Inicial - 180.000 Gs</option>
-        <option value="combo2">200 Mbps + TV Familiar + Disney - 215.000 Gs</option>
+        <option value="Combo 100 Mbps + TV Inicial">100 Mbps + TV Inicial - 180.000 Gs</option>
+        <option value="Combo 200 Mbps + TV Familiar + Disney">200 Mbps + TV Familiar + Disney - 215.000 Gs</option>
       </select>
     </div>
 
-    <div id="ofertaDiv" class="modalidad">
+    <!-- Oferta Especial -->
+    <div id="ofertaDiv" class="modalidad hidden">
       <label for="oferta">Oferta Especial:</label>
       <select id="oferta">
         <option value="">-- Selecciona --</option>
-        <option value="oferta1">WiFi ilimitado 120.000 Gs</option>
+        <option value="Oferta Especial WiFi 120.000">WiFi ilimitado - 120.000 Gs</option>
       </select>
     </div>
+
   </section>
 
   <!-- Resumen -->
   <section class="resumen">
     <h2>Resumen</h2>
     <ul id="resumenList"></ul>
-    <p>Total: <span id="totalCost">0</span> Gs.</p>
     <button id="whatsappBtn">Enviar a WhatsApp</button>
   </section>
 </main>
 
 <script>
 const zonaSelect = document.getElementById("zonaSelect");
-const tvSatelitalDiv = document.getElementById("tvSatelitalDiv");
-const tvCableDiv = document.getElementById("tvCableDiv");
-const wifiDiv = document.getElementById("wifiDiv");
-const combosDiv = document.getElementById("combosDiv");
-const ofertaDiv = document.getElementById("ofertaDiv");
-
-const tvSatelital = document.getElementById("tvSatelital");
-const tvCable = document.getElementById("tvCable");
-const wifi = document.getElementById("wifi");
-const combo = document.getElementById("combo");
-const oferta = document.getElementById("oferta");
-
+const modalidades = {
+  tvSatelital: document.getElementById("tvSatelitalDiv"),
+  tvCable: document.getElementById("tvCableDiv"),
+  wifi: document.getElementById("wifiDiv"),
+  combo: document.getElementById("comboDiv"),
+  oferta: document.getElementById("ofertaDiv")
+};
+const selects = {
+  tvSatelital: document.getElementById("tvSatelital"),
+  tvCable: document.getElementById("tvCable"),
+  wifi: document.getElementById("wifi"),
+  combo: document.getElementById("combo"),
+  oferta: document.getElementById("oferta")
+};
 const resumenList = document.getElementById("resumenList");
-const totalCost = document.getElementById("totalCost");
 const whatsappBtn = document.getElementById("whatsappBtn");
 
-// Mostrar/ocultar según zona
+// Mostrar modalidades según zona
 function updateZona(){
+  document.getElementById("modalidades").classList.remove("hidden");
   if(zonaSelect.value==="rural"){
-    tvSatelitalDiv.style.display="block";
-    tvCableDiv.style.display="none";
-    wifiDiv.style.display="none";
-    combosDiv.style.display="none";
-    ofertaDiv.style.display="none";
-    tvCable.value="";
-    wifi.value="";
-    combo.value="";
-    oferta.value="";
+    modalidades.tvSatelital.classList.remove("hidden");
+    modalidades.tvCable.classList.add("hidden");
+    modalidades.wifi.classList.add("hidden");
+    modalidades.combo.classList.add("hidden");
+    modalidades.oferta.classList.add("hidden");
   } else {
-    tvSatelitalDiv.style.display="block";
-    tvCableDiv.style.display="block";
-    wifiDiv.style.display="block";
-    combosDiv.style.display="block";
-    ofertaDiv.style.display="block";
+    for(let key in modalidades){
+      modalidades[key].classList.remove("hidden");
+    }
   }
+  // Reset selects
+  for(let key in selects) selects[key].value="";
   updateResumen();
 }
-
 zonaSelect.addEventListener("change", updateZona);
 
 // Actualizar resumen
 function updateResumen(){
-  let serviciosSeleccionados=[];
-  let total=0;
-
-  function agregar(select,id){
-    if(select.value!==""){
-      serviciosSeleccionados.push(select.value);
-      // Extraer costo de texto (Gs) como número genérico
-      let match = select.options[select.selectedIndex].text.match(/(\d+)\s*Gs/);
-      if(match) total += parseInt(match[1]);
+  resumenList.innerHTML="";
+  for(let key in selects){
+    if(selects[key].value!==""){
+      const li = document.createElement("li");
+      li.textContent = selects[key].value;
+      resumenList.appendChild(li);
     }
   }
-
-  agregar(tvSatelital,"tvSatelital");
-  agregar(tvCable,"tvCable");
-  agregar(wifi,"wifi");
-  agregar(combo,"combo");
-  agregar(oferta,"oferta");
-
-  resumenList.innerHTML="";
-  serviciosSeleccionados.forEach(s=>{
-    let li=document.createElement("li");
-    li.textContent=s;
-    resumenList.appendChild(li);
-  });
-  totalCost.textContent=total.toLocaleString();
 }
 
-// Todos los selects actualizan resumen
-[tvSatelital,tvCable,wifi,combo,oferta].forEach(s=>{
-  s.addEventListener("change", updateResumen);
-});
+// Cada select actualiza resumen
+for(let key in selects){
+  selects[key].addEventListener("change", updateResumen);
+}
 
 // WhatsApp
 whatsappBtn.addEventListener("click",()=>{
-  let serviciosSeleccionados=[];
-  let total=0;
-  [tvSatelital,tvCable,wifi,combo,oferta].forEach(s=>{
-    if(s.value!==""){
-      serviciosSeleccionados.push(s.value);
-      let match = s.options[s.selectedIndex].text.match(/(\d+)\s*Gs/);
-      if(match) total+=parseInt(match[1]);
+  let msg = "Hola, quiero contratar:\n";
+  let anySelected=false;
+  for(let key in selects){
+    if(selects[key].value!==""){
+      msg+="- "+selects[key].value+"\n";
+      anySelected=true;
     }
-  });
-  if(serviciosSeleccionados.length===0){alert("Selecciona al menos un servicio"); return;}
-  let mensaje="Hola, quiero contratar:\n";
-  serviciosSeleccionados.forEach(s=>{
-    mensaje+="- "+s+"\n";
-  });
-  mensaje+="Total: Gs. "+total.toLocaleString();
-  window.open("https://wa.me/595984049651?text="+encodeURIComponent(mensaje),"_blank");
+  }
+  if(!anySelected){alert("Selecciona al menos un servicio"); return;}
+  window.open("https://wa.me/595984049651?text="+encodeURIComponent(msg),"_blank");
 });
 
 // Inicial
 updateZona();
 </script>
+</body>
+</html>
