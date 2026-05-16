@@ -14,7 +14,7 @@ Incluye:
 ## Datos configurados
 
 Asesor: Isidro Cabrera  
-Rol: Asesor de Ventas Externas Tigo Paraguay autorizado  
+Rol: Asesor de Ventas Externas -Tigo Paraguay   
 WhatsApp: 595984049651  
 Correo operativo: tigo.ventasexternas@gmail.com  
 Repositorio sugerido: tigo-pjc  
