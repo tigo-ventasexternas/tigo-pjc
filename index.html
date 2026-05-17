@@ -1,167 +1,570 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tigo Paraguay | Internet y TV</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<style>
-/* Reset y tipografía */
-* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-body { background-color: #001f4d; color: #fff; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-/* HERO */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background: url('images/13(2).jpg') center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-}
-.hero::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.38); /* overlay */
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-}
-.hero-logo { width: 140px; margin-bottom: 20px; }
-.hero h1 { font-size:3rem; line-height:1.2; margin-bottom: 10px; }
-.hero h1 span { color: #27c9ff; }
-.hero h2 { font-size:1.4rem; margin-bottom:20px; max-width: 100%; }
+  <title>Tigo Hogar | Isidro Cabrera - Vendedor Autorizado</title>
+  <meta name="description" content="Planes de Internet y TV con atención personalizada de Isidro Cabrera, vendedor externo autorizado por Tigo Paraguay." />
+  <meta name="theme-color" content="#004aad" />
 
-/* Iconos de beneficios */
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-.feature {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align:center;
-  font-size:0.9rem;
-}
-.feature i { font-size:2rem; color: #00bfff; margin-bottom:5px; }
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-/* Botón CTA */
-.btn-primary {
-  display: inline-block;
-  padding: 15px 30px;
-  font-size:1.2rem;
-  background-color:#00bf3f;
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
-  text-decoration:none;
-}
-.btn-primary:hover { background-color:#00a636; }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* PLAN CARDS */
-.plans {
-  padding:60px 20px;
-  background-color:#001f4d;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:30px;
-}
-.plan-card {
-  background:#002f6c;
-  border-radius:12px;
-  padding:25px;
-  width:300px;
-  text-align:center;
-  transition:0.3s;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-}
-.plan-card:hover { transform: translateY(-5px); }
-.plan-card h3 { font-size:1.6rem; margin-bottom:15px; }
-.plan-card p { font-size:1rem; margin-bottom:15px; }
-.plan-card .price { font-size:2rem; color:#ffcb00; font-weight:bold; margin-bottom:20px; }
-.plan-card button {
-  padding:12px 25px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:1rem;
-  transition:0.3s;
-}
-.plan-card button.select-plan { background-color:#00bfff; color:#fff; margin-bottom:10px; }
-.plan-card button.select-plan:hover { background-color:#0094c7; }
-.plan-card button.whatsapp { background-color:#00bf3f; color:#fff; display:none; }
-.plan-card button.whatsapp:hover { background-color:#00a636; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      color: #1e2a3a;
+      line-height: 1.5;
+    }
 
-/* Responsive */
-@media (max-width:768px){
-  .hero h1 { font-size:2.2rem; }
-  .hero h2 { font-size:1.1rem; }
-  .features { justify-content:center; }
-  .plans { flex-direction:column; align-items:center; }
-}
-</style>
+    /* barra superior fija */
+    .topbar {
+      background: #ffffff;
+      padding: 12px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-img {
+      height: 42px;
+      width: auto;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 30px;
+      transition: all 0.2s;
+      color: #004aad;
+      font-size: 0.9rem;
+    }
+    .nav-btn:hover {
+      background: #eef2ff;
+    }
+
+    /* contenedor principal */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* HERO en dos columnas */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      background: white;
+      border-radius: 32px;
+      padding: 48px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      margin-bottom: 56px;
+    }
+    .hero-left h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: #001a49;
+    }
+    .hero-left h1 span {
+      color: #004aad;
+      display: block;
+    }
+    .pill-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: #475569;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    .benefits-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .benefit-chip {
+      background: #f1f5f9;
+      border-radius: 40px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #0f172a;
+    }
+    .benefit-chip i {
+      color: #004aad;
+      font-size: 1rem;
+    }
+    .btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+    .btn-primary:hover {
+      background: #20b859;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+    .hero-right img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);
+    }
+
+    /* Sección de planes */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #001a49;
+    }
+    .section-sub {
+      color: #475569;
+      margin-bottom: 32px;
+    }
+    .plans-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 32px;
+      align-items: start;
+    }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .plan-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    .plan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border-color: #004aad;
+    }
+    .plan-card.selected {
+      border: 2px solid #25d366;
+      box-shadow: 0 8px 20px rgba(37,211,102,0.2);
+    }
+    .plan-img {
+      height: 160px;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .plan-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .plan-info {
+      padding: 20px;
+    }
+    .plan-cat {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #004aad;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .plan-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+    .plan-info p {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+    .price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #001a49;
+    }
+    .price small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    /* Panel lateral */
+    .order-panel {
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+      position: sticky;
+      top: 90px;
+    }
+    .order-panel h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+    .selected-plan {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .lead-form input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 40px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+    .whatsapp-btn {
+      display: none;
+      width: 100%;
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 700;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .whatsapp-btn.visible {
+      display: flex;
+    }
+    .requirements {
+      margin-top: 20px;
+      background: #fefce8;
+      padding: 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+    .note {
+      margin-top: 12px;
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+
+    /* Why section */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin: 40px 0;
+    }
+    .why-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .why-card i {
+      font-size: 2.5rem;
+      color: #004aad;
+      margin-bottom: 16px;
+    }
+    .testimonial {
+      background: #f1f5f9;
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 40px;
+      border-left: 5px solid #ffc900;
+      font-style: italic;
+    }
+
+    /* vistas ocultas */
+    .view {
+      display: none;
+    }
+    .view.active {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 32px;
+      }
+      .plans-layout {
+        grid-template-columns: 1fr;
+      }
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .topbar {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hero-left h1 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <img src="images/logo-tigo.png" alt="Logo Tigo Paraguay" class="hero-logo">
-    <h1>Internet de Fibra Óptica <span>y TV para tu hogar</span></h1>
-    <h2>Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas. Sin filas.</h2>
-    <div class="features">
-      <div class="feature"><i class="fas fa-wifi"></i>Alta velocidad</div>
-      <div class="feature"><i class="fas fa-tools"></i>Instalación rápida</div>
-      <div class="feature"><i class="fas fa-tv"></i>TV para la familia</div>
-      <div class="feature"><i class="fas fa-map-marker-alt"></i>Consulta cobertura</div>
+<main class="app">
+  <!-- Topbar fijo -->
+  <div class="topbar">
+    <img src="images/logo.png" alt="Tigo" class="logo-img">
+    <div class="nav-buttons">
+      <button class="nav-btn" data-go="home">Inicio</button>
+      <button class="nav-btn" data-go="plans">Planes</button>
+      <button class="nav-btn" data-go="why">Por qué</button>
     </div>
-    <a href="#plans" class="btn-primary">Ver planes</a>
   </div>
-</section>
 
-<!-- PLANES -->
-<section class="plans" id="plans">
-  <div class="plan-card">
-    <h3>WiFi Ilimitado</h3>
-    <p>Velocidad estable y navegación para toda la familia</p>
-    <div class="price">Gs. 120.000</div>
-    <button class="select-plan" onclick="showWhatsApp(this)">Seleccionar</button>
-    <button class="whatsapp" onclick="goWhatsApp()">Enviar WhatsApp</button>
-  </div>
-  <div class="plan-card">
-    <h3>WiFi + TV Inicial</h3>
-    <p>Incluye 200 Mbps + TV Inicial</p>
-    <div class="price">Gs. 180.000</div>
-    <button class="select-plan" onclick="showWhatsApp(this)">Seleccionar</button>
-    <button class="whatsapp" onclick="goWhatsApp()">Enviar WhatsApp</button>
-  </div>
-  <div class="plan-card">
-    <h3>WiFi + TV Familiar</h3>
-    <p>Incluye 200 Mbps + TV Familiar + Disney+</p>
-    <div class="price">Gs. 215.000</div>
-    <button class="select-plan" onclick="showWhatsApp(this)">Seleccionar</button>
-    <button class="whatsapp" onclick="goWhatsApp()">Enviar WhatsApp</button>
-  </div>
-</section>
+  <!-- HOME VIEW (nuevo diseño ordenado) -->
+  <section id="homeView" class="view active">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="pill-wa">
+            <i class="fa-brands fa-whatsapp"></i> Atención personalizada
+          </div>
+          <h1>Internet de Fibra Óptica <span>y TV para tu hogar</span></h1>
+          <p class="hero-desc">Elige tu plan, verifico cobertura y te ayudo a contratar sin vueltas. Atención directa conmigo, Isidro Cabrera, vendedor autorizado.</p>
+          <div class="benefits-list">
+            <span class="benefit-chip"><i class="fa-solid fa-gauge-high"></i> Fibra óptica</span>
+            <span class="benefit-chip"><i class="fa-solid fa-clock"></i> Instalación 48h</span>
+            <span class="benefit-chip"><i class="fa-solid fa-tv"></i> HD y canales</span>
+            <span class="benefit-chip"><i class="fa-solid fa-map-pin"></i> Verifico cobertura</span>
+          </div>
+          <div class="btns">
+            <button class="btn-primary" data-go="plans"><i class="fa-solid fa-list-check"></i> Ver ofertas</button>
+            <button class="btn-secondary" data-go="why">Por qué conmigo</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="images/7-1.jpg" alt="Internet y TV Tigo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS VIEW -->
+  <section id="plansView" class="view">
+    <div class="container">
+      <h2 class="section-title">Elige tu plan <span style="color:#004aad">y arma tu pedido</span></h2>
+      <p class="section-sub">Selecciona un plan, completa tus datos y envíame el mensaje. Verifico cobertura al instante.</p>
+      <div class="plans-layout">
+        <div class="plans-grid" id="plansGrid"></div>
+        <aside class="order-panel">
+          <h3>Tu pedido</h3>
+          <p>Plan seleccionado:</p>
+          <div class="selected-plan"><strong id="selectedPlanName">Ninguno</strong><br><span id="selectedPlanPrice" style="font-weight:800; color:#004aad">—</span></div>
+          <div class="lead-form">
+            <input type="text" id="leadName" placeholder="Nombre completo *">
+            <input type="tel" id="leadPhone" placeholder="Celular *">
+            <input type="text" id="leadCity" placeholder="Ciudad / Barrio">
+          </div>
+          <button id="whatsappBtn" class="whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Enviar pedido</button>
+          <div class="requirements">
+            <strong>Requisitos:</strong><br>
+            <i class="fa-solid fa-id-card"></i> Cédula vigente<br>
+            <i class="fa-solid fa-user-check"></i> Mayor de edad<br>
+            <i class="fa-solid fa-location-dot"></i> Verificar cobertura
+          </div>
+          <div class="note">Precios sujetos a disponibilidad en tu zona.</div>
+        </aside>
+      </div>
+      <div class="testimonial">
+        <i class="fa-solid fa-quote-left"></i> "Contraté con Isidro, todo rápido y sin problemas. Me instalaron al día siguiente." – Carlos A., Fernando de la Mora <strong>(Confirmado por Tigo)</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VIEW -->
+  <section id="whyView" class="view">
+    <div class="container">
+      <h2 class="section-title">Por qué contratar <span style="color:#004aad">conmigo</span></h2>
+      <p class="section-sub">Te ayudo a elegir el mejor plan sin costo extra y con seguimiento personalizado.</p>
+      <div class="why-grid">
+        <div class="why-card"><i class="fa-solid fa-filter-circle-dollar"></i><h3>Prospectos calificados</h3><p>Llegas con un plan elegido y tus datos. Conversación directa y sin vueltas.</p></div>
+        <div class="why-card"><i class="fa-solid fa-bolt"></i><h3>Decisión rápida</h3><p>Plan, precio y requisitos claros. Sin distracciones.</p></div>
+        <div class="why-card"><i class="fa-solid fa-handshake"></i><h3>Cierre más fácil</h3><p>Yo verifico cobertura y te guío en la contratación.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <script>
-function showWhatsApp(btn){
-  btn.style.display='none';
-  btn.nextElementSibling.style.display='inline-block';
-}
-function goWhatsApp(){
-  window.open('https://wa.me/595984049651','_blank');
-}
-</script>
+  const VENDEDOR_NOMBRE = "Isidro Cabrera";
+  const VENDEDOR_TELEFONO = "595984049651";
 
+  const planes = [
+    { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet hogar", descripcion: "Ideal para uso diario, redes sociales y streaming básico.", imgSrc: "images/3-4.jpg", fallback: "🌐" },
+    { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet hogar", descripcion: "Varios dispositivos, videollamadas y 4K.", imgSrc: "images/4-3.jpg", fallback: "⚡" },
+    { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet hogar", descripcion: "Alto rendimiento para juegos y descargas.", imgSrc: "images/5-2.jpg", fallback: "🚀" },
+    { nombre: "TV Inicial", precio: "Gs. 99.000", tipo: "TV hogar", descripcion: "Canales esenciales para toda la familia.", imgSrc: "images/6-1.jpg", fallback: "📺" },
+    { nombre: "TV Familiar", precio: "Gs. 139.000", tipo: "TV hogar", descripcion: "Más canales y entretenimiento.", imgSrc: "images/7-1.jpg", fallback: "📡" },
+    { nombre: "Combo 200M + TV Inicial", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet y TV en un solo pago.", imgSrc: "images/8-1.jpg", fallback: "🎁" },
+    { nombre: "Combo 200M + TV Familiar", precio: "Gs. 205.000", tipo: "Combo", descripcion: "El combo más vendido.", imgSrc: "images/combo-popular.png", fallback: "🏆" },
+    { nombre: "TV Satelital", precio: "Gs. 99.000", tipo: "TV satelital", descripcion: "Para zonas sin cobertura de cable.", imgSrc: "images/antena-satelital.png", fallback: "🛰️" }
+  ];
+
+  const plansGrid = document.getElementById("plansGrid");
+  function renderPlanes() {
+    plansGrid.innerHTML = "";
+    planes.forEach(plan => {
+      const card = document.createElement("div");
+      card.className = "plan-card";
+      card.dataset.plan = plan.nombre;
+      card.dataset.price = plan.precio;
+      card.dataset.type = plan.tipo;
+      card.innerHTML = `
+        <div class="plan-img">
+          <img src="${plan.imgSrc}" alt="${plan.nombre}" onerror="this.onerror=null; this.parentElement.innerHTML='${plan.fallback}'">
+        </div>
+        <div class="plan-info">
+          <div class="plan-cat">${plan.tipo}</div>
+          <h3>${plan.nombre}</h3>
+          <p>${plan.descripcion}</p>
+          <div class="price">${plan.precio} <small>al mes</small></div>
+        </div>
+      `;
+      card.addEventListener("click", () => seleccionarPlan(card));
+      plansGrid.appendChild(card);
+    });
+  }
+
+  let planSeleccionado = null;
+  const selectedPlanNameSpan = document.getElementById("selectedPlanName");
+  const selectedPlanPriceSpan = document.getElementById("selectedPlanPrice");
+  const whatsappBtn = document.getElementById("whatsappBtn");
+  const leadName = document.getElementById("leadName");
+  const leadPhone = document.getElementById("leadPhone");
+  const leadCity = document.getElementById("leadCity");
+
+  function seleccionarPlan(card) {
+    document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
+    card.classList.add("selected");
+    planSeleccionado = {
+      nombre: card.dataset.plan,
+      precio: card.dataset.price,
+      tipo: card.dataset.type
+    };
+    selectedPlanNameSpan.textContent = planSeleccionado.nombre;
+    selectedPlanPriceSpan.textContent = planSeleccionado.precio;
+    actualizarBoton();
+  }
+
+  function actualizarBoton() {
+    const nombre = leadName.value.trim();
+    const telefono = leadPhone.value.trim();
+    if (!planSeleccionado || !nombre || !telefono) {
+      whatsappBtn.classList.remove("visible");
+      return;
+    }
+    whatsappBtn.classList.add("visible");
+    const ciudad = leadCity.value.trim();
+    const msg = `Hola ${VENDEDOR_NOMBRE}, quiero contratar: ${planSeleccionado.nombre} (${planSeleccionado.precio}). Tipo: ${planSeleccionado.tipo}. Mis datos: ${nombre}, teléfono ${telefono}. ${ciudad ? `Zona: ${ciudad}.` : ""} Necesito verificar cobertura.`;
+    whatsappBtn.href = `https://wa.me/${VENDEDOR_TELEFONO}?text=${encodeURIComponent(msg)}`;
+  }
+
+  leadName.addEventListener("input", actualizarBoton);
+  leadPhone.addEventListener("input", actualizarBoton);
+  leadCity.addEventListener("input", actualizarBoton);
+
+  // navegación
+  const views = {
+    home: document.getElementById("homeView"),
+    plans: document.getElementById("plansView"),
+    why: document.getElementById("whyView")
+  };
+  function showView(viewName) {
+    Object.values(views).forEach(v => v.classList.remove("active"));
+    views[viewName].classList.add("active");
+    history.replaceState(null, "", viewName === "home" ? "#inicio" : `#${viewName}`);
+    window.scrollTo(0, 0);
+  }
+  document.querySelectorAll("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
+
+  function initHash() {
+    const hash = location.hash.slice(1);
+    if (hash === "plans") showView("plans");
+    else if (hash === "why") showView("why");
+    else showView("home");
+  }
+  renderPlanes();
+  initHash();
+</script>
 </body>
 </html>
