@@ -8,6 +8,7 @@
   <link rel="icon" href="images/logo-tigo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
+    /* ========== ESTILOS GENERALES (home y resto) ========== */
     * {
       margin: 0;
       padding: 0;
@@ -38,7 +39,6 @@
       text-align: center;
     }
 
-    /* Logo */
     .logo {
       margin-bottom: 0.8rem;
     }
@@ -47,7 +47,6 @@
       height: auto;
     }
 
-    /* Perfil (foto, nombre, cargo) */
     .perfil {
       margin: 0.8rem 0 0.8rem;
     }
@@ -81,7 +80,6 @@
       color: #25d366;
     }
 
-    /* Título */
     h1 {
       font-size: 1.6rem;
       font-weight: 800;
@@ -92,7 +90,6 @@
       color: #004aad;
     }
 
-    /* Descripción */
     .description {
       font-size: 0.85rem;
       color: #333;
@@ -100,7 +97,6 @@
       padding: 0 0.5rem;
     }
 
-    /* Beneficios - 2x2 grid */
     .benefits {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -126,7 +122,6 @@
       color: #001a49;
     }
 
-    /* Botón */
     .btn-primary {
       background: #25d366;
       color: white;
@@ -147,7 +142,7 @@
       transform: translateY(-2px);
     }
 
-    /* Vistas internas (Plans, Why) - sin cambios */
+    /* ========== VISTAS INTERNAS ========== */
     .view {
       display: none;
       background: #f4f6f9;
@@ -156,6 +151,7 @@
     .view.active {
       display: block;
     }
+
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -185,6 +181,7 @@
       font-weight: 600;
       cursor: pointer;
     }
+
     .page {
       max-width: 1200px;
       margin: 0 auto;
@@ -197,17 +194,62 @@
     .page-header h2 span {
       color: #004aad;
     }
+
+    /* FILTROS ZONA Y CATEGORÍA */
+    .filtros {
+      background: white;
+      border-radius: 24px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filtros select {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 40px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      color: #001a49;
+      font-weight: 500;
+      cursor: pointer;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    /* PLANS LAYOUT CON SCROLL INTERNO */
     .plans-layout {
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
     }
-    .plans-grid {
+    .plans-grid-container {
       flex: 2;
+      background: transparent;
+    }
+    .plans-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: 0.2rem;
     }
+    /* Scroll personalizado (opcional) */
+    .plans-grid::-webkit-scrollbar {
+      width: 6px;
+    }
+    .plans-grid::-webkit-scrollbar-track {
+      background: #e2e8f0;
+      border-radius: 10px;
+    }
+    .plans-grid::-webkit-scrollbar-thumb {
+      background: #004aad;
+      border-radius: 10px;
+    }
+
     .plan-card {
       background: white;
       border-radius: 24px;
@@ -259,6 +301,7 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       position: sticky;
       top: 20px;
+      align-self: start;
     }
     .selected-plan {
       background: #f8fafc;
@@ -319,6 +362,9 @@
       .order-panel {
         position: static;
       }
+      .plans-grid {
+        max-height: 50vh;
+      }
       .home-container {
         max-width: 100%;
       }
@@ -337,14 +383,13 @@
 </head>
 <body>
 <main>
-  <!-- HOME VIEW -->
+  <!-- HOME VIEW (intacto) -->
   <section id="homeView" class="view active">
     <div class="home">
       <div class="home-container">
         <div class="logo">
           <img src="images/logo.png" alt="tigo">
         </div>
-        <!-- Bloque de perfil -->
         <div class="perfil">
           <img src="images/perfil.png" alt="Isidro Cabrera">
           <h3>Isidro Cabrera</h3>
@@ -364,7 +409,7 @@
     </div>
   </section>
 
-  <!-- PLANS VIEW (segunda página) -->
+  <!-- PLANS VIEW (modificada: zona + categorías + scroll) -->
   <section id="plansView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -376,10 +421,24 @@
     <div class="page">
       <div class="page-header">
         <h2>Elige tu plan <span>y arma tu pedido</span></h2>
-        <p>Selecciona un plan, completa tus datos y envíame el mensaje.</p>
+        <p>Selecciona tu zona y categoría, luego elige un plan.</p>
       </div>
+
+      <!-- Filtros de zona y categoría -->
+      <div class="filtros">
+        <select id="zonaSelect">
+          <option value="urbana">🌆 Urbana</option>
+          <option value="rural">🌾 Rural</option>
+        </select>
+        <select id="categoriaSelect">
+          <option value="satelital">📡 TV Satelital</option>
+        </select>
+      </div>
+
       <div class="plans-layout">
-        <div class="plans-grid" id="plansGrid"></div>
+        <div class="plans-grid-container">
+          <div class="plans-grid" id="plansGrid"></div>
+        </div>
         <div class="order-panel">
           <h3>Tu pedido</h3>
           <div class="selected-plan">
@@ -408,7 +467,7 @@
     </div>
   </section>
 
-  <!-- WHY VIEW -->
+  <!-- WHY VIEW (sin cambios) -->
   <section id="whyView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -435,41 +494,50 @@
   const VENDEDOR = "Isidro Cabrera";
   const PHONE = "595984049651";
 
-  const planesList = [
-    { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Para uso diario.", imgSrc: "images/3-4.jpg", fallback: "🌐" },
-    { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Streaming y varios dispositivos.", imgSrc: "images/4-3.jpg", fallback: "⚡" },
-    { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet", descripcion: "Alto consumo, juegos.", imgSrc: "images/5-2.jpg", fallback: "🚀" },
-    { nombre: "TV Inicial", precio: "Gs. 99.000", tipo: "TV", descripcion: "Canales esenciales.", imgSrc: "images/6-1.jpg", fallback: "📺" },
-    { nombre: "TV Familiar", precio: "Gs. 139.000", tipo: "TV", descripcion: "Más contenido.", imgSrc: "images/7-1.jpg", fallback: "📡" },
-    { nombre: "Combo 200M + TV Inicial", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV.", imgSrc: "images/8-1.jpg", fallback: "🎁" },
-    { nombre: "Combo 200M + TV Familiar", precio: "Gs. 205.000", tipo: "Combo", descripcion: "El más elegido.", imgSrc: "images/combo-popular.png", fallback: "🏆" },
-    { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "Satelital", descripcion: "Zonas sin cable.", imgSrc: "images/antena-satelital.png", fallback: "🛰️" }
-  ];
+  // Base de datos de planes por categoría y zona
+  // (Puedes agregar más planes luego, manteniendo la estructura)
+  const planesDB = {
+    satelital: {
+      nombre: "TV Satelital",
+      planes: [
+        { nombre: "TV Satelital Básico", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "46 canales", imgSrc: "images/6-1.jpg", fallback: "📡" },
+        { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "73 canales", imgSrc: "images/7-1.jpg", fallback: "🛰️" }
+      ]
+    },
+    cable: {
+      nombre: "TV Cable",
+      planes: [
+        { nombre: "TV Cable Básico", precio: "Gs. 110.000", tipo: "TV Cable", descripcion: "Canales básicos HD", imgSrc: "images/6-1.jpg", fallback: "📺" },
+        { nombre: "TV Cable Familiar", precio: "Gs. 150.000", tipo: "TV Cable", descripcion: "Canales HD + deportes", imgSrc: "images/7-1.jpg", fallback: "📺" }
+      ]
+    },
+    wifi: {
+      nombre: "WiFi Ilimitado",
+      planes: [
+        { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
+        { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Ideal para streaming", imgSrc: "images/4-3.jpg", fallback: "⚡" },
+        { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet", descripcion: "Máxima velocidad", imgSrc: "images/5-2.jpg", fallback: "🚀" }
+      ]
+    },
+    ofertas: {
+      nombre: "Ofertas Especiales",
+      planes: [
+        { nombre: "Combo 200M + TV Cable", precio: "Gs. 220.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
+        { nombre: "Pack Streaming + WiFi", precio: "Gs. 250.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🎬" }
+      ]
+    }
+  };
 
-  const grid = document.getElementById("plansGrid");
-  function renderPlanes() {
-    grid.innerHTML = "";
-    planesList.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "plan-card";
-      card.dataset.plan = p.nombre;
-      card.dataset.price = p.precio;
-      card.dataset.type = p.tipo;
-      card.innerHTML = `
-        <div class="plan-image">
-          <img src="${p.imgSrc}" alt="${p.nombre}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style="font-size:2rem;">${p.fallback}</div>'">
-        </div>
-        <div class="plan-body">
-          <div class="plan-type">${p.tipo}</div>
-          <h3>${p.nombre}</h3>
-          <p>${p.descripcion}</p>
-          <div class="price">${p.precio}<small style="display:block;">al mes</small></div>
-        </div>
-      `;
-      card.addEventListener("click", () => selectPlan(card));
-      grid.appendChild(card);
-    });
-  }
+  // Configuración de categorías por zona
+  const categoriasPorZona = {
+    rural: ["satelital"],
+    urbana: ["satelital", "cable", "wifi", "ofertas"]
+  };
+
+  // Referencias DOM
+  const zonaSelect = document.getElementById("zonaSelect");
+  const categoriaSelect = document.getElementById("categoriaSelect");
+  const plansGrid = document.getElementById("plansGrid");
 
   let currentPlan = null;
   const selectedNameSpan = document.getElementById("selectedPlanName");
@@ -478,6 +546,57 @@
   const nameInput = document.getElementById("leadName");
   const phoneInput = document.getElementById("leadPhone");
   const cityInput = document.getElementById("leadCity");
+
+  // Función para renderizar el selector de categorías según zona
+  function actualizarCategorias() {
+    const zona = zonaSelect.value;
+    const categorias = categoriasPorZona[zona] || ["satelital"];
+    categoriaSelect.innerHTML = "";
+    categorias.forEach(cat => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = planesDB[cat].nombre;
+      categoriaSelect.appendChild(option);
+    });
+    // Al cambiar zona, reseteamos selección y renderizamos la primera categoría
+    renderizarPlanes();
+  }
+
+  // Renderizar planes según categoría seleccionada
+  function renderizarPlanes() {
+    const categoria = categoriaSelect.value;
+    if (!planesDB[categoria]) return;
+    const data = planesDB[categoria];
+    const planes = data.planes;
+
+    plansGrid.innerHTML = "";
+    planes.forEach(plan => {
+      const card = document.createElement("div");
+      card.className = "plan-card";
+      card.dataset.plan = plan.nombre;
+      card.dataset.price = plan.precio;
+      card.dataset.type = plan.tipo;
+      card.innerHTML = `
+        <div class="plan-image">
+          <img src="${plan.imgSrc}" alt="${plan.nombre}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style="font-size:2rem;">${plan.fallback}</div>'">
+        </div>
+        <div class="plan-body">
+          <div class="plan-type">${plan.tipo}</div>
+          <h3>${plan.nombre}</h3>
+          <p>${plan.descripcion}</p>
+          <div class="price">${plan.precio}<small style="display:block;">al mes</small></div>
+        </div>
+      `;
+      card.addEventListener("click", () => selectPlan(card));
+      plansGrid.appendChild(card);
+    });
+    // Limpiar selección actual
+    document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
+    currentPlan = null;
+    selectedNameSpan.textContent = "Ninguno";
+    selectedPriceSpan.textContent = "—";
+    waBtn.classList.remove("visible");
+  }
 
   function selectPlan(card) {
     document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
@@ -493,22 +612,30 @@
   }
 
   function updateWaButton() {
-    const name = nameInput.value.trim();
-    const phone = phoneInput.value.trim();
-    if (!currentPlan || !name || !phone) {
+    const nombre = nameInput.value.trim();
+    const telefono = phoneInput.value.trim();
+    if (!currentPlan || !nombre || !telefono) {
       waBtn.classList.remove("visible");
       return;
     }
     waBtn.classList.add("visible");
-    const city = cityInput.value.trim();
-    const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${name}, teléfono ${phone}. ${city ? `Zona: ${city}.` : ""} Necesito cobertura.`;
+    const ciudad = cityInput.value.trim();
+    const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${nombre}, teléfono ${telefono}. ${ciudad ? `Zona: ${ciudad}.` : ""} Necesito cobertura.`;
     waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
   }
 
+  // Eventos
+  zonaSelect.addEventListener("change", () => {
+    actualizarCategorias();
+  });
+  categoriaSelect.addEventListener("change", () => {
+    renderizarPlanes();
+  });
   nameInput.addEventListener("input", updateWaButton);
   phoneInput.addEventListener("input", updateWaButton);
   cityInput.addEventListener("input", updateWaButton);
 
+  // Navegación entre vistas
   const views = {
     home: document.getElementById("homeView"),
     plans: document.getElementById("plansView"),
@@ -517,13 +644,16 @@
   function showView(view) {
     Object.values(views).forEach(v => v.classList.remove("active"));
     views[view].classList.add("active");
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
   document.querySelectorAll("[data-go]").forEach(btn => {
     btn.addEventListener("click", () => showView(btn.dataset.go));
   });
 
-  renderPlanes();
+  // Inicializar zona y categorías
+  actualizarCategorias();
+  renderizarPlanes();
+  // Mostrar home al inicio (ya está)
   showView("home");
 </script>
 </body>
