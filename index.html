@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Tigo Paraguay | Internet + TV | Isidro Cabrera</title>
+<title>Internet y TV para tu hogar | Isidro Cabrera</title>
 
-<!-- SEO / WhatsApp Preview -->
-<meta name="description" content="Contrata Internet y TV Tigo Paraguay con atención personalizada por WhatsApp. Instalación rápida y asesoría directa con Isidro Cabrera." />
+<meta name="description" content="Contrata Internet y TV para tu hogar con atención personalizada por WhatsApp. Instalación rápida y asesoría directa." />
 
-<meta property="og:title" content="Tigo Paraguay | Internet + TV | Isidro Cabrera" />
-<meta property="og:description" content="Internet de alta velocidad + TV HD. Atención personalizada por WhatsApp. Instalación rápida." />
+<meta property="og:title" content="Internet y TV para tu hogar | Isidro Cabrera" />
+<meta property="og:description" content="Planes de Internet y TV con atención personalizada por WhatsApp." />
 <meta property="og:image" content="https://TU-IMAGEN.com/preview.jpg" />
 <meta property="og:type" content="website" />
 
 <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/5/54/Tigo_logo_2022.svg">
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
 
 :root{
-  --tigo-blue:#004aad;
-  --tigo-dark:#002d6b;
-  --tigo-yellow:#ffc900;
+  --blue:#004aad;
+  --dark:#002d6b;
+  --yellow:#ffc900;
   --green:#25d366;
-  --bg:#f4f7fb;
+  --bg:#f5f7fb;
   --text:#1f2937;
   --card:#ffffff;
 }
@@ -47,203 +46,222 @@ body{
   color:var(--text);
 }
 
-/* HEADER */
+/* HERO */
 
 .hero{
   background:
-  linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.55)),
-  linear-gradient(135deg,var(--tigo-blue),var(--tigo-dark));
+  radial-gradient(circle at top right, rgba(255,255,255,.10), transparent 30%),
+  linear-gradient(135deg,var(--blue),var(--dark));
   color:white;
-  padding:60px 20px 45px;
-  text-align:center;
+  padding:65px 20px 55px;
   position:relative;
   overflow:hidden;
 }
 
-.hero::before{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  background:rgba(255,255,255,.05);
-  border-radius:50%;
-  top:-120px;
-  right:-100px;
-}
-
-.logo{
-  width:90px;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:2.2rem;
-  margin-bottom:15px;
-  line-height:1.15;
-}
-
-.hero p{
-  font-size:1.05rem;
-  opacity:.96;
-  max-width:700px;
+.hero-content{
+  max-width:1150px;
   margin:auto;
 }
 
-.hero-badges{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:25px;
+.logo{
+  width:88px;
+  margin-bottom:25px;
 }
 
-.hero-badge{
+.hero h1{
+  font-size:2.4rem;
+  line-height:1.1;
+  max-width:700px;
+  margin-bottom:18px;
+  font-weight:800;
+}
+
+.hero p{
+  max-width:650px;
+  line-height:1.7;
+  font-size:1.06rem;
+  opacity:.95;
+}
+
+.hero-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+
+.hero-tag{
   background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.15);
-  padding:10px 15px;
+  border:1px solid rgba(255,255,255,.08);
+  padding:12px 16px;
   border-radius:999px;
-  font-size:.9rem;
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
+  font-size:.93rem;
 }
 
 /* MAIN */
 
 .container{
-  width:100%;
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
-  padding:25px 18px 70px;
+  padding:30px 18px 100px;
 }
 
-.grid{
+.layout{
   display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:24px;
+  grid-template-columns:1.15fr .85fr;
+  gap:26px;
 }
+
+/* CARD */
 
 .card{
   background:var(--card);
-  border-radius:26px;
-  box-shadow:0 10px 35px rgba(0,0,0,.06);
-  padding:28px;
+  border-radius:30px;
+  box-shadow:0 12px 40px rgba(0,0,0,.06);
+  padding:30px;
 }
 
 /* OFFER */
 
 .offer{
-  background:linear-gradient(135deg,var(--tigo-yellow),#ffe16e);
-  color:#1b1b1b;
-  padding:15px;
-  border-radius:18px;
-  margin-bottom:25px;
+  background:linear-gradient(135deg,#fff3b0,#ffe16a);
+  color:#2a2a2a;
+  border-radius:22px;
+  padding:16px;
   font-weight:700;
-  text-align:center;
-  font-size:1rem;
+  margin-bottom:30px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
 }
 
 /* FORM */
 
 .step{
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
 .step label{
   display:block;
-  margin-bottom:10px;
+  margin-bottom:12px;
+  color:var(--blue);
+  font-size:1rem;
   font-weight:700;
-  color:var(--tigo-blue);
 }
 
 .select{
   width:100%;
-  padding:16px;
-  border-radius:16px;
-  border:1px solid #dbe1ea;
+  border:none;
+  background:#f6f9ff;
+  border-radius:18px;
+  padding:18px;
   font-size:1rem;
-  background:white;
-  transition:.2s;
+  transition:.25s;
+  border:2px solid transparent;
 }
 
 .select:focus{
   outline:none;
-  border-color:var(--tigo-blue);
-  box-shadow:0 0 0 4px rgba(0,74,173,.08);
+  border-color:#bfd7ff;
+  background:white;
+  box-shadow:0 0 0 5px rgba(0,74,173,.08);
 }
 
-/* PLAN RESULT */
+/* PLAN */
 
 .result{
   display:none;
-  margin-top:25px;
-  padding:22px;
-  border-radius:22px;
-  background:#f7faff;
-  border:2px solid #edf2ff;
+  margin-top:28px;
+  animation:fadeUp .35s ease;
 }
 
-.plan-top{
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.plan-card{
+  background:linear-gradient(180deg,#ffffff,#f8fbff);
+  border-radius:28px;
+  padding:24px;
+  border:1px solid #edf3ff;
+}
+
+.plan-header{
   display:flex;
-  align-items:center;
   gap:18px;
+  align-items:center;
   flex-wrap:wrap;
 }
 
-.plan-img{
-  width:100px;
-  height:100px;
+.plan-image{
+  width:105px;
+  height:105px;
+  border-radius:22px;
   object-fit:cover;
-  border-radius:18px;
   background:white;
   padding:8px;
+  box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
-.plan-name{
-  font-size:1.3rem;
+.plan-title{
+  font-size:1.5rem;
   font-weight:800;
+  color:var(--blue);
   margin-bottom:8px;
+}
+
+.plan-description{
+  color:#5b6472;
+  line-height:1.6;
 }
 
 .plan-price{
   font-size:2rem;
-  color:var(--tigo-blue);
   font-weight:900;
-}
-
-.plan-desc{
-  margin-top:8px;
-  line-height:1.5;
-}
-
-.plan-extra{
   margin-top:18px;
+  color:#0b3f91;
+}
+
+.plan-benefits{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
+  margin-top:22px;
 }
 
-.tag{
+.benefit{
   background:white;
-  border-radius:999px;
   padding:10px 14px;
+  border-radius:999px;
   font-size:.9rem;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
+  box-shadow:0 3px 10px rgba(0,0,0,.04);
 }
 
 .btn-wa{
   margin-top:24px;
   width:100%;
+  border:none;
+  text-decoration:none;
   display:flex;
   justify-content:center;
   align-items:center;
   gap:10px;
   background:var(--green);
   color:white;
-  text-decoration:none;
   padding:18px;
   border-radius:18px;
+  font-size:1.05rem;
   font-weight:800;
-  font-size:1.08rem;
-  transition:.2s;
+  transition:.25s;
 }
 
 .btn-wa:hover{
@@ -251,245 +269,304 @@ body{
   background:#18b957;
 }
 
-/* SIDE */
+/* RIGHT SIDE */
 
-.agent{
+.profile{
   text-align:center;
 }
 
-.agent-photo{
-  width:130px;
-  height:130px;
-  object-fit:cover;
+.profile-img{
+  width:140px;
+  height:140px;
   border-radius:50%;
-  border:5px solid var(--tigo-yellow);
-  margin-bottom:18px;
+  object-fit:cover;
+  border:5px solid var(--yellow);
+  margin-bottom:20px;
 }
 
-.agent h2{
-  color:var(--tigo-blue);
-  margin-bottom:10px;
+.profile h2{
+  color:var(--blue);
+  margin-bottom:12px;
 }
 
-.agent p{
-  line-height:1.6;
-  color:#4b5563;
+.profile p{
+  line-height:1.7;
+  color:#5b6472;
 }
 
 .verify{
-  margin-top:18px;
+  margin-top:20px;
   background:#f8fbff;
-  border:1px dashed #b8d2ff;
-  padding:15px;
-  border-radius:16px;
+  border:1px dashed #b7d0ff;
+  border-radius:18px;
+  padding:18px;
+  line-height:1.6;
   font-size:.95rem;
 }
 
 .verify strong{
-  color:var(--tigo-blue);
+  color:var(--blue);
 }
 
 /* BENEFITS */
 
-.benefits{
-  margin-top:25px;
+.features{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:14px;
+  margin-top:25px;
 }
 
-.benefit{
+.feature{
   background:#f8fbff;
-  padding:16px;
-  border-radius:18px;
+  padding:18px;
+  border-radius:22px;
   text-align:center;
 }
 
-.benefit i{
-  font-size:1.5rem;
-  color:var(--tigo-blue);
+.feature i{
+  font-size:1.4rem;
+  color:var(--blue);
   margin-bottom:10px;
 }
 
 /* TRUST */
 
 .trust{
-  margin-top:25px;
+  margin-top:26px;
   background:#fffbea;
-  border-left:5px solid var(--tigo-yellow);
+  border-left:5px solid var(--yellow);
   padding:18px;
-  border-radius:16px;
-  line-height:1.6;
+  border-radius:18px;
+  line-height:1.7;
 }
 
-/* FLOAT WA */
+/* FLOATING BUTTON */
 
-.float-wa{
+.float-bar{
   position:fixed;
-  right:18px;
-  bottom:18px;
-  width:62px;
-  height:62px;
-  border-radius:50%;
+  left:0;
+  bottom:0;
+  width:100%;
+  background:white;
+  padding:14px;
+  box-shadow:0 -5px 20px rgba(0,0,0,.08);
+  z-index:999;
+  display:none;
+}
+
+.float-btn{
+  width:100%;
   background:var(--green);
+  color:white;
+  border:none;
+  border-radius:16px;
+  padding:16px;
+  text-decoration:none;
+  font-weight:800;
   display:flex;
   align-items:center;
   justify-content:center;
-  color:white;
-  font-size:1.8rem;
-  text-decoration:none;
-  box-shadow:0 8px 30px rgba(0,0,0,.25);
-  z-index:999;
+  gap:10px;
+  font-size:1rem;
 }
 
 /* FOOTER */
 
 footer{
   text-align:center;
-  padding:30px 20px;
-  color:#6b7280;
+  padding:35px 20px;
+  color:#7b8190;
   font-size:.9rem;
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:920px){
 
-  .grid{
+  .layout{
     grid-template-columns:1fr;
   }
 
   .hero h1{
-    font-size:1.8rem;
+    font-size:2rem;
   }
 
 }
 
 </style>
 </head>
+
 <body>
 
 <!-- HERO -->
 
 <section class="hero">
 
-  <img
-  class="logo"
-  src="https://upload.wikimedia.org/wikipedia/commons/5/54/Tigo_logo_2022.svg"
-  alt="Tigo"
-  loading="lazy">
+  <div class="hero-content">
 
-  <h1>
-    🔥 Internet + TV Tigo Paraguay
-  </h1>
+    <img
+    class="logo"
+    src="https://upload.wikimedia.org/wikipedia/commons/5/54/Tigo_logo_2022.svg"
+    alt="Logo"
+    loading="lazy">
 
-  <p>
-    Instalación rápida, atención personalizada y planes para hogar desde precios accesibles.
-    Contrata fácilmente por WhatsApp con asesoría directa.
-  </p>
+    <h1>
+      Internet y TV para disfrutar sin complicaciones
+    </h1>
 
-  <div class="hero-badges">
-    <div class="hero-badge">📶 Alta velocidad</div>
-    <div class="hero-badge">⚡ Instalación rápida</div>
-    <div class="hero-badge">📲 Atención personalizada</div>
-    <div class="hero-badge">🛡️ Asesor externo autorizado</div>
+    <p>
+      Atención personalizada por WhatsApp para ayudarte a elegir el plan ideal para tu hogar.
+      Instalación rápida y acompañamiento durante todo el proceso.
+    </p>
+
+    <div class="hero-tags">
+
+      <div class="hero-tag">📶 Alta velocidad</div>
+
+      <div class="hero-tag">⚡ Instalación rápida</div>
+
+      <div class="hero-tag">📲 Atención personalizada</div>
+
+      <div class="hero-tag">🛡️ Atención externa autorizada</div>
+
+    </div>
+
   </div>
 
 </section>
 
+<!-- MAIN -->
+
 <div class="container">
 
-  <div class="grid">
+  <div class="layout">
 
     <!-- LEFT -->
 
     <div class="card">
 
       <div class="offer">
-        🚨 PROMOCIONES DISPONIBLES ESTA SEMANA • Instalación sujeta a cobertura
+        🔥 Promociones disponibles esta semana • Instalación sujeta a cobertura
       </div>
 
-      <!-- STEP 1 -->
+      <!-- STEP -->
 
       <div class="step">
+
         <label>
-          <i class="fas fa-location-dot"></i>
-          1. Selecciona tu zona
+          ¿Dónde quieres instalar el servicio?
         </label>
 
         <select id="zona" class="select">
-          <option value="">Seleccionar zona</option>
-          <option value="urbana">🌆 Urbana</option>
-          <option value="rural">🌾 Rural</option>
+
+          <option value="">
+            Elige una zona
+          </option>
+
+          <option value="urbana">
+            🌆 Urbana
+          </option>
+
+          <option value="rural">
+            🌾 Rural
+          </option>
+
         </select>
+
       </div>
 
-      <!-- STEP 2 -->
+      <!-- STEP -->
 
       <div class="step">
+
         <label>
-          <i class="fas fa-wifi"></i>
-          2. Elige el servicio
+          ¿Qué servicio estás buscando?
         </label>
 
         <select id="categoria" class="select">
-          <option value="">Primero selecciona zona</option>
+
+          <option value="">
+            Primero selecciona una zona
+          </option>
+
         </select>
+
       </div>
 
-      <!-- STEP 3 -->
+      <!-- STEP -->
 
       <div class="step">
+
         <label>
-          <i class="fas fa-tv"></i>
-          3. Selecciona tu plan
+          Elige la opción ideal para ti
         </label>
 
         <select id="opcion" class="select">
-          <option value="">Seleccionar plan</option>
+
+          <option value="">
+            Toca aquí para ver opciones
+          </option>
+
         </select>
+
       </div>
 
       <!-- RESULT -->
 
       <div id="result" class="result">
 
-        <div class="plan-top">
+        <div class="plan-card">
 
-          <img
-          id="planImg"
-          class="plan-img"
-          src=""
-          alt="Plan"
-          loading="lazy">
+          <div class="plan-header">
 
-          <div>
+            <img
+            id="planImage"
+            class="plan-image"
+            src=""
+            alt="Plan"
+            loading="lazy">
 
-            <div id="planName" class="plan-name"></div>
+            <div>
 
-            <div id="planPrice" class="plan-price"></div>
+              <div id="planTitle" class="plan-title"></div>
+
+              <div id="planDescription" class="plan-description"></div>
+
+            </div>
 
           </div>
 
+          <div id="planPrice" class="plan-price"></div>
+
+          <div class="plan-benefits">
+
+            <div class="benefit">
+              ⚡ Instalación rápida
+            </div>
+
+            <div class="benefit">
+              📶 Buena estabilidad
+            </div>
+
+            <div class="benefit">
+              📲 Atención personalizada
+            </div>
+
+          </div>
+
+          <a
+          id="whatsappBtn"
+          class="btn-wa"
+          target="_blank">
+
+            <i class="fab fa-whatsapp"></i>
+
+            Contratar por WhatsApp
+
+          </a>
+
         </div>
-
-        <div id="planDesc" class="plan-desc"></div>
-
-        <div class="plan-extra">
-          <div class="tag">📶 Alta estabilidad</div>
-          <div class="tag">⚡ Instalación rápida</div>
-          <div class="tag">📲 Soporte personalizado</div>
-        </div>
-
-        <a
-        id="waBtn"
-        class="btn-wa"
-        target="_blank">
-
-          <i class="fab fa-whatsapp"></i>
-          Quiero contratar este plan
-
-        </a>
 
       </div>
 
@@ -499,57 +576,79 @@ footer{
 
     <div class="card">
 
-      <div class="agent">
+      <div class="profile">
 
-        <!-- REEMPLAZA CON TU FOTO -->
+        <!-- REEMPLAZA POR TU FOTO -->
+
         <img
-        class="agent-photo"
+        class="profile-img"
         src="https://placehold.co/300x300?text=Tu+Foto"
         alt="Isidro Cabrera"
         loading="lazy">
 
-        <h2>Isidro Cabrera</h2>
+        <h2>
+          Isidro Cabrera
+        </h2>
 
         <p>
-          Atención personalizada para contratación de Internet y TV.
-          Te acompaño durante todo el proceso de activación e instalación.
+          Atención personalizada para ayudarte a contratar el servicio ideal para tu hogar.
+          Acompañamiento directo durante el proceso de instalación y activación.
         </p>
 
         <div class="verify">
-          <strong>✔ Atención externa autorizada</strong>
+
+          <strong>
+            ✔ Atención externa autorizada
+          </strong>
+
           <br><br>
-          Código de asesor en proceso de asignación.
-          Validación completa disponible próximamente.
+
+          Código de asesor en proceso de asignación oficial.
+
         </div>
 
       </div>
 
-      <div class="benefits">
+      <div class="features">
 
-        <div class="benefit">
-          <i class="fas fa-bolt"></i>
-          Instalación rápida
-        </div>
+        <div class="feature">
 
-        <div class="benefit">
           <i class="fas fa-headset"></i>
+
           Atención directa
+
         </div>
 
-        <div class="benefit">
+        <div class="feature">
+
           <i class="fas fa-house-signal"></i>
+
           Cobertura hogar
+
         </div>
 
-        <div class="benefit">
+        <div class="feature">
+
+          <i class="fas fa-bolt"></i>
+
+          Activación rápida
+
+        </div>
+
+        <div class="feature">
+
           <i class="fas fa-shield"></i>
+
           Proceso guiado
+
         </div>
 
       </div>
 
       <div class="trust">
-        💬 Miles de hogares en Paraguay utilizan Internet Tigo diariamente para streaming, trabajo, gaming y entretenimiento.
+
+        💬 Cada vez más hogares en Paraguay utilizan Internet de alta velocidad para streaming, trabajo, estudio y entretenimiento diario.
+
       </div>
 
     </div>
@@ -558,41 +657,51 @@ footer{
 
 </div>
 
+<!-- FLOATING CTA -->
+
+<div id="floatBar" class="float-bar">
+
+  <a
+  id="floatBtn"
+  class="float-btn"
+  target="_blank">
+
+    <i class="fab fa-whatsapp"></i>
+
+    Contratar por WhatsApp
+
+  </a>
+
+</div>
+
 <footer>
-  © 2026 • Atención personalizada vía WhatsApp • Tigo Paraguay
+
+  © 2026 • Atención personalizada vía WhatsApp
+
 </footer>
-
-<!-- FLOATING WHATSAPP -->
-
-<a
-class="float-wa"
-href="https://wa.me/595984049651"
-target="_blank">
-
-<i class="fab fa-whatsapp"></i>
-
-</a>
 
 <script>
 
-const VENDEDOR = "Isidro Cabrera";
-const NUMERO = "595984049651";
+const seller = "Isidro Cabrera";
+const phone = "595984049651";
 
-const categoriasPorZona = {
+/* DATA */
+
+const categoriesByZone = {
 
   urbana:[
-    {id:"wifi",nombre:"📶 WiFi Ilimitado"},
-    {id:"tv",nombre:"📺 TV"},
-    {id:"combo",nombre:"🎁 Combos"}
+    {id:"wifi",name:"📶 Internet hogar"},
+    {id:"tv",name:"📺 TV"},
+    {id:"combo",name:"🎁 Combos"}
   ],
 
   rural:[
-    {id:"tv",nombre:"🛰️ TV Satelital"}
+    {id:"tv",name:"🛰️ TV satelital"}
   ]
 
 };
 
-const opcionesPorCategoria = {
+const optionsByCategory = {
 
   wifi:[
     "100 Mb",
@@ -611,75 +720,90 @@ const opcionesPorCategoria = {
 
 };
 
-const planes = {
+const plans = {
 
   "100 Mb":{
-    precio:"Gs. 120.000",
-    detalle:"Internet hogar de alta velocidad ideal para navegación, streaming y trabajo.",
-    img:"https://placehold.co/300x300?text=100+Mb"
+    price:"Gs. 120.000",
+    description:"Ideal para navegación, streaming y uso diario.",
+    image:"https://placehold.co/300x300?text=100+Mb"
   },
 
   "200 Mb":{
-    precio:"Gs. 180.000",
-    detalle:"Excelente rendimiento para múltiples dispositivos y entretenimiento HD.",
-    img:"https://placehold.co/300x300?text=200+Mb"
+    price:"Gs. 180.000",
+    description:"Excelente rendimiento para múltiples dispositivos.",
+    image:"https://placehold.co/300x300?text=200+Mb"
   },
 
   "300 Mb":{
-    precio:"Gs. 215.000",
-    detalle:"Máxima velocidad para hogares exigentes, gaming y streaming 4K.",
-    img:"https://placehold.co/300x300?text=300+Mb"
+    price:"Gs. 215.000",
+    description:"Máxima velocidad para hogares exigentes.",
+    image:"https://placehold.co/300x300?text=300+Mb"
   },
 
   "TV Inicial":{
-    precio:"Gs. 99.000",
-    detalle:"Canales esenciales para toda la familia.",
-    img:"https://placehold.co/300x300?text=TV+Inicial"
+    price:"Gs. 99.000",
+    description:"Canales esenciales para toda la familia.",
+    image:"https://placehold.co/300x300?text=TV"
   },
 
   "TV Familiar":{
-    precio:"Gs. 139.000",
-    detalle:"Más entretenimiento y canales familiares.",
-    img:"https://placehold.co/300x300?text=TV+Familiar"
+    price:"Gs. 139.000",
+    description:"Más entretenimiento y canales variados.",
+    image:"https://placehold.co/300x300?text=TV+Familiar"
   },
 
   "200 Mb + TV":{
-    precio:"Gs. 215.000",
-    detalle:"Combo Internet + TV con excelente relación precio-beneficio.",
-    img:"https://placehold.co/300x300?text=Combo"
+    price:"Gs. 215.000",
+    description:"Internet + TV con excelente relación precio-beneficio.",
+    image:"https://placehold.co/300x300?text=Combo"
   }
 
 };
+
+/* DOM */
 
 const zona = document.getElementById("zona");
 const categoria = document.getElementById("categoria");
 const opcion = document.getElementById("opcion");
 
 const result = document.getElementById("result");
-const planImg = document.getElementById("planImg");
-const planName = document.getElementById("planName");
-const planPrice = document.getElementById("planPrice");
-const planDesc = document.getElementById("planDesc");
-const waBtn = document.getElementById("waBtn");
 
-/* ZONA */
+const planTitle = document.getElementById("planTitle");
+const planDescription = document.getElementById("planDescription");
+const planPrice = document.getElementById("planPrice");
+const planImage = document.getElementById("planImage");
+
+const whatsappBtn = document.getElementById("whatsappBtn");
+
+const floatBar = document.getElementById("floatBar");
+const floatBtn = document.getElementById("floatBtn");
+
+/* ZONE */
 
 zona.addEventListener("change",()=>{
 
-  categoria.innerHTML = `<option value="">Seleccionar servicio</option>`;
-  opcion.innerHTML = `<option value="">Seleccionar plan</option>`;
+  categoria.innerHTML = `
+    <option value="">
+      Elige una opción
+    </option>
+  `;
+
+  opcion.innerHTML = `
+    <option value="">
+      Toca aquí para ver opciones
+    </option>
+  `;
 
   result.style.display = "none";
+  floatBar.style.display = "none";
 
-  const zonaValue = zona.value;
+  if(!zona.value) return;
 
-  if(!zonaValue) return;
-
-  categoriasPorZona[zonaValue].forEach(cat=>{
+  categoriesByZone[zona.value].forEach(item=>{
 
     categoria.innerHTML += `
-      <option value="${cat.id}">
-        ${cat.nombre}
+      <option value="${item.id}">
+        ${item.name}
       </option>
     `;
 
@@ -687,19 +811,22 @@ zona.addEventListener("change",()=>{
 
 });
 
-/* CATEGORIA */
+/* CATEGORY */
 
 categoria.addEventListener("change",()=>{
 
-  opcion.innerHTML = `<option value="">Seleccionar plan</option>`;
+  opcion.innerHTML = `
+    <option value="">
+      Toca aquí para ver opciones
+    </option>
+  `;
 
   result.style.display = "none";
+  floatBar.style.display = "none";
 
-  const categoriaValue = categoria.value;
+  if(!categoria.value) return;
 
-  if(!categoriaValue) return;
-
-  opcionesPorCategoria[categoriaValue].forEach(plan=>{
+  optionsByCategory[categoria.value].forEach(plan=>{
 
     opcion.innerHTML += `
       <option value="${plan}">
@@ -720,22 +847,30 @@ opcion.addEventListener("change",()=>{
   if(!selected){
 
     result.style.display = "none";
+    floatBar.style.display = "none";
+
     return;
 
   }
 
-  const plan = planes[selected];
+  const plan = plans[selected];
 
-  planImg.src = plan.img;
-  planName.innerText = selected;
-  planPrice.innerText = plan.precio;
-  planDesc.innerText = plan.detalle;
+  planTitle.innerText = selected;
+  planDescription.innerText = plan.description;
+  planPrice.innerText = plan.price;
+  planImage.src = plan.image;
 
-  const mensaje = `Hola ${VENDEDOR}, quiero contratar el plan ${selected} (${plan.precio}).`;
+  const message =
+  `Hola ${seller}, quiero información sobre el plan ${selected} (${plan.price}).`;
 
-  waBtn.href = `https://wa.me/${NUMERO}?text=${encodeURIComponent(mensaje)}`;
+  const waLink =
+  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  whatsappBtn.href = waLink;
+  floatBtn.href = waLink;
 
   result.style.display = "block";
+  floatBar.style.display = "block";
 
 });
 
