@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tigo Hogar | Isidro Cabrera - Asesor Autorizado</title>
-  <meta name="description" content="Planes de Internet y TV con atención personalizada." />
+  <meta name="description" content="Planes de Internet y TV con atención personalizada de Isidro Cabrera, asesor externo autorizado." />
   <link rel="icon" href="images/logo-tigo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
@@ -190,7 +190,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* FILTROS compactos */
     .filtros {
       background: white;
       border-radius: 20px;
@@ -213,7 +212,6 @@
       min-width: 120px;
     }
 
-    /* LAYOUT con grid de altura reducida y scroll solo si es necesario */
     .plans-layout {
       display: flex;
       gap: 1rem;
@@ -337,6 +335,7 @@
       border-radius: 16px;
       padding: 0.6rem;
       font-size: 0.75rem;
+      border-left: 3px solid #ffc900;
     }
     .why-grid {
       display: grid;
@@ -451,13 +450,17 @@
           </div>
         </div>
       </div>
+      <!-- Testimonios (prueba social aumentada) -->
       <div class="testimonial">
-        <i class="fas fa-quote-left"></i> "Contraté con Isidro, todo rápido. Instalación al día siguiente." – Carlos A.
+        <i class="fas fa-quote-left"></i> "Contraté con Isidro, todo rápido. Instalación al día siguiente." – Carlos A., Fernando de la Mora
+      </div>
+      <div class="testimonial">
+        <i class="fas fa-quote-left"></i> "Muy buena asesoría, me explicó cada detalle y me ayudó a elegir el mejor plan. 100% recomendado." – Laura G., Asunción
       </div>
     </div>
   </section>
 
-  <!-- WHY VIEW (sin cambios) -->
+  <!-- WHY VIEW (nuevos textos persuasivos) -->
   <section id="whyView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -469,12 +472,28 @@
     <div class="page">
       <div class="page-header">
         <h2>Por qué contratar <span>conmigo</span></h2>
-        <p>Proceso simple, sin burocracia y atención personalizada.</p>
+        <p>Te ofrezco un servicio diferente, basado en confianza, transparencia y acompañamiento real.</p>
       </div>
       <div class="why-grid">
-        <div class="why-card"><i class="fas fa-filter"></i><h3>Prospectos calificados</h3><p>Llegas con plan elegido y datos.</p></div>
-        <div class="why-card"><i class="fas fa-bolt"></i><h3>Decisión rápida</h3><p>Toda la información en un solo lugar.</p></div>
-        <div class="why-card"><i class="fas fa-handshake"></i><h3>Cierre fácil</h3><p>Mensaje ordenado, verifico cobertura al toque.</p></div>
+        <div class="why-card">
+          <i class="fas fa-user-check"></i>
+          <h3>Asesoría personalizada y sin presiones</h3>
+          <p>Analizo tu caso, reviso la cobertura real en tu zona y te recomiendo el plan que mejor se adapta a tu familia. Sin llamadas molestas ni ventas forzadas.</p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-file-signature"></i>
+          <h3>Todo por escrito y respaldo oficial</h3>
+          <p>Te envío la cotización formal, los requisitos claros y el comprobante de gestión. Nada queda en el aire. Vos decidís con toda la información.</p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-headset"></i>
+          <h3>Acompañamiento hasta la instalación</h3>
+          <p>No desaparezco después de la venta. Te ayudo con la coordinación de la visita técnica, seguimiento del pedido y cualquier duda postventa.</p>
+        </div>
+      </div>
+      <!-- Testimonio adicional en why -->
+      <div class="testimonial" style="margin-top:1rem;">
+        <i class="fas fa-quote-left"></i> "Isidro me resolvió todo en un día. Súper atento y profesional. Volvería a contratar con él sin dudar." – Roberto M., San Lorenzo
       </div>
     </div>
   </section>
@@ -482,9 +501,9 @@
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595984049651";
+  const PHONE = "595971992363";   // Número actualizado
 
-  // Base de datos de planes
+  // Base de datos de planes (sin cambios)
   const planesDB = {
     satelital: {
       nombre: "TV Satelital",
@@ -522,7 +541,6 @@
     urbana: ["satelital", "cable", "wifi", "ofertas"]
   };
 
-  // Referencias DOM
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
@@ -535,17 +553,12 @@
 
   let currentPlan = null;
 
-  // Validación: solo letras, espacios y tildes para nombre
   function validarSoloLetras(e) {
-    let value = e.target.value;
-    value = value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]/g, '');
-    e.target.value = value;
+    e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]/g, '');
   }
-  // Validación y formato de celular Paraguay
   function formatearCelular(e) {
-    let value = e.target.value.replace(/\D/g, ''); // solo números
+    let value = e.target.value.replace(/\D/g, '');
     if (value.length > 11) value = value.slice(0, 11);
-    // Formato: 09XX XXX XXX
     let formatted = '';
     if (value.length >= 2) {
       formatted = value.slice(0,2);
@@ -599,7 +612,6 @@
       card.addEventListener("click", () => selectPlan(card));
       plansGrid.appendChild(card);
     });
-    // Resetear selección
     document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
     currentPlan = null;
     selectedNameSpan.textContent = "Ninguno";
@@ -636,11 +648,9 @@
   leadName.addEventListener("input", updateWaButton);
   leadPhone.addEventListener("input", updateWaButton);
   leadCity.addEventListener("input", updateWaButton);
-
   zonaSelect.addEventListener("change", actualizarCategorias);
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
-  // Navegación
   const views = {
     home: document.getElementById("homeView"),
     plans: document.getElementById("plansView"),
