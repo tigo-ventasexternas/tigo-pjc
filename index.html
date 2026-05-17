@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Tigo Hogar | Isidro Cabrera</title>
-  <meta name="description" content="Planes de Internet y TV con atención personalizada." />
+  <title>Tigo Hogar | Isidro Cabrera - Asesor Autorizado</title>
+  <meta name="description" content="Planes de Internet y TV con atención personalizada de Isidro Cabrera, asesor externo autorizado." />
   <link rel="icon" href="images/logo-tigo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
@@ -40,11 +40,45 @@
 
     /* Logo */
     .logo {
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
     .logo img {
       max-width: 130px;
       height: auto;
+    }
+
+    /* Perfil (foto, nombre, cargo) */
+    .perfil {
+      margin: 0.8rem 0 0.8rem;
+    }
+    .perfil img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #004aad;
+      padding: 2px;
+      background: white;
+    }
+    .perfil h3 {
+      margin: 0.4rem 0 0.2rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #001a49;
+    }
+    .perfil p {
+      font-size: 0.75rem;
+      color: #075e54;
+      font-weight: 600;
+    }
+    .perfil span {
+      background: #e8f5e9;
+      padding: 2px 10px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: #25d366;
     }
 
     /* Pill WhatsApp */
@@ -58,7 +92,7 @@
       font-size: 0.75rem;
       font-weight: 600;
       color: #075e54;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
     .pill-wa i {
       color: #25d366;
@@ -79,16 +113,16 @@
     .description {
       font-size: 0.85rem;
       color: #333;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       padding: 0 0.5rem;
     }
 
-    /* Beneficios - 2x2 grid para ahorrar altura */
+    /* Beneficios - 2x2 grid */
     .benefits {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.8rem;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.5rem;
     }
     .benefit-item {
       background: #f5f7fc;
@@ -130,7 +164,7 @@
       transform: translateY(-2px);
     }
 
-    /* Vistas internas (Plans, Why) - sin cambios mayores */
+    /* Vistas internas (Plans, Why) - sin cambios */
     .view {
       display: none;
       background: #f4f6f9;
@@ -311,17 +345,28 @@
       .benefit-item i {
         font-size: 1.3rem;
       }
+      .perfil img {
+        width: 70px;
+        height: 70px;
+      }
     }
   </style>
 </head>
 <body>
 <main>
-  <!-- HOME VIEW - fondo blanco, sin scroll -->
+  <!-- HOME VIEW -->
   <section id="homeView" class="view active">
     <div class="home">
       <div class="home-container">
         <div class="logo">
           <img src="images/logo.png" alt="tigo">
+        </div>
+        <!-- Bloque de perfil -->
+        <div class="perfil">
+          <img src="images/perfil.png" alt="Isidro Cabrera">
+          <h3>Isidro Cabrera</h3>
+          <p>Asesor de Ventas Externas</p>
+          <span>Autorizado</span>
         </div>
         <div class="pill-wa">
           <i class="fab fa-whatsapp"></i> Atención directa por WhatsApp
@@ -339,7 +384,7 @@
     </div>
   </section>
 
-  <!-- PLANS VIEW -->
+  <!-- PLANS VIEW (segunda página) -->
   <section id="plansView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
