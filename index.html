@@ -44,6 +44,7 @@ body{
   font-family:'Segoe UI',Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
+  padding-bottom: 80px; /* Espacio para que el botón flotante no tape el footer */
 }
 
 /* HERO */
@@ -104,7 +105,7 @@ body{
 .container{
   max-width:1150px;
   margin:auto;
-  padding:30px 18px 100px;
+  padding:30px 18px 40px;
 }
 
 .layout{
@@ -369,6 +370,11 @@ body{
   justify-content:center;
   gap:10px;
   font-size:1rem;
+  transition: background 0.25s;
+}
+
+.float-btn:hover {
+  background:#18b957;
 }
 
 /* FOOTER */
@@ -383,15 +389,12 @@ footer{
 /* MOBILE */
 
 @media(max-width:920px){
-
   .layout{
     grid-template-columns:1fr;
   }
-
   .hero h1{
     font-size:2rem;
   }
-
 }
 
 </style>
@@ -399,12 +402,8 @@ footer{
 
 <body>
 
-<!-- HERO -->
-
 <section class="hero">
-
   <div class="hero-content">
-
     <img
     class="logo"
     src="https://upload.wikimedia.org/wikipedia/commons/5/54/Tigo_logo_2022.svg"
@@ -421,105 +420,48 @@ footer{
     </p>
 
     <div class="hero-tags">
-
       <div class="hero-tag">📶 Alta velocidad</div>
-
       <div class="hero-tag">⚡ Instalación rápida</div>
-
       <div class="hero-tag">📲 Atención personalizada</div>
-
-      <div class="hero-tag">🛡️ Atención externa autorizada</div>
-
+      <div class="hero-tag">🛡️ Asesor Externo Autorizado</div>
     </div>
-
   </div>
-
 </section>
 
-<!-- MAIN -->
-
 <div class="container">
-
   <div class="layout">
 
-    <!-- LEFT -->
-
     <div class="card">
-
       <div class="offer">
-        🔥 Promociones disponibles esta semana • Instalación sujeta a cobertura
+        🔥 Promoción especial: ¡Instalación prioritaria solicitando hoy por WhatsApp! (Sujeto a cobertura)
       </div>
 
-      <!-- STEP -->
-
       <div class="step">
-
-        <label>
-          ¿Dónde quieres instalar el servicio?
-        </label>
-
+        <label>¿Dónde quieres instalar el servicio?</label>
         <select id="zona" class="select">
-
-          <option value="">
-            Elige una zona
-          </option>
-
-          <option value="urbana">
-            🌆 Urbana
-          </option>
-
-          <option value="rural">
-            🌾 Rural
-          </option>
-
+          <option value="">Elige una zona</option>
+          <option value="urbana">🌆 Urbana</option>
+          <option value="rural">🌾 Rural</option>
         </select>
-
       </div>
 
-      <!-- STEP -->
-
       <div class="step">
-
-        <label>
-          ¿Qué servicio estás buscando?
-        </label>
-
+        <label>¿Qué servicio estás buscando?</label>
         <select id="categoria" class="select">
-
-          <option value="">
-            Primero selecciona una zona
-          </option>
-
+          <option value="">Primero selecciona una zona</option>
         </select>
-
       </div>
-
-      <!-- STEP -->
 
       <div class="step">
-
-        <label>
-          Elige la opción ideal para ti
-        </label>
-
+        <label>Elige la opción ideal para ti</label>
         <select id="opcion" class="select">
-
-          <option value="">
-            Toca aquí para ver opciones
-          </option>
-
+          <option value="">Toca aquí para ver opciones</option>
         </select>
-
       </div>
-
-      <!-- RESULT -->
 
       <div id="result" class="result">
-
         <div class="plan-card">
-
           <div class="plan-header">
-
             <img
             id="planImage"
             class="plan-image"
@@ -528,156 +470,91 @@ footer{
             loading="lazy">
 
             <div>
-
               <div id="planTitle" class="plan-title"></div>
-
               <div id="planDescription" class="plan-description"></div>
-
             </div>
-
           </div>
 
           <div id="planPrice" class="plan-price"></div>
 
           <div class="plan-benefits">
-
-            <div class="benefit">
-              ⚡ Instalación rápida
-            </div>
-
-            <div class="benefit">
-              📶 Buena estabilidad
-            </div>
-
-            <div class="benefit">
-              📲 Atención personalizada
-            </div>
-
+            <div class="benefit">⚡ Instalación rápida</div>
+            <div class="benefit">📶 Buena estabilidad</div>
+            <div class="benefit">📲 Atención personalizada</div>
           </div>
 
           <a
           id="whatsappBtn"
           class="btn-wa"
           target="_blank">
-
             <i class="fab fa-whatsapp"></i>
-
             Contratar por WhatsApp
-
           </a>
-
         </div>
-
       </div>
-
     </div>
 
-    <!-- RIGHT -->
-
     <div class="card">
-
       <div class="profile">
-
-        <!-- REEMPLAZA POR TU FOTO -->
-
         <img
         class="profile-img"
         src="https://placehold.co/300x300?text=Tu+Foto"
         alt="Isidro Cabrera"
         loading="lazy">
 
-        <h2>
-          Isidro Cabrera
-        </h2>
-
+        <h2>Isidro Cabrera</h2>
+        
         <p>
           Atención personalizada para ayudarte a contratar el servicio ideal para tu hogar.
           Acompañamiento directo durante el proceso de instalación y activación.
         </p>
 
         <div class="verify">
-
-          <strong>
-            ✔ Atención externa autorizada
-          </strong>
-
+          <strong>✔ Asesor Externo Autorizado</strong>
           <br><br>
-
-          Código de asesor en proceso de asignación oficial.
-
+          Gestión directa, rápida y sin filas. Yo me encargo de todo tu trámite de activación de forma segura.
         </div>
-
       </div>
 
       <div class="features">
-
         <div class="feature">
-
-          <i class="fas fa-headset"></i>
-
+          <i class="fas fa-headset"></i><br>
           Atención directa
-
         </div>
-
         <div class="feature">
-
-          <i class="fas fa-house-signal"></i>
-
+          <i class="fas fa-house-signal"></i><br>
           Cobertura hogar
-
         </div>
-
         <div class="feature">
-
-          <i class="fas fa-bolt"></i>
-
+          <i class="fas fa-bolt"></i><br>
           Activación rápida
-
         </div>
-
         <div class="feature">
-
-          <i class="fas fa-shield"></i>
-
+          <i class="fas fa-shield"></i><br>
           Proceso guiado
-
         </div>
-
       </div>
 
       <div class="trust">
-
-        💬 Cada vez más hogares en Paraguay utilizan Internet de alta velocidad para streaming, trabajo, estudio y entretenimiento diario.
-
+        Horario de atención extendido vía WhatsApp. Consultas de cobertura sin compromiso en todo el país.
       </div>
-
     </div>
 
   </div>
-
 </div>
 
-<!-- FLOATING CTA -->
-
 <div id="floatBar" class="float-bar">
-
   <a
   id="floatBtn"
   class="float-btn"
   target="_blank">
-
     <i class="fab fa-whatsapp"></i>
-
-    Contratar por WhatsApp
-
+    Chatear con un asesor
   </a>
-
 </div>
 
 <footer>
-
-  © 2026 • Atención personalizada vía WhatsApp
-
+  © 2026 • Isidro Cabrera - Atención personalizada vía WhatsApp
 </footer>
 
 <script>
@@ -686,192 +563,127 @@ const seller = "Isidro Cabrera";
 const phone = "595984049651";
 
 /* DATA */
-
 const categoriesByZone = {
-
   urbana:[
     {id:"wifi",name:"📶 Internet hogar"},
     {id:"tv",name:"📺 TV"},
-    {id:"combo",name:"🎁 Combos"}
+    {id:"combo",name:"🎁 Combos Súper Ahorro"}
   ],
-
   rural:[
     {id:"tv",name:"🛰️ TV satelital"}
   ]
-
 };
 
 const optionsByCategory = {
-
-  wifi:[
-    "100 Mb",
-    "200 Mb",
-    "300 Mb"
-  ],
-
-  tv:[
-    "TV Inicial",
-    "TV Familiar"
-  ],
-
-  combo:[
-    "200 Mb + TV"
-  ]
-
+  wifi:["100 Mb", "200 Mb", "300 Mb"],
+  tv:["TV Inicial", "TV Familiar"],
+  combo:["200 Mb + TV"]
 };
 
 const plans = {
-
   "100 Mb":{
     price:"Gs. 120.000",
-    description:"Ideal para navegación, streaming y uso diario.",
+    description:"Ideal para navegación estable, redes sociales y teletrabajo.",
     image:"https://placehold.co/300x300?text=100+Mb"
   },
-
   "200 Mb":{
     price:"Gs. 180.000",
-    description:"Excelente rendimiento para múltiples dispositivos.",
+    description:"El más pedido. Excelente rendimiento para múltiples dispositivos en simultáneo.",
     image:"https://placehold.co/300x300?text=200+Mb"
   },
-
   "300 Mb":{
     price:"Gs. 215.000",
-    description:"Máxima velocidad para hogares exigentes.",
+    description:"Máxima velocidad de fibra óptica para descargas pesadas y gaming.",
     image:"https://placehold.co/300x300?text=300+Mb"
   },
-
   "TV Inicial":{
     price:"Gs. 99.000",
-    description:"Canales esenciales para toda la familia.",
+    description:"Canales esenciales con calidad digital para toda la familia.",
     image:"https://placehold.co/300x300?text=TV"
   },
-
   "TV Familiar":{
     price:"Gs. 139.000",
-    description:"Más entretenimiento y canales variados.",
+    description:"Entretenimiento total, deportes y películas en alta definición.",
     image:"https://placehold.co/300x300?text=TV+Familiar"
   },
-
   "200 Mb + TV":{
     price:"Gs. 215.000",
-    description:"Internet + TV con excelente relación precio-beneficio.",
+    description:"Combo imperdible: Internet ultra veloz + TV familiar a precio promocional.",
     image:"https://placehold.co/300x300?text=Combo"
   }
-
 };
 
 /* DOM */
-
 const zona = document.getElementById("zona");
 const categoria = document.getElementById("categoria");
 const opcion = document.getElementById("opcion");
-
 const result = document.getElementById("result");
-
 const planTitle = document.getElementById("planTitle");
 const planDescription = document.getElementById("planDescription");
 const planPrice = document.getElementById("planPrice");
 const planImage = document.getElementById("planImage");
-
 const whatsappBtn = document.getElementById("whatsappBtn");
-
 const floatBar = document.getElementById("floatBar");
 const floatBtn = document.getElementById("floatBtn");
 
-/* ZONE */
+// Inicializar el botón flotante general para captar indecisos de entrada
+function initFloatBtn() {
+  const generalMsg = `Hola ${seller}, necesito asesoría para contratar Internet o TV en mi hogar.`;
+  floatBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(generalMsg)}`;
+  floatBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Chatear con un asesor`;
+  floatBar.style.display = "block";
+}
+initFloatBtn();
 
+/* ZONE CHANGE */
 zona.addEventListener("change",()=>{
-
-  categoria.innerHTML = `
-    <option value="">
-      Elige una opción
-    </option>
-  `;
-
-  opcion.innerHTML = `
-    <option value="">
-      Toca aquí para ver opciones
-    </option>
-  `;
-
+  categoria.innerHTML = `<option value="">Elige una opción</option>`;
+  opcion.innerHTML = `<option value="">Toca aquí para ver opciones</option>`;
   result.style.display = "none";
-  floatBar.style.display = "none";
+  initFloatBtn();
 
   if(!zona.value) return;
-
   categoriesByZone[zona.value].forEach(item=>{
-
-    categoria.innerHTML += `
-      <option value="${item.id}">
-        ${item.name}
-      </option>
-    `;
-
+    categoria.innerHTML += `<option value="${item.id}">${item.name}</option>`;
   });
-
 });
 
-/* CATEGORY */
-
+/* CATEGORY CHANGE */
 categoria.addEventListener("change",()=>{
-
-  opcion.innerHTML = `
-    <option value="">
-      Toca aquí para ver opciones
-    </option>
-  `;
-
+  opcion.innerHTML = `<option value="">Toca aquí para ver opciones</option>`;
   result.style.display = "none";
-  floatBar.style.display = "none";
+  initFloatBtn();
 
   if(!categoria.value) return;
-
   optionsByCategory[categoria.value].forEach(plan=>{
-
-    opcion.innerHTML += `
-      <option value="${plan}">
-        ${plan}
-      </option>
-    `;
-
+    opcion.innerHTML += `<option value="${plan}">${plan}</option>`;
   });
-
 });
 
-/* PLAN */
-
+/* PLAN SELECTION */
 opcion.addEventListener("change",()=>{
-
   const selected = opcion.value;
-
   if(!selected){
-
     result.style.display = "none";
-    floatBar.style.display = "none";
-
+    initFloatBtn();
     return;
-
   }
 
   const plan = plans[selected];
-
   planTitle.innerText = selected;
   planDescription.innerText = plan.description;
   planPrice.innerText = plan.price;
   planImage.src = plan.image;
 
-  const message =
-  `Hola ${seller}, quiero información sobre el plan ${selected} (${plan.price}).`;
-
-  const waLink =
-  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  // NUEVO MENSAJE DE ENFOQUE DIRECTO AL CIERRE
+  const message = `Hola ${seller}, quiero solicitar la instalación del plan ${selected} (${plan.price}). ¿Me ayudas a verificar cobertura en mi zona?`;
+  const waLink = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   whatsappBtn.href = waLink;
   floatBtn.href = waLink;
-
+  floatBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Solicitar Plan ${selected}`;
+  
   result.style.display = "block";
-  floatBar.style.display = "block";
-
 });
 
 </script>
