@@ -133,37 +133,22 @@
       justify-content: center;
       max-width: 760px;
     }
+    /* Logo como imagen */
     .brand-logo {
       width: fit-content;
-      font-size: clamp(2rem, 4vw, 4rem);
-      line-height: 0.78;
-      font-weight: 900;
-      letter-spacing: -5px;
       margin-bottom: 20px;
-      position: relative;
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(39, 201, 255, 0.22);
     }
-    .brand-logo::after {
-      content: "";
-      position: absolute;
-      right: 5px;
-      bottom: -18px;
-      width: 78px;
-      height: 38px;
-      border-bottom: 12px solid #ffffff;
-      border-radius: 0 0 90px 90px;
+    .brand-logo img {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
     }
-    .brand-logo::before {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: -24px;
-      width: 46px;
-      height: 30px;
-      border-top: 10px solid #ffffff;
-      border-radius: 90px 90px 0 0;
-      transform: rotate(-4deg);
+    /* Ajuste para el logo en la topbar */
+    .brand-small img {
+      max-width: 130px;
+      height: auto;
+      display: block;
     }
     .pill {
       width: fit-content;
@@ -258,7 +243,9 @@
       justify-content: space-between;
       gap: 14px;
     }
-    .topbar .brand-small { font-size: 2rem; font-weight: 900; letter-spacing: -2px; color: #ffffff; }
+    .topbar .brand-small { 
+      line-height: 0;
+    }
     .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .topbar button {
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -437,9 +424,11 @@
       .hero-content {
         padding: 16px 20px 24px;
       }
-      .brand-logo {
-        margin-bottom: 12px;
-        font-size: 2rem;
+      .brand-logo img {
+        max-width: 150px;
+      }
+      .brand-small img {
+        max-width: 100px;
       }
       .pill {
         padding: 6px 12px;
@@ -487,9 +476,6 @@
         align-items: flex-start;
         padding-top: 12px;
       }
-      .topbar .brand-small {
-        font-size: 1.6rem;
-      }
       .topbar button {
         padding: 8px 12px;
         font-size: 0.8rem;
@@ -511,12 +497,15 @@
     <div class="hero">
       <div class="light-lines"></div>
       <div class="hero-content">
-        <div class="brand-logo">tigo</div>
+        <!-- Logo PNG -->
+        <div class="brand-logo">
+          <img src="images/logo.png" alt="Tigo">
+        </div>
         <div class="pill">
           <i class="fa-brands fa-whatsapp"></i> Atención personalizada por WhatsApp
         </div>
-        <h1>Internet y TV <span>para tu hogar</span></h1>
-        <p class="hero-text">Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas.</p>
+        <h1>Internet de Fibra Óptica <span>y TV para tu hogar</span></h1>
+        <p class="hero-text">Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas. Te ayudo a elegir el mejor plan sin costo extra.</p>
         <div class="benefits">
           <div class="benefit"><i class="fa-solid fa-gauge-high"></i><span>Fibra óptica</span></div>
           <div class="benefit"><i class="fa-solid fa-screwdriver-wrench"></i><span>Instalación en 48hs</span></div>
@@ -524,7 +513,7 @@
           <div class="benefit"><i class="fa-solid fa-location-dot"></i><span>Verifico cobertura</span></div>
         </div>
         <div class="hero-actions">
-          <button class="btn btn-green" data-go="plans"><i class="fa-solid fa-list-check"></i> Ver planes disponibles</button>
+          <button class="btn btn-green" data-go="plans"><i class="fa-solid fa-list-check"></i> Ver ofertas y precios</button>
           <button class="btn btn-outline" data-go="why">Por qué contratar aquí</button>
         </div>
       </div>
@@ -533,7 +522,15 @@
 
   <!-- PLANS VIEW -->
   <section id="plansView" class="view">
-    <div class="topbar"><div class="brand-small">tigo</div><div class="topbar-actions"><button data-go="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button><button data-go="why">Por qué contratar aquí</button></div></div>
+    <div class="topbar">
+      <div class="brand-small">
+        <img src="images/logo.png" alt="Tigo" style="max-width:130px; height:auto;">
+      </div>
+      <div class="topbar-actions">
+        <button data-go="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button>
+        <button data-go="why">Por qué contratar aquí</button>
+      </div>
+    </div>
     <div class="page">
       <div class="page-header"><h2>Elige tu plan <span>y arma tu pedido</span></h2><p>Selecciona un plan, completa tus datos y envía el mensaje. Verifico cobertura y te ayudo a contratar.</p></div>
       <div class="plans-layout">
@@ -552,13 +549,21 @@
           <div class="note">Precios sujetos a cobertura. Consulta validez de la oferta.</div>
         </aside>
       </div>
-      <div class="testimonial"><i class="fa-solid fa-quote-left"></i> "Contraté con Isidro, todo rápido y sin problemas. Me instalaron al día siguiente." – Carlos A., Fernando de la Mora</div>
+      <div class="testimonial"><i class="fa-solid fa-quote-left"></i> "Contraté con Isidro, todo rápido y sin problemas. Me instalaron al día siguiente." – Carlos A., Fernando de la Mora <strong>(Confirmado por Tigo)</strong></div>
     </div>
   </section>
 
   <!-- WHY VIEW -->
   <section id="whyView" class="view">
-    <div class="topbar"><div class="brand-small">tigo</div><div class="topbar-actions"><button data-go="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button><button data-go="plans">Ver planes</button></div></div>
+    <div class="topbar">
+      <div class="brand-small">
+        <img src="images/logo.png" alt="Tigo" style="max-width:130px; height:auto;">
+      </div>
+      <div class="topbar-actions">
+        <button data-go="home"><i class="fa-solid fa-arrow-left"></i> Inicio</button>
+        <button data-go="plans">Ver planes</button>
+      </div>
+    </div>
     <div class="page">
       <div class="page-header"><h2>Por qué contratar <span>desde esta página</span></h2><p>La idea es simple: eliges, completas tus datos y recibes atención personalizada en WhatsApp.</p></div>
       <div class="why-grid">
