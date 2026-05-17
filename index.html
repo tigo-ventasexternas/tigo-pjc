@@ -3,71 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tigo Paraguay - Simulador de Combo</title>
+<title>Tigo Paraguay - Vendedor Autorizado Isidro Cabrera</title>
 <style>
 :root { --tigo-blue:#004aad; --tigo-yellow:#ffc900; --tigo-green:#25d366; }
 body { font-family: Arial,sans-serif; margin:0; background:#f2f2f2; }
-header { background: var(--tigo-blue); color:white; text-align:center; padding:20px; }
-header img { height:50px; vertical-align:middle; margin-right:10px; }
-header h1 { display:inline-block; vertical-align:middle; margin:0; font-size:24px; }
-header p { margin-top:5px; font-size:16px; }
+header { background: var(--tigo-blue); color:white; text-align:center; padding:15px; }
+header h1 { margin:0; font-size:24px; }
+header p { margin:5px 0 0; font-size:14px; }
 .container { max-width:800px; margin:20px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-h2 { color: var(--tigo-blue); }
-p.micro { font-size:14px; color:#555; margin-top:5px; }
-select { width:100%; padding:10px; margin:10px 0 10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; }
-.summary { border-radius:6px; background:#eaf1fb; border:1px solid #91d5ff; padding:15px; margin-top:20px; display:flex; align-items:center; gap:10px; }
-.summary img { height:60px; border-radius:5px; }
-.wa-button { display:inline-block; padding:12px 20px; background:var(--tigo-green); color:white; text-decoration:none; border-radius:5px; font-weight:bold; margin-top:10px; }
+.oferta-destacada { background:#ffc900; text-align:center; padding:8px; font-weight:bold; border-radius:4px; margin-bottom:20px; }
+h2 { color: var(--tigo-blue); font-size:18px; margin-top:20px; }
+select, input { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; box-sizing: border-box; }
+.formulario { background:#f9f9f9; padding:15px; border-radius:8px; margin:20px 0; }
+.formulario input { margin:5px 0 10px; }
+.wa-button { display:inline-block; padding:12px 20px; background:var(--tigo-green); color:white; text-decoration:none; border-radius:5px; font-weight:bold; border:none; cursor:pointer; font-size:16px; text-align:center; width:100%; }
+.summary { border-radius:6px; background:#eaf1fb; padding:15px; margin:20px 0; }
 .hidden { display:none; }
-.preview-img { height:40px; margin-left:10px; vertical-align:middle; border-radius:4px; }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="images/logo-tigo.png" alt="Logo Tigo">
-  <h1>Tu Internet y TV ideal en Paraguay</h1>
-  <p>Elige tu servicio, crea tu combo y cotiza al instante. ¡Rápido, simple y sin sorpresas!</p>
+  <h1>📡 Tigo Paraguay</h1>
+  <p>Internet y TV para tu hogar</p>
 </header>
 
 <div class="container">
-  <h2>1. ¿Dónde quieres tu servicio?</h2>
-  <p class="micro">Selecciona tu ciudad o zona para mostrar solo los servicios disponibles.</p>
+  <!-- CONTADOR DE OFERTA -->
+  <div class="oferta-destacada">
+    🚨 OFERTA POR TIEMPO LIMITADO: Válida hasta el 31/05/2026 · ¡Últimos 5 cupos!
+  </div>
+
+  <h2>📍 1. ¿Dónde quieres tu servicio?</h2>
   <select id="zona">
     <option value="">--Selecciona--</option>
     <option value="urbana">Urbana</option>
     <option value="rural">Rural</option>
   </select>
 
-  <h2>2. Elige tu servicio</h2>
-  <p class="micro">Primero selecciona la categoría, luego tu opción deseada. Mira la miniatura para visualizar cada plan.</p>
+  <h2>📡 2. Elige tu servicio</h2>
   <select id="categoria">
     <option value="">--Selecciona categoría--</option>
   </select>
 
-  <div style="display:flex; align-items:center;">
-    <select id="opcion" class="hidden">
-      <option value="">--Selecciona tu plan--</option>
-    </select>
-    <img id="preview" class="preview-img hidden" src="" alt="Preview">
-  </div>
+  <select id="opcion" class="hidden">
+    <option value="">--Selecciona tu plan--</option>
+  </select>
 
   <div id="resumen" class="summary hidden">
-    <img id="resumen-img" src="" alt="Imagen del plan">
     <p id="resumen-text"></p>
-    <a id="wa-link" class="wa-button" target="_blank" href="#">Habla con Isidro por WhatsApp</a>
+  </div>
+
+  <!-- FORMULARIO CORTO -->
+  <div class="formulario" id="formulario" style="display:none;">
+    <h3>📋 Déjame tus datos para ayudarte mejor</h3>
+    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
+    <input type="tel" id="telefono" placeholder="Tu número de teléfono" required>
+    <button id="enviar-wa" class="wa-button" style="background:#25d366;">📲 Cotizar ahora por WhatsApp</button>
   </div>
 </div>
 
 <script>
+// DATOS DEL VENDEDOR
+const vendedorNombre = "Isidro Cabrera";
+const vendedorTelefono = "595984049651";
+
+// --- SIMULADOR ---
 const zonaSelect = document.getElementById('zona');
 const categoriaSelect = document.getElementById('categoria');
 const opcionSelect = document.getElementById('opcion');
-const previewImg = document.getElementById('preview');
 const resumenDiv = document.getElementById('resumen');
 const resumenText = document.getElementById('resumen-text');
-const resumenImg = document.getElementById('resumen-img');
-const waLink = document.getElementById('wa-link');
+const formularioDiv = document.getElementById('formulario');
 
 const categorias = {
   urbana: [
@@ -84,33 +91,34 @@ const categorias = {
 
 const opciones = {
   'wifi': [
-    {nombre:'100 Mb', precio:'Gs.120.000', detalle:'WIFI ilimitado', img:'images/combo-popular.png'},
-    {nombre:'200 Mb', precio:'Gs.180.000', detalle:'WIFI ilimitado', img:'images/combo-popular.png'},
-    {nombre:'300 Mb', precio:'Gs.215.000', detalle:'WIFI ilimitado', img:'images/combo-popular.png'}
+    {nombre:'100 Mb', precio:'Gs.120.000', detalle:'WIFI ilimitado'},
+    {nombre:'200 Mb', precio:'Gs.180.000', detalle:'WIFI ilimitado'},
+    {nombre:'300 Mb', precio:'Gs.215.000', detalle:'WIFI ilimitado'}
   ],
   'tv-sat': [
-    {nombre:'TV Inicial', precio:'Gs.99.000', detalle:'46 canales', img:'images/antena-satelital.png'},
-    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'73 canales', img:'images/antena-satelital.png'}
+    {nombre:'TV Inicial', precio:'Gs.99.000', detalle:'46 canales'},
+    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'73 canales'}
   ],
   'tv-cable': [
-    {nombre:'TV Inicial', precio:'Gs.119.000', detalle:'Canales básicos', img:'images/combo-popular.png'},
-    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'Canales familiares', img:'images/combo-popular.png'}
+    {nombre:'TV Inicial', precio:'Gs.119.000', detalle:'Canales básicos'},
+    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'Canales familiares'}
   ],
   'combos': [
-    {nombre:'100 Mb + TV Inicial', precio:'Gs.180.000', detalle:'Internet + TV Inicial', img:'images/combo-popular.png'},
-    {nombre:'200 Mb + TV Familiar + Disney', precio:'Gs.215.000', detalle:'Internet + TV Familiar + Disney', img:'images/combo-popular.png'}
+    {nombre:'100 Mb + TV Inicial', precio:'Gs.180.000', detalle:'Internet + TV Inicial'},
+    {nombre:'200 Mb + TV Familiar + Disney', precio:'Gs.215.000', detalle:'Internet + TV Familiar + Disney'}
   ],
   'oferta': [
-    {nombre:'WiFi + TV', precio:'Gs.180.000', detalle:'Oferta especial', img:'images/combo-popular.png'}
+    {nombre:'WiFi + TV', precio:'Gs.180.000', detalle:'Oferta especial'}
   ]
 };
 
-// Zona seleccionada
+let planSeleccionadoTexto = "";
+
 zonaSelect.addEventListener('change',()=>{
   categoriaSelect.innerHTML='<option value="">--Selecciona categoría--</option>';
   opcionSelect.classList.add('hidden');
-  previewImg.classList.add('hidden');
   resumenDiv.classList.add('hidden');
+  formularioDiv.style.display = 'none';
   const zona = zonaSelect.value;
   if(zona && categorias[zona]){
     categorias[zona].forEach(cat=>{
@@ -122,17 +130,14 @@ zonaSelect.addEventListener('change',()=>{
   }
 });
 
-// Categoría seleccionada
 categoriaSelect.addEventListener('change',()=>{
   opcionSelect.innerHTML='<option value="">--Selecciona tu plan--</option>';
-  previewImg.classList.add('hidden');
   const cat = categoriaSelect.value;
   if(cat && opciones[cat]){
     opciones[cat].forEach(op=>{
       const el=document.createElement('option');
       el.value=op.nombre;
       el.textContent=`${op.nombre} - ${op.precio} (${op.detalle})`;
-      el.dataset.img = op.img;
       opcionSelect.appendChild(el);
     });
     opcionSelect.classList.remove('hidden');
@@ -140,22 +145,33 @@ categoriaSelect.addEventListener('change',()=>{
     opcionSelect.classList.add('hidden');
   }
   resumenDiv.classList.add('hidden');
+  formularioDiv.style.display = 'none';
 });
 
-// Mostrar preview al cambiar opción
 opcionSelect.addEventListener('change',()=>{
   const selectedOption = opcionSelect.options[opcionSelect.selectedIndex];
   if(selectedOption && selectedOption.value){
-    previewImg.src = selectedOption.dataset.img;
-    previewImg.classList.remove('hidden');
+    planSeleccionadoTexto = selectedOption.text;
+    resumenText.textContent = `✅ Has seleccionado: ${planSeleccionadoTexto}`;
     resumenDiv.classList.remove('hidden');
-    resumenImg.src = selectedOption.dataset.img;
-    resumenText.textContent=`Has seleccionado: ${selectedOption.text}`;
-    waLink.href='https://wa.me/595984049651?text=Hola, quiero contratar: '+encodeURIComponent(selectedOption.text);
+    formularioDiv.style.display = 'block';
   } else {
-    previewImg.classList.add('hidden');
     resumenDiv.classList.add('hidden');
+    formularioDiv.style.display = 'none';
   }
+});
+
+document.getElementById('enviar-wa').addEventListener('click', (e) => {
+  e.preventDefault();
+  const nombre = document.getElementById('nombre').value.trim();
+  const telefono = document.getElementById('telefono').value.trim();
+  if (!nombre || !telefono) {
+    alert("Por favor, completa tu nombre y teléfono.");
+    return;
+  }
+  const mensaje = `Hola Isidro Cabrera, soy ${nombre}. Mi teléfono es ${telefono}. Quiero contratar: ${planSeleccionadoTexto}. Por favor contáctame.`;
+  const url = `https://wa.me/${vendedorTelefono}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
 });
 </script>
 
