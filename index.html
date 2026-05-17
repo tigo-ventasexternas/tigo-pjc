@@ -76,52 +76,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* VERIFICACIÓN VENDEDOR */
-    .verification-badge {
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(12px);
-      border-left: 5px solid var(--yellow);
-      border-radius: 16px;
-      padding: 12px 20px;
-      margin: 20px 20px 0 20px;
-      max-width: 600px;
-      font-size: 0.9rem;
-      color: white;
-    }
-    .verification-badge i {
-      color: var(--yellow);
-      margin-right: 8px;
-    }
-    .verification-badge strong {
-      color: var(--cyan);
-    }
-
-    /* OFERTA CONTADOR */
-    .offer-counter {
-      background: rgba(255, 201, 0, 0.18);
-      border: 1px solid rgba(255, 201, 0, 0.6);
-      border-radius: 40px;
-      padding: 8px 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin: 16px 0 0 20px;
-      backdrop-filter: blur(8px);
-    }
-    .offer-counter i {
-      color: var(--yellow);
-      font-size: 1.2rem;
-    }
-
-    /* HERO */
+    /* HERO - ajustado para que ocupe exactamente el viewport */
     .hero {
       position: relative;
       min-height: 100vh;
       display: grid;
       grid-template-columns: 0.92fr 1.08fr;
       overflow: hidden;
+      align-items: center;
     }
     .hero::before {
       content: "";
@@ -165,7 +127,7 @@
     .hero-content {
       position: relative;
       z-index: 3;
-      padding: clamp(30px, 6vw, 76px);
+      padding: clamp(20px, 5vw, 60px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -173,11 +135,11 @@
     }
     .brand-logo {
       width: fit-content;
-      font-size: clamp(3rem, 5vw, 5.4rem);
+      font-size: clamp(2.5rem, 5vw, 5rem);
       line-height: 0.78;
       font-weight: 900;
       letter-spacing: -5px;
-      margin-bottom: 42px;
+      margin-bottom: 30px;
       position: relative;
       color: #ffffff;
       text-shadow: 0 0 18px rgba(39, 201, 255, 0.22);
@@ -212,38 +174,38 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.36);
       border-radius: 999px;
-      padding: 11px 18px;
-      font-size: 0.98rem;
+      padding: 10px 16px;
+      font-size: 0.9rem;
       font-weight: 700;
-      margin-bottom: 26px;
+      margin-bottom: 20px;
       backdrop-filter: blur(10px);
     }
     .hero h1 {
       max-width: 720px;
-      font-size: clamp(3.3rem, 7.5vw, 7.1rem);
-      line-height: 0.91;
-      letter-spacing: -3.4px;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -3px;
       font-weight: 900;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       text-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
     }
     .hero h1 span { color: var(--cyan); display: block; }
     .hero-text {
       max-width: 620px;
       color: rgba(255, 255, 255, 0.92);
-      font-size: clamp(1rem, 1.7vw, 1.45rem);
-      line-height: 1.48;
-      margin-bottom: 34px;
+      font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+      line-height: 1.4;
+      margin-bottom: 25px;
       font-weight: 500;
     }
     .benefits {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       max-width: 680px;
-      margin-bottom: 34px;
+      margin-bottom: 25px;
     }
     .benefit {
-      padding: 0 18px;
+      padding: 0 15px;
       text-align: center;
       border-right: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -252,17 +214,17 @@
     .benefit i {
       display: block;
       color: var(--cyan);
-      font-size: 2.65rem;
-      margin-bottom: 12px;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
       filter: drop-shadow(0 0 12px rgba(39, 201, 255, 0.38));
     }
-    .benefit span { display: block; font-weight: 800; line-height: 1.18; font-size: 1rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+    .benefit span { display: block; font-weight: 800; line-height: 1.2; font-size: 0.85rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 15px; }
     .btn {
       border: none;
       border-radius: 22px;
-      padding: 19px 30px;
-      font-size: 1.05rem;
+      padding: 14px 28px;
+      font-size: 1rem;
       font-weight: 900;
       cursor: pointer;
       text-decoration: none;
@@ -275,7 +237,7 @@
     .btn-green {
       background: var(--green);
       color: #ffffff;
-      min-width: 280px;
+      min-width: 250px;
       box-shadow: 0 14px 36px rgba(37, 211, 102, 0.28);
     }
     .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
@@ -283,29 +245,29 @@
       background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.36);
-      min-width: 250px;
+      min-width: 220px;
       backdrop-filter: blur(10px);
     }
     .btn-outline:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-2px); }
     .mini-apps {
       position: absolute;
       z-index: 4;
-      top: 18%;
-      right: 8%;
+      top: 15%;
+      right: 6%;
       display: flex;
       gap: 12px;
       opacity: 0.88;
     }
     .mini-app {
-      width: 82px;
-      height: 54px;
+      width: 75px;
+      height: 48px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.16);
       display: grid;
       place-items: center;
       font-weight: 900;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #ffffff;
       backdrop-filter: blur(10px);
     }
@@ -314,40 +276,41 @@
     .topbar {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 24px 0 0;
+      padding: 20px 0 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
     }
-    .topbar .brand-small { font-size: 2.1rem; font-weight: 900; letter-spacing: -2px; color: #ffffff; }
+    .topbar .brand-small { font-size: 2rem; font-weight: 900; letter-spacing: -2px; color: #ffffff; }
     .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .topbar button {
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #ffffff;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      padding: 11px 15px;
+      padding: 10px 14px;
       font-weight: 800;
       cursor: pointer;
       transition: 0.2s ease;
+      font-size: 0.9rem;
     }
     .topbar button:hover { background: rgba(255, 255, 255, 0.15); }
     .page {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 42px 0 64px;
+      padding: 30px 0 50px;
     }
-    .page-header { max-width: 860px; margin-bottom: 34px; }
+    .page-header { max-width: 860px; margin-bottom: 30px; }
     .page-header h2 {
-      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      font-size: clamp(2rem, 5vw, 4rem);
       line-height: 0.96;
       letter-spacing: -2px;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
       font-weight: 900;
     }
     .page-header h2 span { color: var(--cyan); }
-    .page-header p { color: var(--muted); font-size: 1.1rem; line-height: 1.6; }
+    .page-header p { color: var(--muted); font-size: 1rem; line-height: 1.5; }
     .plans-layout {
       display: grid;
       grid-template-columns: 1fr 360px;
@@ -371,7 +334,7 @@
     .plan-card:hover { transform: translateY(-4px); border-color: rgba(39, 201, 255, 0.74); }
     .plan-card.selected { border-color: var(--green); box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.18); }
     .plan-image {
-      height: 176px;
+      height: 160px;
       background: #002463;
       display: flex;
       align-items: center;
@@ -383,51 +346,51 @@
       height: 100%;
       object-fit: cover;
     }
-    .fallback-icon { font-size: 3.5rem; color: var(--cyan); }
-    .plan-body { padding: 20px; }
-    .plan-type { color: var(--cyan-soft); font-size: 0.78rem; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
-    .plan-card h3 { font-size: 1.35rem; line-height: 1.15; margin-bottom: 10px; font-weight: 900; }
-    .plan-card p { color: var(--muted); line-height: 1.5; font-size: 0.95rem; margin-bottom: 16px; }
+    .fallback-icon { font-size: 3rem; color: var(--cyan); }
+    .plan-body { padding: 18px; }
+    .plan-type { color: var(--cyan-soft); font-size: 0.7rem; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; }
+    .plan-card h3 { font-size: 1.2rem; line-height: 1.2; margin-bottom: 8px; font-weight: 900; }
+    .plan-card p { color: var(--muted); line-height: 1.4; font-size: 0.85rem; margin-bottom: 12px; }
     .price {
-      font-size: 2rem;
+      font-size: 1.6rem;
       line-height: 1;
       font-weight: 900;
       color: var(--yellow);
       letter-spacing: -0.8px;
     }
-    .price small { display: block; color: rgba(255, 255, 255, 0.76); font-size: 0.82rem; margin-top: 6px; font-weight: 700; }
+    .price small { display: block; color: rgba(255, 255, 255, 0.76); font-size: 0.7rem; margin-top: 4px; font-weight: 700; }
     .order-panel {
       position: sticky;
       top: 22px;
       border: 1px solid var(--card-border);
       background: rgba(255, 255, 255, 0.09);
       border-radius: 30px;
-      padding: 24px;
+      padding: 20px;
       backdrop-filter: blur(16px);
     }
-    .order-panel h3 { font-size: 1.45rem; margin-bottom: 14px; font-weight: 900; }
-    .order-panel p { color: var(--muted); line-height: 1.55; margin-bottom: 18px; }
+    .order-panel h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 900; }
+    .order-panel p { color: var(--muted); line-height: 1.5; margin-bottom: 15px; font-size: 0.9rem; }
     .selected-plan {
       background: rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      padding: 16px;
-      margin-bottom: 18px;
+      border-radius: 20px;
+      padding: 12px;
+      margin-bottom: 15px;
     }
-    .selected-plan strong { display: block; margin-bottom: 8px; font-size: 1.02rem; }
-    .selected-plan span { color: var(--yellow); font-weight: 900; font-size: 1.3rem; }
+    .selected-plan strong { display: block; margin-bottom: 6px; font-size: 0.95rem; }
+    .selected-plan span { color: var(--yellow); font-weight: 900; font-size: 1.2rem; }
     .lead-form {
-      margin: 20px 0;
+      margin: 18px 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
     .lead-form input {
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      padding: 14px 16px;
+      border-radius: 18px;
+      padding: 12px 14px;
       color: white;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       outline: none;
     }
     .lead-form input::placeholder { color: rgba(255, 255, 255, 0.7); }
@@ -439,7 +402,7 @@
       color: white;
       text-decoration: none;
       border-radius: 20px;
-      padding: 16px;
+      padding: 14px;
       font-weight: 900;
       text-align: center;
       border: none;
@@ -447,37 +410,39 @@
       transition: 0.2s;
       justify-content: center;
       gap: 8px;
+      font-size: 0.95rem;
     }
     .whatsapp-btn.visible { display: flex; }
     .whatsapp-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
-    .whatsapp-btn.disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
     .requirements {
-      margin-top: 22px;
+      margin-top: 18px;
       background: rgba(255, 201, 0, 0.13);
-      border-radius: 22px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 15px;
     }
-    .requirements h4 { color: var(--yellow); margin-bottom: 12px; font-weight: 900; }
-    .requirements ul { list-style: none; display: grid; gap: 9px; }
+    .requirements h4 { color: var(--yellow); margin-bottom: 10px; font-weight: 900; font-size: 0.9rem; }
+    .requirements ul { list-style: none; display: grid; gap: 6px; }
+    .requirements li { font-size: 0.85rem; }
     .requirements li i { color: var(--yellow); margin-right: 8px; }
-    .note { margin-top: 16px; color: rgba(255, 255, 255, 0.58); font-size: 0.82rem; }
+    .note { margin-top: 12px; color: rgba(255, 255, 255, 0.58); font-size: 0.75rem; }
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .why-card {
       border: 1px solid var(--card-border);
-      border-radius: 30px;
-      padding: 26px;
+      border-radius: 28px;
+      padding: 22px;
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
     }
-    .why-card i { color: var(--cyan); font-size: 2.8rem; margin-bottom: 20px; }
-    .why-card h3 { font-size: 1.35rem; margin-bottom: 12px; font-weight: 900; }
-    .why-card p { color: var(--muted); line-height: 1.58; }
+    .why-card i { color: var(--cyan); font-size: 2.4rem; margin-bottom: 16px; }
+    .why-card h3 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 900; }
+    .why-card p { color: var(--muted); line-height: 1.5; font-size: 0.9rem; }
     .testimonial {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 24px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 15px;
       margin-top: 20px;
       font-style: italic;
       border-left: 3px solid var(--yellow);
+      font-size: 0.9rem;
     }
     @media (max-width: 1050px) {
       .hero { grid-template-columns: 1fr; }
@@ -492,11 +457,13 @@
       .order-panel { position: static; }
     }
     @media (max-width: 760px) {
-      .hero-content { padding: 30px 20px 48px; }
-      .brand-logo { margin-bottom: 32px; }
-      .benefits { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .benefit { border-right: none; padding: 12px; background: rgba(255, 255, 255, 0.06); border-radius: 18px; }
-      .btn, .btn-green, .btn-outline { width: 100%; min-width: auto; }
+      .hero-content { padding: 20px 20px 40px; }
+      .brand-logo { margin-bottom: 20px; }
+      .benefits { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+      .benefit { border-right: none; padding: 8px; background: rgba(255, 255, 255, 0.06); border-radius: 16px; }
+      .benefit i { font-size: 1.8rem; }
+      .benefit span { font-size: 0.75rem; }
+      .btn, .btn-green, .btn-outline { width: 100%; min-width: auto; padding: 12px 20px; }
       .topbar { flex-direction: column; align-items: flex-start; }
       .plans-grid { grid-template-columns: 1fr; }
       .why-grid { grid-template-columns: 1fr; }
@@ -506,20 +473,11 @@
 <body>
 <main class="app">
 
-  <!-- HOME VIEW -->
+  <!-- HOME VIEW (sin verificación ni contador de oferta) -->
   <section id="homeView" class="view active">
     <div class="hero">
       <div class="light-lines"></div>
       <div class="hero-content">
-        <!-- VERIFICACIÓN VENDEDOR -->
-        <div class="verification-badge">
-          <i class="fa-solid fa-check-circle"></i> <strong>Vendedor externo autorizado por Tigo Paraguay</strong><br>
-          Isidro Cabrera · CI 3197550 · Código vendedor: (se asigna esta semana)<br>
-          📞 Verifica llamando al <strong>*123</strong>
-        </div>
-        <div class="offer-counter">
-          <i class="fa-solid fa-clock"></i> 🔥 Oferta especial: Instalación gratis · Solo 5 cupos esta semana 🔥
-        </div>
         <div class="brand-logo">tigo</div>
         <div class="pill">
           <i class="fa-brands fa-whatsapp"></i> Atención personalizada por WhatsApp
@@ -547,9 +505,7 @@
     <div class="page">
       <div class="page-header"><h2>Elige tu plan <span>y arma tu pedido</span></h2><p>Selecciona un plan, completa tus datos y envía el mensaje. Verifico cobertura y te ayudo a contratar.</p></div>
       <div class="plans-layout">
-        <div class="plans-grid" id="plansGrid">
-          <!-- Los planes se generarán con JS para evitar duplicación y permitir fallback de imágenes -->
-        </div>
+        <div class="plans-grid" id="plansGrid"></div>
         <aside class="order-panel">
           <h3>Tu pedido</h3>
           <p>Selecciona un plan y completa tus datos para enviarme tu solicitud por WhatsApp.</p>
@@ -561,10 +517,9 @@
           </div>
           <a id="whatsappBtn" class="whatsapp-btn" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Enviar pedido por WhatsApp</a>
           <div class="requirements"><h4>Requisitos</h4><ul><li><i class="fa-solid fa-id-card"></i>Cédula vigente</li><li><i class="fa-solid fa-user-check"></i>Mayor de edad</li><li><i class="fa-solid fa-receipt"></i>Abono primera cuota</li><li><i class="fa-solid fa-location-dot"></i>Dirección para verificar cobertura</li></ul></div>
-          <div class="note">Precios sujetos a cobertura. Consulta validez de la oferta de instalación gratis.</div>
+          <div class="note">Precios sujetos a cobertura. Consulta validez de la oferta.</div>
         </aside>
       </div>
-      <!-- Testimonial -->
       <div class="testimonial"><i class="fa-solid fa-quote-left"></i> "Contraté con Isidro, todo rápido y sin problemas. Me instalaron al día siguiente." – Carlos A., Fernando de la Mora</div>
     </div>
   </section>
@@ -600,7 +555,6 @@
     { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV satelital", descripcion: "Para zonas sin cobertura de cable.", imgSrc: "images/antena-satelital.png", imgFallback: "🛰️" }
   ];
 
-  // Generar tarjetas de planes dinámicamente
   const plansGrid = document.getElementById("plansGrid");
   function renderPlanes() {
     plansGrid.innerHTML = "";
