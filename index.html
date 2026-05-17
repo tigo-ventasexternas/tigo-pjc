@@ -3,177 +3,477 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tigo Paraguay - Vendedor Autorizado Isidro Cabrera</title>
+<title>Tigo Paraguay | Ofertas Internet y TV - Isidro Cabrera</title>
+<!-- FontAwesome 6 (gratuito) para íconos visuales -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-:root { --tigo-blue:#004aad; --tigo-yellow:#ffc900; --tigo-green:#25d366; }
-body { font-family: Arial,sans-serif; margin:0; background:#f2f2f2; }
-header { background: var(--tigo-blue); color:white; text-align:center; padding:15px; }
-header h1 { margin:0; font-size:24px; }
-header p { margin:5px 0 0; font-size:14px; }
-.container { max-width:800px; margin:20px auto; padding:20px; background:white; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
-.oferta-destacada { background:#ffc900; text-align:center; padding:8px; font-weight:bold; border-radius:4px; margin-bottom:20px; }
-h2 { color: var(--tigo-blue); font-size:18px; margin-top:20px; }
-select, input { width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc; font-size:16px; box-sizing: border-box; }
-.formulario { background:#f9f9f9; padding:15px; border-radius:8px; margin:20px 0; }
-.formulario input { margin:5px 0 10px; }
-.wa-button { display:inline-block; padding:12px 20px; background:var(--tigo-green); color:white; text-decoration:none; border-radius:5px; font-weight:bold; border:none; cursor:pointer; font-size:16px; text-align:center; width:100%; }
-.summary { border-radius:6px; background:#eaf1fb; padding:15px; margin:20px 0; }
-.hidden { display:none; }
+  :root {
+    --tigo-blue: #004aad;
+    --tigo-yellow: #ffc900;
+    --tigo-green: #25d366;
+    --tigo-dark: #003380;
+    --gray-light: #f8f9fa;
+    --gray-border: #e0e0e0;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1a2c3e;
+  }
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--tigo-blue) 0%, var(--tigo-dark) 100%);
+    color: white;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 i {
+    margin-right: 10px;
+    color: var(--tigo-yellow);
+  }
+  .header p {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  /* TARJETA PRINCIPAL */
+  .card {
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    padding: 1.8rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s;
+  }
+  /* OFERTA DESTACADA */
+  .offer-banner {
+    background: var(--tigo-yellow);
+    color: #1e2a3a;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: var(--tigo-blue);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+  }
+  /* DROPDOWNS MODERNOS */
+  .form-group {
+    margin-bottom: 1.8rem;
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--tigo-blue);
+    font-size: 1rem;
+  }
+  select {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--gray-border);
+    border-radius: 1rem;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23004aad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+  select:focus {
+    outline: none;
+    border-color: var(--tigo-yellow);
+    box-shadow: 0 0 0 3px rgba(0,74,173,0.1);
+  }
+  /* PREVIEW IMAGEN + PLAN */
+  .preview-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+  .preview-img-small {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    background: #f0f2f5;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    transition: all 0.2s;
+  }
+  .resumen-card {
+    background: #eef2ff;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    border-left: 5px solid var(--tigo-yellow);
+  }
+  .resumen-img-large {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: white;
+    border-radius: 1rem;
+    padding: 0.7rem;
+  }
+  .resumen-text {
+    flex: 1;
+  }
+  .resumen-text p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .precio {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--tigo-blue);
+  }
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--tigo-green);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-wa:hover {
+    background: #128C7E;
+    transform: scale(1.02);
+  }
+  /* ELEMENTOS PERSUASIVOS */
+  .benefits {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+  .benefit-item {
+    background: white;
+    border-radius: 1rem;
+    padding: 0.8rem;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    font-size: 0.85rem;
+  }
+  .benefit-item i {
+    font-size: 1.6rem;
+    color: var(--tigo-blue);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .testimonial {
+    background: #fef9e6;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-style: italic;
+    margin-top: 1rem;
+    border-left: 3px solid var(--tigo-yellow);
+  }
+  .hidden {
+    display: none !important;
+  }
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: #6c757d;
+  }
+  @media (max-width: 700px) {
+    .resumen-card { flex-direction: column; text-align: center; }
+    .benefits { flex-direction: column; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>📡 Tigo Paraguay</h1>
-  <p>Internet y TV para tu hogar</p>
-</header>
+<div class="header">
+  <h1><i class="fas fa-tv"></i> Tigo Paraguay</h1>
+  <p>Internet + TV de alta velocidad para toda tu familia</p>
+</div>
 
 <div class="container">
-  <!-- CONTADOR DE OFERTA -->
-  <div class="oferta-destacada">
-    🚨 OFERTA POR TIEMPO LIMITADO: Válida hasta el 31/05/2026 · ¡Últimos 5 cupos!
+  <div class="card">
+    <!-- BANNER DE OFERTA CON URGENCIA -->
+    <div class="offer-banner">
+      <i class="fas fa-clock"></i> 🔥 OFERTA POR TIEMPO LIMITADO
+      <span class="badge">Hasta 31/05/2026</span>
+      <i class="fas fa-gem"></i> Instalación gratis
+    </div>
+
+    <!-- PASO 1: ZONA -->
+    <div class="form-group">
+      <label><i class="fas fa-map-marker-alt"></i> 1. ¿Dónde quieres tu servicio?</label>
+      <select id="zona">
+        <option value="">-- Selecciona tu zona --</option>
+        <option value="urbana">🌆 Urbana (alta cobertura)</option>
+        <option value="rural">🌾 Rural (TV Satelital disponible)</option>
+      </select>
+    </div>
+
+    <!-- PASO 2: CATEGORÍA -->
+    <div class="form-group">
+      <label><i class="fas fa-wifi"></i> 2. Elige tu servicio</label>
+      <select id="categoria">
+        <option value="">-- Primero selecciona zona --</option>
+      </select>
+    </div>
+
+    <!-- PASO 3: PLAN ESPECÍFICO -->
+    <div class="form-group">
+      <label><i class="fas fa-tachometer-alt"></i> 3. Selecciona tu plan</label>
+      <select id="opcion" class="hidden">
+        <option value="">-- Elige una opción --</option>
+      </select>
+    </div>
+
+    <!-- ÁREA DE PREVIEW (miniatura dinámica) -->
+    <div id="previewContainer" class="preview-area hidden">
+      <img id="previewSmall" class="preview-img-small" src="" alt="Vista previa">
+      <span id="planPreviewText" style="font-weight: 500;"></span>
+    </div>
+
+    <!-- RESUMEN + BOTÓN WHATSAPP (se muestra al elegir plan) -->
+    <div id="resumenCard" class="resumen-card hidden">
+      <img id="resumenImg" class="resumen-img-large" src="" alt="Plan">
+      <div class="resumen-text">
+        <p id="resumenDetalle"></p>
+        <p class="precio" id="resumenPrecio"></p>
+        <a id="waLink" class="btn-wa" href="#" target="_blank">
+          <i class="fab fa-whatsapp"></i> Quiero este plan ahora
+        </a>
+      </div>
+    </div>
+
+    <!-- BADGES DE CONVENCIMIENTO -->
+    <div class="benefits">
+      <div class="benefit-item"><i class="fas fa-rocket"></i> Velocidad simétrica</div>
+      <div class="benefit-item"><i class="fas fa-headset"></i> Soporte 24/7</div>
+      <div class="benefit-item"><i class="fas fa-hand-holding-usd"></i> Sin permanencia</div>
+      <div class="benefit-item"><i class="fas fa-tools"></i> Instalación express</div>
+    </div>
+
+    <!-- TESTIMONIO SOCIAL -->
+    <div class="testimonial">
+      <i class="fas fa-quote-left"></i> “Contraté con Isidro, todo súper rápido. Me instalaron al día siguiente. 100% recomendado.” – Carlos A., Asunción
+    </div>
   </div>
-
-  <h2>📍 1. ¿Dónde quieres tu servicio?</h2>
-  <select id="zona">
-    <option value="">--Selecciona--</option>
-    <option value="urbana">Urbana</option>
-    <option value="rural">Rural</option>
-  </select>
-
-  <h2>📡 2. Elige tu servicio</h2>
-  <select id="categoria">
-    <option value="">--Selecciona categoría--</option>
-  </select>
-
-  <select id="opcion" class="hidden">
-    <option value="">--Selecciona tu plan--</option>
-  </select>
-
-  <div id="resumen" class="summary hidden">
-    <p id="resumen-text"></p>
-  </div>
-
-  <!-- FORMULARIO CORTO -->
-  <div class="formulario" id="formulario" style="display:none;">
-    <h3>📋 Déjame tus datos para ayudarte mejor</h3>
-    <input type="text" id="nombre" placeholder="Tu nombre completo" required>
-    <input type="tel" id="telefono" placeholder="Tu número de teléfono" required>
-    <button id="enviar-wa" class="wa-button" style="background:#25d366;">📲 Cotizar ahora por WhatsApp</button>
-  </div>
+  <footer>
+    <i class="fas fa-shield-alt"></i> Vendedor externo autorizado – Atención personalizada por WhatsApp
+  </footer>
 </div>
 
 <script>
-// DATOS DEL VENDEDOR
-const vendedorNombre = "Isidro Cabrera";
-const vendedorTelefono = "595984049651";
+  // ================= DATOS DEL VENDEDOR ===================
+  const VENDEDOR_NOMBRE = "Isidro Cabrera";
+  const VENDEDOR_TELEFONO = "595984049651";
 
-// --- SIMULADOR ---
-const zonaSelect = document.getElementById('zona');
-const categoriaSelect = document.getElementById('categoria');
-const opcionSelect = document.getElementById('opcion');
-const resumenDiv = document.getElementById('resumen');
-const resumenText = document.getElementById('resumen-text');
-const formularioDiv = document.getElementById('formulario');
+  // ============ BASE DE DATOS DE PLANES CON IMÁGENES (placeholders, reemplaza con tus URLs reales) ============
+  // Para cada plan, pon la ruta de tu imagen (puede ser local o URL). 
+  // Usamos emojis como fallback, pero cambia el campo "img" por tu archivo .png o .jpg
+  const planesData = {
+    '100 Mb': { 
+      nombre: '100 Mb', 
+      precio: 'Gs.120.000', 
+      detalle: 'WIFI ilimitado 100 megas', 
+      img: 'https://placehold.co/200x120?text=100Mb+Plan',   // REEMPLAZA AQUÍ con imagen real
+      categoria: 'wifi'
+    },
+    '200 Mb': { 
+      nombre: '200 Mb', precio: 'Gs.180.000', detalle: 'WIFI ilimitado 200 megas', 
+      img: 'https://placehold.co/200x120?text=200Mb+Plan',
+      categoria: 'wifi'
+    },
+    '300 Mb': { 
+      nombre: '300 Mb', precio: 'Gs.215.000', detalle: 'WIFI ilimitado 300 megas', 
+      img: 'https://placehold.co/200x120?text=300Mb+Plan',
+      categoria: 'wifi'
+    },
+    'TV Inicial': { 
+      nombre: 'TV Inicial', precio: 'Gs.99.000', detalle: '46 canales', 
+      img: 'https://placehold.co/200x120?text=TV+Inicial',
+      categoria: 'tv-sat'
+    },
+    'TV Familiar': { 
+      nombre: 'TV Familiar', precio: 'Gs.139.000', detalle: '73 canales', 
+      img: 'https://placehold.co/200x120?text=TV+Familiar',
+      categoria: 'tv-sat'
+    },
+    'TV Inicial Cable': { 
+      nombre: 'TV Inicial', precio: 'Gs.119.000', detalle: 'Canales básicos', 
+      img: 'https://placehold.co/200x120?text=TV+Cable+Inicial',
+      categoria: 'tv-cable'
+    },
+    'TV Familiar Cable': { 
+      nombre: 'TV Familiar', precio: 'Gs.139.000', detalle: 'Canales familiares', 
+      img: 'https://placehold.co/200x120?text=TV+Cable+Familiar',
+      categoria: 'tv-cable'
+    },
+    '100 Mb + TV Inicial': { 
+      nombre: '100 Mb + TV Inicial', precio: 'Gs.180.000', detalle: 'Internet + TV Inicial', 
+      img: 'https://placehold.co/200x120?text=Combo+100',
+      categoria: 'combos'
+    },
+    '200 Mb + TV Familiar + Disney': { 
+      nombre: '200 Mb + TV Familiar + Disney', precio: 'Gs.215.000', detalle: 'Internet + TV Familiar + Disney', 
+      img: 'https://placehold.co/200x120?text=Combo+Disney',
+      categoria: 'combos'
+    },
+    'WiFi + TV': { 
+      nombre: 'WiFi + TV', precio: 'Gs.180.000', detalle: 'Oferta especial', 
+      img: 'https://placehold.co/200x120?text=Oferta+Especial',
+      categoria: 'oferta'
+    }
+  };
 
-const categorias = {
-  urbana: [
-    {id:'wifi', nombre:'WiFi Ilimitado'},
-    {id:'tv-sat', nombre:'TV Satelital'},
-    {id:'tv-cable', nombre:'TV Cable'},
-    {id:'combos', nombre:'Combos Especiales'},
-    {id:'oferta', nombre:'Oferta Especial'}
-  ],
-  rural: [
-    {id:'tv-sat', nombre:'TV Satelital'}
-  ]
-};
+  // MAPEO de opciones (igual que antes)
+  const categoriasPorZona = {
+    urbana: [
+      { id: 'wifi', nombre: '📶 WiFi Ilimitado' },
+      { id: 'tv-sat', nombre: '🛰️ TV Satelital' },
+      { id: 'tv-cable', nombre: '📺 TV Cable' },
+      { id: 'combos', nombre: '🎁 Combos Especiales' },
+      { id: 'oferta', nombre: '⚡ Oferta Especial' }
+    ],
+    rural: [
+      { id: 'tv-sat', nombre: '🛰️ TV Satelital' }
+    ]
+  };
 
-const opciones = {
-  'wifi': [
-    {nombre:'100 Mb', precio:'Gs.120.000', detalle:'WIFI ilimitado'},
-    {nombre:'200 Mb', precio:'Gs.180.000', detalle:'WIFI ilimitado'},
-    {nombre:'300 Mb', precio:'Gs.215.000', detalle:'WIFI ilimitado'}
-  ],
-  'tv-sat': [
-    {nombre:'TV Inicial', precio:'Gs.99.000', detalle:'46 canales'},
-    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'73 canales'}
-  ],
-  'tv-cable': [
-    {nombre:'TV Inicial', precio:'Gs.119.000', detalle:'Canales básicos'},
-    {nombre:'TV Familiar', precio:'Gs.139.000', detalle:'Canales familiares'}
-  ],
-  'combos': [
-    {nombre:'100 Mb + TV Inicial', precio:'Gs.180.000', detalle:'Internet + TV Inicial'},
-    {nombre:'200 Mb + TV Familiar + Disney', precio:'Gs.215.000', detalle:'Internet + TV Familiar + Disney'}
-  ],
-  'oferta': [
-    {nombre:'WiFi + TV', precio:'Gs.180.000', detalle:'Oferta especial'}
-  ]
-};
+  const opcionesPorCategoria = {
+    wifi: ['100 Mb', '200 Mb', '300 Mb'],
+    'tv-sat': ['TV Inicial', 'TV Familiar'],
+    'tv-cable': ['TV Inicial Cable', 'TV Familiar Cable'],
+    combos: ['100 Mb + TV Inicial', '200 Mb + TV Familiar + Disney'],
+    oferta: ['WiFi + TV']
+  };
 
-let planSeleccionadoTexto = "";
+  // Referencias DOM
+  const zonaSelect = document.getElementById('zona');
+  const categoriaSelect = document.getElementById('categoria');
+  const opcionSelect = document.getElementById('opcion');
+  const previewContainer = document.getElementById('previewContainer');
+  const previewSmall = document.getElementById('previewSmall');
+  const planPreviewText = document.getElementById('planPreviewText');
+  const resumenCard = document.getElementById('resumenCard');
+  const resumenImg = document.getElementById('resumenImg');
+  const resumenDetalle = document.getElementById('resumenDetalle');
+  const resumenPrecio = document.getElementById('resumenPrecio');
+  const waLink = document.getElementById('waLink');
 
-zonaSelect.addEventListener('change',()=>{
-  categoriaSelect.innerHTML='<option value="">--Selecciona categoría--</option>';
-  opcionSelect.classList.add('hidden');
-  resumenDiv.classList.add('hidden');
-  formularioDiv.style.display = 'none';
-  const zona = zonaSelect.value;
-  if(zona && categorias[zona]){
-    categorias[zona].forEach(cat=>{
-      const opt = document.createElement('option');
-      opt.value=cat.id;
-      opt.textContent=cat.nombre;
-      categoriaSelect.appendChild(opt);
-    });
-  }
-});
+  let planActual = null; // guarda el objeto del plan seleccionado
 
-categoriaSelect.addEventListener('change',()=>{
-  opcionSelect.innerHTML='<option value="">--Selecciona tu plan--</option>';
-  const cat = categoriaSelect.value;
-  if(cat && opciones[cat]){
-    opciones[cat].forEach(op=>{
-      const el=document.createElement('option');
-      el.value=op.nombre;
-      el.textContent=`${op.nombre} - ${op.precio} (${op.detalle})`;
-      opcionSelect.appendChild(el);
-    });
-    opcionSelect.classList.remove('hidden');
-  } else {
+  // Función para resetear todo
+  function resetSeleccion() {
     opcionSelect.classList.add('hidden');
+    previewContainer.classList.add('hidden');
+    resumenCard.classList.add('hidden');
+    planActual = null;
   }
-  resumenDiv.classList.add('hidden');
-  formularioDiv.style.display = 'none';
-});
 
-opcionSelect.addEventListener('change',()=>{
-  const selectedOption = opcionSelect.options[opcionSelect.selectedIndex];
-  if(selectedOption && selectedOption.value){
-    planSeleccionadoTexto = selectedOption.text;
-    resumenText.textContent = `✅ Has seleccionado: ${planSeleccionadoTexto}`;
-    resumenDiv.classList.remove('hidden');
-    formularioDiv.style.display = 'block';
-  } else {
-    resumenDiv.classList.add('hidden');
-    formularioDiv.style.display = 'none';
-  }
-});
+  // Al cambiar zona
+  zonaSelect.addEventListener('change', () => {
+    const zona = zonaSelect.value;
+    categoriaSelect.innerHTML = '<option value="">-- Selecciona categoría --</option>';
+    resetSeleccion();
+    if (zona && categoriasPorZona[zona]) {
+      categoriasPorZona[zona].forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = cat.nombre;
+        categoriaSelect.appendChild(opt);
+      });
+    }
+  });
 
-document.getElementById('enviar-wa').addEventListener('click', (e) => {
-  e.preventDefault();
-  const nombre = document.getElementById('nombre').value.trim();
-  const telefono = document.getElementById('telefono').value.trim();
-  if (!nombre || !telefono) {
-    alert("Por favor, completa tu nombre y teléfono.");
-    return;
-  }
-  const mensaje = `Hola Isidro Cabrera, soy ${nombre}. Mi teléfono es ${telefono}. Quiero contratar: ${planSeleccionadoTexto}. Por favor contáctame.`;
-  const url = `https://wa.me/${vendedorTelefono}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
-});
+  // Al cambiar categoría
+  categoriaSelect.addEventListener('change', () => {
+    const cat = categoriaSelect.value;
+    opcionSelect.innerHTML = '<option value="">-- Elige tu plan --</option>';
+    resetSeleccion();
+    if (cat && opcionesPorCategoria[cat]) {
+      opcionesPorCategoria[cat].forEach(planNombre => {
+        const planData = planesData[planNombre];
+        if (planData) {
+          const opt = document.createElement('option');
+          opt.value = planNombre;
+          opt.textContent = `${planData.nombre} - ${planData.precio} (${planData.detalle})`;
+          opt.setAttribute('data-img', planData.img);
+          opcionSelect.appendChild(opt);
+        }
+      });
+      opcionSelect.classList.remove('hidden');
+    } else {
+      opcionSelect.classList.add('hidden');
+    }
+  });
+
+  // Al seleccionar un plan específico
+  opcionSelect.addEventListener('change', () => {
+    const selectedOption = opcionSelect.options[opcionSelect.selectedIndex];
+    if (!selectedOption.value) {
+      resetSeleccion();
+      return;
+    }
+    const planNombre = selectedOption.value;
+    const plan = planesData[planNombre];
+    if (!plan) return;
+
+    planActual = plan;
+
+    // Mostrar preview pequeño
+    previewSmall.src = plan.img;
+    planPreviewText.textContent = `${plan.nombre} - ${plan.precio}`;
+    previewContainer.classList.remove('hidden');
+
+    // Mostrar resumen grande
+    resumenImg.src = plan.img;
+    resumenDetalle.innerHTML = `<strong>${plan.nombre}</strong><br>${plan.detalle}`;
+    resumenPrecio.textContent = plan.precio;
+    // Construir mensaje WhatsApp
+    const mensajeWA = `Hola ${VENDEDOR_NOMBRE}, quiero contratar el plan: ${plan.nombre} (${plan.precio}) - ${plan.detalle}. Por favor, contáctame.`;
+    waLink.href = `https://wa.me/${VENDEDOR_TELEFONO}?text=${encodeURIComponent(mensajeWA)}`;
+    resumenCard.classList.remove('hidden');
+  });
 </script>
-
 </body>
 </html>
