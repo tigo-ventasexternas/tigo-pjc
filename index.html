@@ -1,1168 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Tigo Hogar | Internet y TV para tu casa</title>
-
-  <meta name="description" content="Planes de Internet y TV para tu hogar. Elige tu plan, consulta cobertura y solicita atención personalizada." />
-  <meta name="theme-color" content="#003f9e" />
-
-  <meta property="og:title" content="Tigo Hogar | Internet y TV para tu casa" />
-  <meta property="og:description" content="Elige tu plan de Internet o TV, consulta cobertura y solicita atención personalizada." />
-  <meta property="og:image" content="images/logo-tigo.png" />
-  <meta property="og:type" content="website" />
-
-  <link rel="icon" href="images/logo-tigo.png" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
-  <style>
-    :root {
-      --blue-900: #001a49;
-      --blue-850: #002463;
-      --blue-800: #00398f;
-      --blue-700: #004aad;
-      --cyan: #27c9ff;
-      --cyan-soft: #80e4ff;
-      --green: #25d366;
-      --green-dark: #18b957;
-      --yellow: #ffc900;
-      --white: #ffffff;
-      --muted: rgba(255, 255, 255, 0.76);
-      --card: rgba(255, 255, 255, 0.08);
-      --card-border: rgba(255, 255, 255, 0.16);
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--blue-900);
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    button,
-    a {
-      font-family: inherit;
-    }
-
-    .app {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 78% 18%, rgba(39, 201, 255, 0.35), transparent 23%),
-        radial-gradient(circle at 8% 80%, rgba(0, 110, 255, 0.22), transparent 32%),
-        linear-gradient(135deg, #001a49 0%, #002b76 52%, #00163d 100%);
-    }
-
-    .view {
-      display: none;
-      min-height: 100vh;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(0, 26, 73, 0.98) 0%, rgba(0, 38, 103, 0.9) 39%, rgba(0, 25, 72, 0.34) 66%, rgba(0, 16, 48, 0.82) 100%),
-        url("images/combo-popular.png");
-      background-size: cover;
-      background-position: center right;
-      background-repeat: no-repeat;
-      opacity: 1;
-      z-index: 0;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -7%;
-      bottom: 4%;
-      width: 62vw;
-      height: 42vh;
-      background:
-        radial-gradient(ellipse at center, rgba(39, 201, 255, 0.52), transparent 65%);
-      filter: blur(22px);
-      transform: rotate(-12deg);
-      opacity: 0.7;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .light-lines {
-      position: absolute;
-      right: -11vw;
-      bottom: 7vh;
-      width: 72vw;
-      height: 34vh;
-      border-top: 5px solid rgba(39, 201, 255, 0.82);
-      border-radius: 100% 0 0 0;
-      transform: rotate(-11deg);
-      box-shadow:
-        0 -12px 22px rgba(39, 201, 255, 0.5),
-        0 -28px 0 rgba(39, 201, 255, 0.26),
-        0 -48px 0 rgba(39, 201, 255, 0.16),
-        0 -70px 0 rgba(39, 201, 255, 0.08);
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      padding: clamp(30px, 6vw, 76px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-width: 760px;
-    }
-
-    .brand-logo {
-      width: fit-content;
-      font-size: clamp(3rem, 5vw, 5.4rem);
-      line-height: 0.78;
-      font-weight: 900;
-      letter-spacing: -5px;
-      margin-bottom: 42px;
-      position: relative;
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(39, 201, 255, 0.22);
-    }
-
-    .brand-logo::after {
-      content: "";
-      position: absolute;
-      right: 5px;
-      bottom: -18px;
-      width: 78px;
-      height: 38px;
-      border-bottom: 12px solid #ffffff;
-      border-radius: 0 0 90px 90px;
-    }
-
-    .brand-logo::before {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: -24px;
-      width: 46px;
-      height: 30px;
-      border-top: 10px solid #ffffff;
-      border-radius: 90px 90px 0 0;
-      transform: rotate(-4deg);
-    }
-
-    .pill {
-      width: fit-content;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.36);
-      border-radius: 999px;
-      padding: 11px 18px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      margin-bottom: 26px;
-      backdrop-filter: blur(10px);
-    }
-
-    .pill i {
-      color: #ffffff;
-      font-size: 1.05rem;
-    }
-
-    .hero h1 {
-      max-width: 720px;
-      font-size: clamp(3.3rem, 7.5vw, 7.1rem);
-      line-height: 0.91;
-      letter-spacing: -3.4px;
-      font-weight: 900;
-      margin-bottom: 28px;
-      text-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
-    }
-
-    .hero h1 span {
-      display: block;
-      color: var(--cyan);
-    }
-
-    .hero-text {
-      max-width: 620px;
-      color: rgba(255, 255, 255, 0.92);
-      font-size: clamp(1rem, 1.7vw, 1.45rem);
-      line-height: 1.48;
-      margin-bottom: 34px;
-      font-weight: 500;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      max-width: 680px;
-      margin-bottom: 34px;
-    }
-
-    .benefit {
-      padding: 0 18px;
-      text-align: center;
-      border-right: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .benefit:first-child {
-      padding-left: 0;
-    }
-
-    .benefit:last-child {
-      border-right: none;
-      padding-right: 0;
-    }
-
-    .benefit i {
-      display: block;
-      color: var(--cyan);
-      font-size: 2.65rem;
-      margin-bottom: 12px;
-      filter: drop-shadow(0 0 12px rgba(39, 201, 255, 0.38));
-    }
-
-    .benefit span {
-      display: block;
-      font-weight: 800;
-      line-height: 1.18;
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 22px;
-      padding: 19px 30px;
-      font-size: 1.05rem;
-      font-weight: 900;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: transform 0.22s ease, background 0.22s ease, border 0.22s ease;
-    }
-
-    .btn-green {
-      background: var(--green);
-      color: #ffffff;
-      min-width: 280px;
-      box-shadow: 0 14px 36px rgba(37, 211, 102, 0.28);
-    }
-
-    .btn-green:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.06);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.36);
-      min-width: 250px;
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.12);
-      transform: translateY(-2px);
-    }
-
-    .hero-space {
-      position: relative;
-      z-index: 3;
-    }
-
-    .mini-apps {
-      position: absolute;
-      z-index: 4;
-      top: 18%;
-      right: 8%;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      opacity: 0.88;
-    }
-
-    .mini-app {
-      width: 82px;
-      height: 54px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 0.9rem;
-      color: #ffffff;
-      backdrop-filter: blur(10px);
-    }
-
-    .mini-app.red {
-      background: rgba(220, 22, 42, 0.88);
-    }
-
-    .mini-app.yellow {
-      background: rgba(255, 201, 0, 0.94);
-      color: #002463;
-    }
-
-    .topbar {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .topbar .brand-small {
-      font-size: 2.1rem;
-      font-weight: 900;
-      letter-spacing: -2px;
-      color: #ffffff;
-    }
-
-    .topbar-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .topbar button {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      padding: 11px 15px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .topbar button:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .page {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 42px 0 64px;
-    }
-
-    .page-header {
-      max-width: 860px;
-      margin-bottom: 34px;
-    }
-
-    .page-header h2 {
-      font-size: clamp(2.4rem, 5vw, 4.6rem);
-      line-height: 0.96;
-      letter-spacing: -2px;
-      margin-bottom: 18px;
-      font-weight: 900;
-    }
-
-    .page-header h2 span {
-      color: var(--cyan);
-    }
-
-    .page-header p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
-    .plans-layout {
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .plan-card {
-      position: relative;
-      border: 1px solid var(--card-border);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
-      border-radius: 28px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.18);
-      transition: transform 0.22s ease, border 0.22s ease, background 0.22s ease;
-    }
-
-    .plan-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(39, 201, 255, 0.74);
-    }
-
-    .plan-card.selected {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.18), 0 20px 52px rgba(0, 0, 0, 0.26);
-    }
-
-    .plan-image {
-      height: 176px;
-      background: #002463;
-      overflow: hidden;
-    }
-
-    .plan-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      opacity: 0.86;
-    }
-
-    .plan-body {
-      padding: 20px;
-    }
-
-    .plan-type {
-      color: var(--cyan-soft);
-      font-size: 0.78rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 8px;
-    }
-
-    .plan-card h3 {
-      font-size: 1.35rem;
-      line-height: 1.15;
-      margin-bottom: 10px;
-      font-weight: 900;
-    }
-
-    .plan-card p {
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
-
-    .price {
-      font-size: 2rem;
-      line-height: 1;
-      font-weight: 900;
-      color: var(--yellow);
-      letter-spacing: -0.8px;
-    }
-
-    .price small {
-      display: block;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.82rem;
-      margin-top: 6px;
-      font-weight: 700;
-    }
-
-    .order-panel {
-      position: sticky;
-      top: 22px;
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.09);
-      border-radius: 30px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-    }
-
-    .order-panel h3 {
-      font-size: 1.45rem;
-      line-height: 1.15;
-      margin-bottom: 14px;
-      font-weight: 900;
-    }
-
-    .order-panel p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 18px;
-    }
-
-    .selected-plan {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 22px;
-      padding: 16px;
-      margin-bottom: 18px;
-    }
-
-    .selected-plan strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.02rem;
-    }
-
-    .selected-plan span {
-      color: var(--yellow);
-      font-weight: 900;
-      font-size: 1.3rem;
-    }
-
-    .whatsapp-btn {
-      display: none;
-      width: 100%;
-      border: none;
-      background: var(--green);
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 20px;
-      padding: 18px 18px;
-      font-size: 1.02rem;
-      font-weight: 900;
-      text-align: center;
-      transition: 0.22s ease;
-    }
-
-    .whatsapp-btn.visible {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .whatsapp-btn:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-    }
-
-    .requirements {
-      margin-top: 22px;
-      border-radius: 22px;
-      background: rgba(255, 201, 0, 0.13);
-      border: 1px solid rgba(255, 201, 0, 0.32);
-      padding: 18px;
-    }
-
-    .requirements h4 {
-      color: var(--yellow);
-      margin-bottom: 12px;
-      font-size: 1rem;
-      font-weight: 900;
-    }
-
-    .requirements ul {
-      list-style: none;
-      display: grid;
-      gap: 9px;
-    }
-
-    .requirements li {
-      color: rgba(255, 255, 255, 0.86);
-      line-height: 1.4;
-      font-size: 0.94rem;
-    }
-
-    .requirements li i {
-      color: var(--yellow);
-      margin-right: 8px;
-    }
-
-    .note {
-      margin-top: 16px;
-      color: rgba(255, 255, 255, 0.58);
-      font-size: 0.82rem;
-      line-height: 1.45;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .why-card {
-      min-height: 240px;
-      border: 1px solid var(--card-border);
-      border-radius: 30px;
-      padding: 26px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
-    }
-
-    .why-card i {
-      color: var(--cyan);
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 12px rgba(39, 201, 255, 0.34));
-    }
-
-    .why-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 12px;
-      font-weight: 900;
-      line-height: 1.16;
-    }
-
-    .why-card p {
-      color: var(--muted);
-      line-height: 1.58;
-      font-size: 0.98rem;
-    }
-
-    @media (max-width: 1050px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero::before {
-        background:
-          linear-gradient(180deg, rgba(0, 26, 73, 0.96) 0%, rgba(0, 38, 103, 0.9) 48%, rgba(0, 16, 48, 0.88) 100%),
-          url("images/combo-popular.png");
-        background-size: cover;
-        background-position: center;
-      }
-
-      .hero-content {
-        min-height: 100vh;
-        justify-content: center;
-      }
-
-      .hero-space,
-      .mini-apps {
-        display: none;
-      }
-
-      .plans-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .order-panel {
-        position: static;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hero-content {
-        padding: 30px 20px 48px;
-      }
-
-      .brand-logo {
-        margin-bottom: 32px;
-        letter-spacing: -3px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .pill {
-        font-size: 0.86rem;
-        padding: 10px 14px;
-      }
-
-      .benefits {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .benefit {
-        border-right: none;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.06);
-        border-radius: 18px;
-      }
-
-      .benefit:first-child,
-      .benefit:last-child {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .benefit i {
-        font-size: 2.1rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn,
-      .btn-green,
-      .btn-outline {
-        width: 100%;
-        min-width: auto;
-      }
-
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .topbar-actions {
-        justify-content: flex-start;
-      }
-
-      .page {
-        padding-top: 30px;
-      }
-
-      .plans-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .plan-image {
-        height: 160px;
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tigo Paraguay | Internet y TV para tu hogar</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --blue-900:#001a49; --blue-800:#00398f; --cyan:#27c9ff; --green:#25d366; --green-dark:#18b957; --yellow:#ffc900; --white:#fff; --muted:rgba(255,255,255,0.78);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Roboto',sans-serif;background:var(--blue-900);color:var(--white);}
+.app{min-height:100vh;overflow-x:hidden;}
+.view{display:none;min-height:100vh;animation:fadeIn 0.35s ease;}
+.view.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+/* HERO */
+.hero{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:50px 5%;background:linear-gradient(135deg,#001a49,#002b76);}
+.hero-content{flex:1 1 400px;max-width:600px;z-index:1;}
+.hero-content h1{font-size:3rem;margin-bottom:20px;} .hero-content h1 span{color:var(--cyan);}
+.hero-content p{font-size:1.1rem;margin-bottom:30px;line-height:1.4;}
+.features{display:flex;flex-wrap:wrap;gap:20px;margin-top:20px;}
+.feature{flex:1 1 120px;text-align:center;} .feature i{font-size:2rem;color:var(--cyan);margin-bottom:8px;} .feature span{display:block;font-weight:500;}
+.hero-img{flex:1 1 400px;max-width:600px;}
+.hero-img img{width:100%;border-radius:12px;}
+
+/* STEP FORM */
+.step-section{padding:50px 5%;max-width:920px;margin:0 auto;}
+.step-section h2{font-size:2rem;margin-bottom:16px;}
+.step{margin-bottom:24px;}
+.step label{display:block;margin-bottom:8px;font-weight:700;}
+.step select{width:100%;padding:14px;border-radius:12px;border:none;font-size:1rem;}
+#whatsappBtn{display:none;width:100%;padding:16px;background:var(--green);color:#fff;border:none;border-radius:14px;font-weight:700;margin-top:16px;text-align:center;text-decoration:none;transition:0.22s;}
+#whatsappBtn.visible{display:inline-block;}
+#whatsappBtn:hover{background:var(--green-dark);}
+
+/* REQUIREMENTS */
+.requirements{margin-top:28px;padding:16px;background:rgba(255,201,0,0.12);border-radius:14px;border:1px solid rgba(255,201,0,0.32);}
+.requirements h4{font-size:1rem;margin-bottom:12px;color:var(--yellow);}
+.requirements ul{list-style:none;display:grid;gap:8px;}
+.requirements li{font-size:0.95rem;color:var(--white);}
+.requirements li i{color:var(--yellow);margin-right:6px;}
+
+@media(max-width:768px){.hero{flex-direction:column;text-align:center;}.hero-img{margin-top:30px;}.features{justify-content:center;}.hero-content h1{font-size:2.4rem;}.step-section{padding:30px 3%;}}
+</style>
 </head>
-
 <body>
-  <main class="app">
+<main class="app">
 
-    <section id="homeView" class="view active">
-      <div class="hero">
-        <div class="light-lines"></div>
-
-        <div class="hero-content">
-          <div class="brand-logo" aria-label="Tigo">tigo</div>
-
-          <div class="pill">
-            <i class="fa-brands fa-whatsapp"></i>
-            Atención personalizada por WhatsApp
-          </div>
-
-          <h1>
-            Internet y TV
-            <span>para tu hogar</span>
-          </h1>
-
-          <p class="hero-text">
-            Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas. Sin filas. Todo empieza con un pedido claro.
-          </p>
-
-          <div class="benefits">
-            <div class="benefit">
-              <i class="fa-solid fa-gauge-high"></i>
-              <span>Alta velocidad</span>
-            </div>
-
-            <div class="benefit">
-              <i class="fa-solid fa-screwdriver-wrench"></i>
-              <span>Instalación rápida</span>
-            </div>
-
-            <div class="benefit">
-              <i class="fa-solid fa-tv"></i>
-              <span>TV para la familia</span>
-            </div>
-
-            <div class="benefit">
-              <i class="fa-solid fa-location-dot"></i>
-              <span>Consulta de cobertura</span>
-            </div>
-          </div>
-
-          <div class="hero-actions">
-            <button class="btn btn-green" type="button" data-go="plans">
-              <i class="fa-solid fa-list-check"></i>
-              Ver planes disponibles
-            </button>
-
-            <button class="btn btn-outline" type="button" data-go="why">
-              Por qué contratar aquí
-            </button>
-          </div>
-        </div>
-
-        <div class="hero-space">
-          <div class="mini-apps">
-            <div class="mini-app">Disney+</div>
-            <div class="mini-app">HBO</div>
-            <div class="mini-app red">NETFLIX</div>
-            <div class="mini-app yellow">SPORTS</div>
-          </div>
-        </div>
+<!-- HERO -->
+<section id="homeView" class="view active">
+  <div class="hero">
+    <div class="hero-content">
+      <img src="images/logo-tigo.png" alt="Logo Tigo Paraguay" style="width:140px;margin-bottom:20px;">
+      <h1>Internet y TV <span>para tu hogar</span></h1>
+      <p>Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas. Sin filas. Todo empieza con tu selección.</p>
+      <div class="features">
+        <div class="feature"><i class="fas fa-tachometer-alt"></i><span>Alta velocidad</span></div>
+        <div class="feature"><i class="fas fa-screwdriver-wrench"></i><span>Instalación rápida</span></div>
+        <div class="feature"><i class="fas fa-tv"></i><span>TV para la familia</span></div>
+        <div class="feature"><i class="fas fa-map-marker-alt"></i><span>Consulta de cobertura</span></div>
       </div>
-    </section>
+      <button class="btn btn-green" data-go="plans">Ver planes disponibles</button>
+    </div>
+    <div class="hero-img">
+      <img src="images/family-hero.png" alt="Familia disfrutando Tigo TV e Internet">
+    </div>
+  </div>
+</section>
 
-    <section id="plansView" class="view">
-      <div class="topbar">
-        <div class="brand-small">tigo</div>
+<!-- PLANES / STEP -->
+<section id="plansView" class="view">
+  <div class="step-section">
+    <h2>Selecciona tu plan paso a paso</h2>
 
-        <div class="topbar-actions">
-          <button type="button" data-go="home">
-            <i class="fa-solid fa-arrow-left"></i>
-            Inicio
-          </button>
+    <div class="step">
+      <label for="zone">1. Elige tu zona</label>
+      <select id="zone">
+        <option value="">Selecciona una zona</option>
+        <option value="urbana">Zona Urbana</option>
+        <option value="rural">Zona Rural / Satelital</option>
+      </select>
+    </div>
 
-          <button type="button" data-go="why">
-            Por qué contratar aquí
-          </button>
-        </div>
-      </div>
+    <div class="step">
+      <label for="category">2. Elige la categoría</label>
+      <select id="category" disabled>
+        <option value="">Primero selecciona una zona</option>
+      </select>
+    </div>
 
-      <div class="page">
-        <div class="page-header">
-          <h2>
-            Elige tu plan
-            <span>y arma tu pedido</span>
-          </h2>
-          <p>
-            Toca el plan que quieres. Después se activará un solo botón de WhatsApp con el mensaje ya preparado para consultar cobertura y avanzar con la contratación.
-          </p>
-        </div>
+    <div class="step">
+      <label for="option">3. Elige tu servicio</label>
+      <select id="option" disabled>
+        <option value="">Primero selecciona una categoría</option>
+      </select>
+    </div>
 
-        <div class="plans-layout">
-          <div class="plans-grid">
+    <a id="whatsappBtn" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Enviar pedido por WhatsApp</a>
 
-            <article class="plan-card" data-plan="WiFi 100 Mbps" data-price="Gs. 120.000" data-type="Internet hogar">
-              <div class="plan-image">
-                <img src="images/3-4.jpg" alt="Plan WiFi 100 Mbps" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">Internet hogar</div>
-                <h3>WiFi 100 Mbps</h3>
-                <p>Internet para navegación diaria, redes sociales, estudio, trabajo básico y uso familiar moderado.</p>
-                <div class="price">
-                  Gs. 120.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+    <div class="requirements">
+      <h4>Requisitos:</h4>
+      <ul>
+        <li><i class="fa-solid fa-id-card"></i>Cédula vigente</li>
+        <li><i class="fa-solid fa-user-check"></i>Ser mayor de edad</li>
+        <li><i class="fa-solid fa-receipt"></i>Abono de primera cuota</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-            <article class="plan-card" data-plan="WiFi 200 Mbps" data-price="Gs. 170.000" data-type="Internet hogar">
-              <div class="plan-image">
-                <img src="images/4-3.jpg" alt="Plan WiFi 200 Mbps" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">Internet hogar</div>
-                <h3>WiFi 200 Mbps</h3>
-                <p>Mayor velocidad para varios dispositivos, videollamadas, streaming y uso simultáneo.</p>
-                <div class="price">
-                  Gs. 170.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+</main>
 
-            <article class="plan-card" data-plan="WiFi 300 Mbps" data-price="Gs. 200.000" data-type="Internet hogar">
-              <div class="plan-image">
-                <img src="images/5-2.jpg" alt="Plan WiFi 300 Mbps" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">Internet hogar</div>
-                <h3>WiFi 300 Mbps</h3>
-                <p>Opción fuerte para hogares con alto consumo, descargas, streaming, juegos y varios equipos.</p>
-                <div class="price">
-                  Gs. 200.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+<script>
+// Datos reales de opciones
+const categoriesByZone = {
+  urbana: ["WiFi", "TV Cable", "TV Satelital", "Combos"],
+  rural: ["TV Satelital"]
+};
 
-            <article class="plan-card" data-plan="TV Inicial" data-price="Gs. 99.000" data-type="TV hogar">
-              <div class="plan-image">
-                <img src="images/6-1.jpg" alt="Plan TV Inicial" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">TV hogar</div>
-                <h3>TV Inicial</h3>
-                <p>Plan de TV con canales esenciales para entretenimiento familiar, noticias y contenido variado.</p>
-                <div class="price">
-                  Gs. 99.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+const optionsByCategory = {
+  WiFi: ["WiFi 100 Mbps", "WiFi 200 Mbps", "WiFi 300 Mbps"],
+  "TV Cable": ["TV Inicial", "TV Familiar"],
+  "TV Satelital": ["TV Satelital Inicial","TV Satelital Familiar"],
+  Combos: ["WiFi 200 Mbps + TV Inicial","WiFi 200 Mbps + TV Familiar + Disney"]
+};
 
-            <article class="plan-card" data-plan="TV Familiar" data-price="Gs. 139.000" data-type="TV hogar">
-              <div class="plan-image">
-                <img src="images/7-1.jpg" alt="Plan TV Familiar" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">TV hogar</div>
-                <h3>TV Familiar</h3>
-                <p>Más contenido para el hogar. Recomendado si buscas entretenimiento familiar más completo.</p>
-                <div class="price">
-                  Gs. 139.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+const prices = {
+  "WiFi 100 Mbps":"Gs. 120.000",
+  "WiFi 200 Mbps":"Gs. 170.000",
+  "WiFi 300 Mbps":"Gs. 200.000",
+  "TV Inicial":"Gs. 99.000",
+  "TV Familiar":"Gs. 139.000",
+  "WiFi 200 Mbps + TV Inicial":"Gs. 180.000",
+  "WiFi 200 Mbps + TV Familiar + Disney":"Gs. 205.000",
+  "TV Satelital Inicial":"Gs. 99.000",
+  "TV Satelital Familiar":"Gs. 139.000"
+};
 
-            <article class="plan-card" data-plan="WiFi 200 Mbps + TV Inicial" data-price="Gs. 180.000" data-type="Combo hogar">
-              <div class="plan-image">
-                <img src="images/8-1.jpg" alt="Combo WiFi 200 Mbps más TV Inicial" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">Combo hogar</div>
-                <h3>WiFi 200 Mbps + TV Inicial</h3>
-                <p>Internet rápido y TV inicial en una sola contratación. Buena relación precio-beneficio.</p>
-                <div class="price">
-                  Gs. 180.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
+const zone = document.getElementById("zone");
+const category = document.getElementById("category");
+const option = document.getElementById("option");
+const whatsappBtn = document.getElementById("whatsappBtn");
 
-            <article class="plan-card" data-plan="WiFi 200 Mbps + TV Familiar" data-price="Gs. 205.000" data-type="Combo hogar">
-              <div class="plan-image">
-                <img src="images/combo-popular.png" alt="Combo WiFi 200 Mbps más TV Familiar" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">Combo hogar</div>
-                <h3>WiFi 200 Mbps + TV Familiar</h3>
-                <p>Combo recomendado para casas con varios usuarios y mayor consumo de entretenimiento.</p>
-                <div class="price">
-                  Gs. 205.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
-
-            <article class="plan-card" data-plan="TV Satelital Inicial" data-price="Gs. 99.000" data-type="TV satelital">
-              <div class="plan-image">
-                <img src="images/antena-satelital.png" alt="Plan TV Satelital Inicial" />
-              </div>
-              <div class="plan-body">
-                <div class="plan-type">TV satelital</div>
-                <h3>TV Satelital Inicial</h3>
-                <p>Opción de TV satelital para zonas donde se requiere instalación por antena.</p>
-                <div class="price">
-                  Gs. 99.000
-                  <small>al mes</small>
-                </div>
-              </div>
-            </article>
-
-          </div>
-
-          <aside class="order-panel">
-            <h3>Tu pedido</h3>
-            <p>
-              Selecciona un plan. Luego envías el pedido por WhatsApp para verificar cobertura, requisitos y disponibilidad.
-            </p>
-
-            <div class="selected-plan">
-              <strong id="selectedPlanName">Todavía no elegiste un plan</strong>
-              <span id="selectedPlanPrice">Selecciona una opción</span>
-            </div>
-
-            <a id="whatsappBtn" class="whatsapp-btn" target="_blank" rel="noopener">
-              <i class="fa-brands fa-whatsapp"></i>
-              Enviar pedido por WhatsApp
-            </a>
-
-            <div class="requirements">
-              <h4>Requisitos</h4>
-              <ul>
-                <li><i class="fa-solid fa-id-card"></i>Cédula vigente.</li>
-                <li><i class="fa-solid fa-user-check"></i>Ser mayor de edad.</li>
-                <li><i class="fa-solid fa-receipt"></i>Abono de primera cuota.</li>
-                <li><i class="fa-solid fa-location-dot"></i>Dirección para verificar cobertura.</li>
-              </ul>
-            </div>
-
-            <div class="note">
-              Precios y disponibilidad sujetos a cobertura, zona y condiciones comerciales vigentes. No se promete instalación gratis ni meses gratis.
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="whyView" class="view">
-      <div class="topbar">
-        <div class="brand-small">tigo</div>
-
-        <div class="topbar-actions">
-          <button type="button" data-go="home">
-            <i class="fa-solid fa-arrow-left"></i>
-            Inicio
-          </button>
-
-          <button type="button" data-go="plans">
-            Ver planes
-          </button>
-        </div>
-      </div>
-
-      <div class="page">
-        <div class="page-header">
-          <h2>
-            Por qué contratar
-            <span>desde esta página</span>
-          </h2>
-          <p>
-            La idea es simple. El cliente no entra a mirar por mirar. Primero entiende la oferta, luego elige un plan y finalmente envía un pedido claro.
-          </p>
-        </div>
-
-        <div class="why-grid">
-          <article class="why-card">
-            <i class="fa-solid fa-filter-circle-dollar"></i>
-            <h3>Menos curiosos, mejores prospectos</h3>
-            <p>
-              El cliente llega a WhatsApp con un plan elegido. Eso evita conversaciones vacías y mejora el cierre.
-            </p>
-          </article>
-
-          <article class="why-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Decisión más rápida</h3>
-            <p>
-              La página muestra lo necesario: plan, precio, requisitos y cobertura. No distrae con información que no vende.
-            </p>
-          </article>
-
-          <article class="why-card">
-            <i class="fa-solid fa-handshake"></i>
-            <h3>Mejor cierre por WhatsApp</h3>
-            <p>
-              El mensaje llega ordenado. El asesor puede validar zona, requisitos y avanzar sin empezar desde cero.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    const phone = "595984049651";
-    const seller = "Asesor Tigo";
-
-    const views = {
-      home: document.getElementById("homeView"),
-      plans: document.getElementById("plansView"),
-      why: document.getElementById("whyView")
-    };
-
-    const buttons = document.querySelectorAll("[data-go]");
-    const planCards = document.querySelectorAll(".plan-card");
-
-    const selectedPlanName = document.getElementById("selectedPlanName");
-    const selectedPlanPrice = document.getElementById("selectedPlanPrice");
-    const whatsappBtn = document.getElementById("whatsappBtn");
-
-    function showView(viewName) {
-      Object.values(views).forEach(view => view.classList.remove("active"));
-
-      if (!views[viewName]) {
-        views.home.classList.add("active");
-        history.replaceState(null, "", "#inicio");
-        return;
-      }
-
-      views[viewName].classList.add("active");
-
-      const hash = viewName === "home" ? "#inicio" : `#${viewName}`;
-      history.replaceState(null, "", hash);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        showView(button.dataset.go);
-      });
+zone.addEventListener("change", () => {
+  category.innerHTML = "<option value=''>Elige una categoría</option>";
+  option.innerHTML = "<option value=''>Primero selecciona categoría</option>";
+  whatsappBtn.classList.remove("visible");
+  if(zone.value){
+    categoriesByZone[zone.value].forEach(cat=>{
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat;
+      category.appendChild(opt);
     });
+    category.disabled = false;
+    option.disabled = true;
+  }else{
+    category.disabled = true;
+    option.disabled = true;
+  }
+});
 
-    planCards.forEach(card => {
-      card.addEventListener("click", () => {
-        planCards.forEach(item => item.classList.remove("selected"));
-        card.classList.add("selected");
-
-        const plan = card.dataset.plan;
-        const price = card.dataset.price;
-        const type = card.dataset.type;
-
-        selectedPlanName.textContent = plan;
-        selectedPlanPrice.textContent = price;
-
-        const message = `Hola ${seller}, quiero solicitar este plan: ${plan} (${price}). Tipo de servicio: ${type}. Necesito verificar cobertura, requisitos y disponibilidad para instalar.`;
-
-        whatsappBtn.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-        whatsappBtn.classList.add("visible");
-      });
+category.addEventListener("change", () => {
+  option.innerHTML = "<option value=''>Elige un servicio</option>";
+  whatsappBtn.classList.remove("visible");
+  if(category.value){
+    optionsByCategory[category.value].forEach(op=>{
+      const opt = document.createElement("option");
+      opt.value = op;
+      opt.textContent = op;
+      option.appendChild(opt);
     });
+    option.disabled = false;
+  }else{
+    option.disabled = true;
+  }
+});
 
-    function initFromHash() {
-      const hash = window.location.hash.replace("#", "");
-
-      if (hash === "plans") {
-        showView("plans");
-        return;
-      }
-
-      if (hash === "why") {
-        showView("why");
-        return;
-      }
-
-      showView("home");
-    }
-
-    initFromHash();
-  </script>
-</body>
-</html>
+option.addEventListener("change", () => {
+  if(option.value){
+    const msg = `Hola Asesor Tigo, quiero solicitar el plan ${option.value} (${prices[option.value]}), zona: ${zone.value}.`;
+    whatsappBtn.href = `https://wa.me/595984049651?text=${encodeURIComponent(msg)}`;
+    whatsappBtn.classList.add("visible");
+  }else{
+    whatsappBtn.classList.remove("visible");
+  }
+});
+</script>
