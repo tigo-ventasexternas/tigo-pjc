@@ -3,48 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tigo - Nuestros Planes</title>
+  <title>Tigo - Internet y TV para tu hogar</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {margin:0;font-family:'Roboto', sans-serif;background-color:#0B1F5C;color:#fff;}
-    .plans-hero {padding:50px 5%;text-align:center;background:linear-gradient(135deg,#0B1F5C,#0D2A72);}
-    .plans-hero h1 {font-size:2.5em;margin-bottom:20px;}
-    .plans {display:flex;flex-wrap:wrap;justify-content:center;padding:30px 5%;}
-    .plan {background:#102766;border-radius:12px;padding:20px;margin:15px;flex:1 1 250px;max-width:300px;text-align:center;transition:0.3s;}
-    .plan:hover {background:#1A357E;}
-    .plan h2 {font-size:1.5em;margin-bottom:15px;}
-    .plan p {font-size:1em;margin-bottom:20px;}
-    .plan span {font-weight:700;font-size:1.3em;}
-    .plan a {display:block;padding:12px;background:#25D366;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;transition:0.3s;margin-top:10px;}
-    .plan a:hover {background:#1DA851;}
-    @media(max-width:768px){.plans{flex-direction:column;align-items:center;}.plan{max-width:90%;}}
+    .hero {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:50px 5%;background:linear-gradient(135deg,#0B1F5C,#0D2A72);}
+    .hero-text {flex:1 1 400px;max-width:600px;}
+    .hero-text h1 {font-size:3em;margin:0 0 20px;}
+    .hero-text h1 span {color:#40C7F4;}
+    .hero-text p {font-size:1.1em;margin-bottom:25px;line-height:1.4;}
+    .hero-text a {display:inline-block;padding:15px 25px;background:#25D366;color:#fff;text-decoration:none;border-radius:8px;font-weight:700;margin-right:15px;transition:0.3s;}
+    .hero-text a:hover {background:#1DA851;}
+    .hero-img {flex:1 1 400px;max-width:600px;position:relative;}
+    .hero-img img {width:100%;border-radius:12px;}
+    .features {display:flex;flex-wrap:wrap;justify-content:space-between;padding:30px 5%;margin-top:20px;}
+    .feature {flex:1 1 200px;display:flex;flex-direction:column;align-items:center;margin:15px 0;}
+    .feature img {width:50px;margin-bottom:10px;}
+    .feature span {text-align:center;font-weight:500;}
+    @media(max-width:768px){.hero{flex-direction:column;}.hero-text{text-align:center;margin-bottom:30px;}.features{justify-content:center;}}
   </style>
 </head>
 <body>
 
-  <section class="plans-hero">
-    <h1>Selecciona tu plan</h1>
-    <p>Elige tu plan y completa la contratación directamente por WhatsApp.</p>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Internet y TV <span>para tu hogar</span></h1>
+      <p>Elige tu plan, consulta cobertura y solicita instalación con atención directa. Sin vueltas. Sin filas. Todo empieza por WhatsApp.</p>
+      <a href="https://wa.me/595XXXXXXXXX" target="_blank">Chatear por WhatsApp</a>
+      <a href="planes.html">Ver planes</a>
+    </div>
+    <div class="hero-img">
+      <img src="images/family-hero.png" alt="Familia disfrutando Tigo TV e Internet">
+    </div>
   </section>
 
-  <section class="plans">
-    <div class="plan">
-      <h2>WiFi 100 Mbps</h2>
-      <p>Internet ilimitado para tu hogar</p>
-      <span>Gs. 120.000 / mes</span>
-      <a href="https://wa.me/595XXXXXXXXX" target="_blank">Contratar por WhatsApp</a>
+  <section class="features">
+    <div class="feature">
+      <img src="images/speed-icon.png" alt="Alta velocidad">
+      <span>Alta velocidad</span>
     </div>
-    <div class="plan">
-      <h2>WiFi 200 Mbps + TV Inicial</h2>
-      <p>Internet rápido y TV con 71 canales</p>
-      <span>Gs. 180.000 / mes</span>
-      <a href="https://wa.me/595XXXXXXXXX" target="_blank">Contratar por WhatsApp</a>
+    <div class="feature">
+      <img src="images/installation-icon.png" alt="Instalación rápida">
+      <span>Instalación rápida</span>
     </div>
-    <div class="plan">
-      <h2>WiFi 200 Mbps + TV Familiar</h2>
-      <p>Internet rápido y TV con 150 canales + Disney+</p>
-      <span>Gs. 205.000 / mes</span>
-      <a href="https://wa.me/595XXXXXXXXX" target="_blank">Contratar por WhatsApp</a>
+    <div class="feature">
+      <img src="images/tv-icon.png" alt="TV para la familia">
+      <span>TV para la familia</span>
+    </div>
+    <div class="feature">
+      <img src="images/coverage-icon.png" alt="Consulta de cobertura">
+      <span>Consulta de cobertura</span>
     </div>
   </section>
 
