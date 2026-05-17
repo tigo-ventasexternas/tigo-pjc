@@ -81,7 +81,7 @@
       position: relative;
       min-height: 100dvh;
       display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
+      grid-template-columns: 1fr;
       overflow: hidden;
       align-items: center;
     }
@@ -249,30 +249,6 @@
       backdrop-filter: blur(10px);
     }
     .btn-outline:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-2px); }
-    .mini-apps {
-      position: absolute;
-      z-index: 4;
-      top: 15%;
-      right: 6%;
-      display: flex;
-      gap: 12px;
-      opacity: 0.88;
-    }
-    .mini-app {
-      width: 75px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 0.8rem;
-      color: #ffffff;
-      backdrop-filter: blur(10px);
-    }
-    .mini-app.red { background: rgba(220, 22, 42, 0.88); }
-    .mini-app.yellow { background: rgba(255, 201, 0, 0.94); color: #002463; }
     .topbar {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
@@ -445,16 +421,14 @@
       font-size: 0.9rem;
     }
 
-    /* Media queries - ajustes específicos para móvil */
+    /* Media queries */
     @media (max-width: 1050px) {
-      .hero { grid-template-columns: 1fr; }
       .hero::before {
         background: linear-gradient(180deg, rgba(0, 26, 73, 0.96) 0%, rgba(0, 38, 103, 0.9) 48%, rgba(0, 16, 48, 0.88) 100%),
                     url("images/7-1.jpg");
         background-size: cover;
         background-position: center;
       }
-      .hero-space, .mini-apps { display: none; }
       .plans-layout { grid-template-columns: 1fr; }
       .order-panel { position: static; }
     }
@@ -532,7 +506,7 @@
 <body>
 <main class="app">
 
-  <!-- HOME VIEW (sin verificación ni contador de oferta) -->
+  <!-- HOME VIEW -->
   <section id="homeView" class="view active">
     <div class="hero">
       <div class="light-lines"></div>
@@ -554,7 +528,6 @@
           <button class="btn btn-outline" data-go="why">Por qué contratar aquí</button>
         </div>
       </div>
-      <div class="hero-space"><div class="mini-apps"><div class="mini-app">Disney+</div><div class="mini-app">HBO</div><div class="mini-app red">NETFLIX</div><div class="mini-app yellow">SPORTS</div></div></div>
     </div>
   </section>
 
