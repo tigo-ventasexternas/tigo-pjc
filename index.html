@@ -130,7 +130,6 @@
       flex-direction: column;
     }
 
-    /* Top bar compacto */
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -160,7 +159,6 @@
       cursor: pointer;
     }
 
-    /* Contenedor principal de plans - ocupa toda la altura restante sin scroll */
     .plans-main {
       flex: 1;
       display: flex;
@@ -199,7 +197,7 @@
       display: flex;
       gap: 0.8rem;
       flex: 1;
-      min-height: 0; /* importante para flex */
+      min-height: 0;
     }
     .plans-grid-container {
       flex: 2;
@@ -280,6 +278,13 @@
       padding: 6px 10px;
       margin-bottom: 6px;
       font-size: 0.75rem;
+    }
+    .error-msg {
+      font-size: 0.65rem;
+      color: #dc3545;
+      margin-top: -4px;
+      margin-bottom: 6px;
+      display: none;
     }
     .whatsapp-btn {
       display: none;
@@ -401,6 +406,7 @@
           <div class="lead-form">
             <input type="text" id="leadName" placeholder="Nombre completo (solo letras) *">
             <input type="tel" id="leadPhone" placeholder="Celular 09XX XXX XXX *">
+            <div id="phoneError" class="error-msg">Debe tener exactamente 10 dígitos (ej: 0981 234 567)</div>
             <input type="text" id="leadCity" placeholder="Ciudad / Barrio">
           </div>
           <a id="whatsappBtn" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido</a>
@@ -451,7 +457,7 @@
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595971992363";   // Número actualizado
+  const PHONE = "595971992363";
 
   const planesDB = {
     satelital: {
@@ -499,12 +505,18 @@
   const waBtn = document.getElementById("whatsappBtn");
   const selectedNameSpan = document.getElementById("selectedPlanName");
   const selectedPriceSpan = document.getElementById("selectedPlanPrice");
+  const phoneError = document.getElementById("phoneError");
 
   let currentPlan = null;
 
   function validarSoloLetras(e) {
     e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]/g, '');
   }
+
+  function getRawPhone() {
+    return leadPhone.value.replace(/\D/g, '');
+  }
+
   function formatearCelular(e) {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 10) value = value.slice(0, 10);
@@ -518,10 +530,33 @@
       formatted = value;
     }
     e.target.value = formatted.trim();
+    updateWaButton();
   }
 
   leadName.addEventListener("input", validarSoloLetras);
   leadPhone.addEventListener("input", formatearCelular);
+
+  function updateWaButton() {
+    const nombre = leadName.value.trim();
+    const telefonoRaw = getRawPhone();
+    const ciudad = leadCity.value.trim();
+    const isValidPhone = telefonoRaw.length === 10;
+    if (isValidPhone) {
+      phoneError.style.display = "none";
+    } else {
+      phoneError.style.display = "block";
+    }
+    if (currentPlan && nombre && isValidPhone) {
+      waBtn.classList.add("visible");
+      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${nombre}, teléfono ${telefonoRaw}. ${ciudad ? `Zona: ${ciudad}.` : ""} Necesito cobertura.`;
+      waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+    } else {
+      waBtn.classList.remove("visible");
+    }
+  }
+
+  leadName.addEventListener("input", updateWaButton);
+  leadCity.addEventListener("input", updateWaButton);
 
   function actualizarCategorias() {
     const zona = zonaSelect.value;
@@ -581,22 +616,6 @@
     updateWaButton();
   }
 
-  function updateWaButton() {
-    const nombre = leadName.value.trim();
-    let telefonoRaw = leadPhone.value.replace(/\D/g, '');
-    const ciudad = leadCity.value.trim();
-    if (currentPlan && nombre && telefonoRaw.length >= 9) {
-      waBtn.classList.add("visible");
-      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${nombre}, teléfono ${telefonoRaw}. ${ciudad ? `Zona: ${ciudad}.` : ""} Necesito cobertura.`;
-      waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
-    } else {
-      waBtn.classList.remove("visible");
-    }
-  }
-
-  leadName.addEventListener("input", updateWaButton);
-  leadPhone.addEventListener("input", updateWaButton);
-  leadCity.addEventListener("input", updateWaButton);
   zonaSelect.addEventListener("change", actualizarCategorias);
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
