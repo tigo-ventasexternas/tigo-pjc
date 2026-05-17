@@ -1,486 +1,739 @@
+# Landing Premium Corregida — Versión Funcional Completa
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-
-<title>Internet y TV para tu hogar | Atención personalizada</title>
-
-<meta name="description" content="Planes de internet y TV con atención personalizada y verificación de cobertura." />
-<meta name="theme-color" content="#004aad" />
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="images/favicon.png">
-
-<!-- GOOGLE FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<!-- FONT AWESOME -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-<style>
-
-:root{
-  --blue:#004aad;
-  --blue-dark:#001a49;
-  --green:#25d366;
-  --bg:#f3f6fb;
-  --text:#0f172a;
-  --muted:#64748b;
-  --yellow:#ffc900;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.5;
-}
-
-/* TOPBAR */
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:999;
-  backdrop-filter:blur(14px);
-  background:rgba(255,255,255,0.82);
-  border-bottom:1px solid rgba(255,255,255,0.4);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 5%;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.logo img{
-  height:42px;
-}
-
-.logo-text{
-  font-size:.9rem;
-  font-weight:700;
-  color:var(--blue-dark);
-}
-
-.nav{
-  display:flex;
-  gap:10px;
-}
-
-.nav button{
-  border:none;
-  background:transparent;
-  padding:10px 18px;
-  border-radius:999px;
-  cursor:pointer;
-  font-weight:600;
-  color:var(--blue);
-  transition:.2s;
-}
-
-.nav button:hover{
-  background:#eef2ff;
-}
-
-/* CONTAINER */
-
-.container{
-  max-width:1280px;
-  margin:auto;
-  padding:32px 24px;
-}
-
-/* HERO */
-
-.hero{
-  background:white;
-  border-radius:36px;
-  padding:56px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  align-items:center;
-  box-shadow:0 10px 35px rgba(0,0,0,0.05);
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:#e8f5e9;
-  color:#2e7d32;
-  padding:8px 16px;
-  border-radius:999px;
-  font-size:.8rem;
-  font-weight:700;
-  margin-bottom:22px;
-}
-
-.hero h1{
-  font-size:3rem;
-  line-height:1.1;
-  font-weight:900;
-  color:var(--blue-dark);
-  margin-bottom:18px;
-}
-
-.hero h1 span{
-  color:var(--blue);
-  display:block;
-}
-
-.hero p{
-  color:#475569;
-  font-size:1rem;
-  margin-bottom:28px;
-  max-width:560px;
-}
-
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:32px;
-}
-
-.chip{
-  background:#f1f5f9;
-  padding:10px 18px;
-  border-radius:999px;
-  font-size:.85rem;
-  font-weight:600;
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.chip i{
-  color:var(--blue);
-}
-
-.hero-buttons{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-}
-
-.btn-primary{
-  background:var(--green);
-  color:white;
-  text-decoration:none;
-  padding:14px 28px;
-  border-radius:999px;
-  font-weight:700;
-  transition:.25s;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-}
-
-.btn-primary:hover{
-  transform:translateY(-2px);
-  background:#1fb85a;
-}
-
-.btn-secondary{
-  border:1px solid #dbe2ea;
-  color:var(--text);
-  text-decoration:none;
-  padding:14px 28px;
-  border-radius:999px;
-  font-weight:600;
-}
-
-.hero-image img{
-  width:100%;
-  border-radius:28px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.08);
-}
-
-/* TITLES */
-
-.section-title{
-  font-size:2.3rem;
-  font-weight:900;
-  margin-bottom:8px;
-  color:var(--blue-dark);
-}
-
-.section-sub{
-  color:#64748b;
-  margin-bottom:32px;
-}
-
-/* PLANS */
-
-.plans-layout{
-  display:grid;
-  grid-template-columns:1fr 360px;
-  gap:30px;
-}
-
-.plans-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:24px;
-}
-
-.plan-card{
-  background:white;
-  border-radius:30px;
-  overflow:hidden;
-  cursor:pointer;
-  border:1px solid #e2e8f0;
-  transition:.25s;
-  position:relative;
-}
-
-.plan-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 35px rgba(0,0,0,0.08);
-}
-
-.plan-card.selected{
-  border:2px solid var(--green);
-  transform:scale(1.02);
-  box-shadow:0 15px 35px rgba(37,211,102,0.2);
-}
-
-.popular{
-  position:absolute;
-  top:14px;
-  right:14px;
-  background:var(--yellow);
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:.7rem;
-  font-weight:800;
-}
-
-.plan-img{
-  height:170px;
-  background:#eef2ff;
-}
-
-.plan-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.plan-info{
-  padding:22px;
-}
-
-.plan-cat{
-  font-size:.7rem;
-  font-weight:800;
-  letter-spacing:.5px;
-  text-transform:uppercase;
-  color:var(--blue);
-  margin-bottom:6px;
-}
-
-.plan-info h3{
-  font-size:1.3rem;
-  margin-bottom:8px;
-}
-
-.plan-info p{
-  color:#64748b;
-  font-size:.9rem;
-  margin-bottom:16px;
-}
-
-.price{
-  font-size:1.6rem;
-  font-weight:900;
-  color:var(--blue-dark);
-}
-
-/* ORDER PANEL */
-
-.order-panel{
-  position:sticky;
-  top:90px;
-  background:white;
-  border-radius:30px;
-  padding:28px;
-  height:fit-content;
-  box-shadow:0 10px 30px rgba(0,0,0,0.05);
-}
-
-.order-panel h3{
-  font-size:1.4rem;
-  margin-bottom:12px;
-}
-
-.selected-plan{
-  background:#f8fafc;
-  border-radius:22px;
-  padding:18px;
-  margin:18px 0;
-}
-
-.lead-form input{
-  width:100%;
-  padding:14px 18px;
-  border-radius:999px;
-  border:1px solid #dbe2ea;
-  margin-bottom:12px;
-  font-size:.95rem;
-}
-
-.lead-form input:focus{
-  outline:none;
-  border-color:var(--blue);
-}
-
-.whatsapp-btn{
-  display:none;
-  width:100%;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  background:var(--green);
-  color:white;
-  text-decoration:none;
-  padding:16px;
-  border-radius:999px;
-  font-weight:800;
-  transition:.2s;
-}
-
-.whatsapp-btn:hover{
-  background:#1fb85a;
-}
-
-.whatsapp-btn.visible{
-  display:flex;
-}
-
-.requirements{
-  margin-top:22px;
-  background:#fffbea;
-  padding:18px;
-  border-radius:22px;
-  font-size:.85rem;
-}
-
-/* WHY */
-
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  margin-top:38px;
-}
-
-.why-card{
-  background:white;
-  border-radius:28px;
-  padding:32px;
-  text-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.04);
-}
-
-.why-card i{
-  font-size:2.5rem;
-  color:var(--blue);
-  margin-bottom:18px;
-}
-
-.why-card h3{
-  margin-bottom:10px;
-}
-
-/* TESTIMONIAL */
-
-.testimonial{
-  margin-top:42px;
-  background:white;
-  border-left:5px solid var(--yellow);
-  padding:24px;
-  border-radius:24px;
-  color:#334155;
-}
-
-/* MOBILE STICKY */
-
-.mobile-cta{
-  display:none;
-}
-
-@media(max-width:900px){
-
-  .hero{
-    grid-template-columns:1fr;
-    padding:34px;
-  }
-
-  .plans-layout{
-    grid-template-columns:1fr;
-  }
-
-  .why-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:640px){
-
-  .hero h1{
-    font-size:2.2rem;
-  }
-
-  .topbar{
-    flex-direction:column;
-    gap:14px;
-  }
-
-  .container{
-    padding:20px;
-  }
-
-  .mobile-cta{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:white;
-    padding:14px;
-    box-shadow:0 -5px 25px rgba(0,0,0,0.08);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:999;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>Internet y TV para tu hogar | Atención personalizada</title>
+
+  <meta name="description" content="Planes de internet y TV con atención personalizada y verificación de cobertura." />
+  <meta name="theme-color" content="#004aad" />
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <style>
+
+    :root{
+      --blue:#004aad;
+      --blue-dark:#001a49;
+      --green:#25d366;
+      --bg:#f3f6fb;
+      --text:#0f172a;
+      --muted:#64748b;
+      --yellow:#ffc900;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:999;
+      backdrop-filter:blur(14px);
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid rgba(255,255,255,0.4);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 5%;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .logo img{
+      height:42px;
+      width:auto;
+    }
+
+    .logo-text{
+      font-size:.9rem;
+      font-weight:700;
+      color:var(--blue-dark);
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+    }
+
+    .nav button{
+      border:none;
+      background:transparent;
+      padding:10px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--blue);
+      transition:.2s;
+    }
+
+    .nav button:hover{
+      background:#eef2ff;
+    }
+
+    .container{
+      max-width:1280px;
+      margin:auto;
+      padding:32px 24px;
+    }
+
+    .hero{
+      background:white;
+      border-radius:36px;
+      padding:56px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
+      align-items:center;
+      box-shadow:0 10px 35px rgba(0,0,0,0.05);
+      margin-bottom:56px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#e8f5e9;
+      color:#2e7d32;
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:.8rem;
+      font-weight:700;
+      margin-bottom:22px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      line-height:1.1;
+      font-weight:900;
+      color:var(--blue-dark);
+      margin-bottom:18px;
+    }
+
+    .hero h1 span{
+      color:var(--blue);
+      display:block;
+    }
+
+    .hero p{
+      color:#475569;
+      font-size:1rem;
+      margin-bottom:28px;
+      max-width:560px;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:32px;
+    }
+
+    .chip{
+      background:#f1f5f9;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:.85rem;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .chip i{
+      color:var(--blue);
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
+      background:var(--green);
+      color:white;
+      text-decoration:none;
+      padding:14px 28px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.25s;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      background:#1fb85a;
+    }
+
+    .btn-secondary{
+      border:1px solid #dbe2ea;
+      color:var(--text);
+      text-decoration:none;
+      padding:14px 28px;
+      border-radius:999px;
+      font-weight:600;
+    }
+
+    .hero-image img{
+      width:100%;
+      border-radius:28px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.08);
+      object-fit:cover;
+    }
+
+    .section-title{
+      font-size:2.3rem;
+      font-weight:900;
+      margin-bottom:8px;
+      color:var(--blue-dark);
+    }
+
+    .section-sub{
+      color:#64748b;
+      margin-bottom:32px;
+    }
+
+    .plans-layout{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:30px;
+      align-items:start;
+    }
+
+    .plans-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+      gap:24px;
+    }
+
+    .plan-card{
+      background:white;
+      border-radius:30px;
+      overflow:hidden;
+      cursor:pointer;
+      border:1px solid #e2e8f0;
+      transition:.25s;
+      position:relative;
+    }
+
+    .plan-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 35px rgba(0,0,0,0.08);
+    }
+
+    .plan-card.selected{
+      border:2px solid var(--green);
+      transform:scale(1.02);
+      box-shadow:0 15px 35px rgba(37,211,102,0.2);
+    }
+
+    .popular{
+      position:absolute;
+      top:14px;
+      right:14px;
+      background:var(--yellow);
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:.7rem;
+      font-weight:800;
+      z-index:10;
+    }
+
+    .plan-img{
+      height:170px;
+      background:#eef2ff;
+    }
+
+    .plan-img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .plan-info{
+      padding:22px;
+    }
+
+    .plan-cat{
+      font-size:.7rem;
+      font-weight:800;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color:var(--blue);
+      margin-bottom:6px;
+    }
+
+    .plan-info h3{
+      font-size:1.3rem;
+      margin-bottom:8px;
+    }
+
+    .plan-info p{
+      color:#64748b;
+      font-size:.9rem;
+      margin-bottom:16px;
+    }
+
+    .price{
+      font-size:1.6rem;
+      font-weight:900;
+      color:var(--blue-dark);
+    }
+
+    .price small{
+      font-size:.75rem;
+      color:#64748b;
+      font-weight:500;
+    }
+
+    .order-panel{
+      position:sticky;
+      top:90px;
+      background:white;
+      border-radius:30px;
+      padding:28px;
+      height:fit-content;
+      box-shadow:0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .order-panel h3{
+      font-size:1.4rem;
+      margin-bottom:12px;
+    }
+
+    .selected-plan{
+      background:#f8fafc;
+      border-radius:22px;
+      padding:18px;
+      margin:18px 0;
+    }
+
+    .lead-form input{
+      width:100%;
+      padding:14px 18px;
+      border-radius:999px;
+      border:1px solid #dbe2ea;
+      margin-bottom:12px;
+      font-size:.95rem;
+    }
+
+    .lead-form input:focus{
+      outline:none;
+      border-color:var(--blue);
+    }
+
+    .whatsapp-btn{
+      display:none;
+      width:100%;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      background:var(--green);
+      color:white;
+      text-decoration:none;
+      padding:16px;
+      border-radius:999px;
+      font-weight:800;
+      transition:.2s;
+    }
+
+    .whatsapp-btn.visible{
+      display:flex;
+    }
+
+    .whatsapp-btn:hover{
+      background:#1fb85a;
+    }
+
+    .requirements{
+      margin-top:22px;
+      background:#fffbea;
+      padding:18px;
+      border-radius:22px;
+      font-size:.85rem;
+    }
+
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:24px;
+      margin-top:38px;
+    }
+
+    .why-card{
+      background:white;
+      border-radius:28px;
+      padding:32px;
+      text-align:center;
+      box-shadow:0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    .why-card i{
+      font-size:2.5rem;
+      color:var(--blue);
+      margin-bottom:18px;
+    }
+
+    .why-card h3{
+      margin-bottom:10px;
+    }
+
+    .testimonial{
+      margin-top:42px;
+      background:white;
+      border-left:5px solid var(--yellow);
+      padding:24px;
+      border-radius:24px;
+      color:#334155;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      color:#64748b;
+      font-size:.85rem;
+    }
+
+    @media(max-width:900px){
+
+      .hero{
+        grid-template-columns:1fr;
+        padding:34px;
+      }
+
+      .plans-layout{
+        grid-template-columns:1fr;
+      }
+
+      .why-grid{
+        grid-template-columns:1fr;
+      }
+
+    }
+
+    @media(max-width:640px){
+
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .topbar{
+        flex-direction:column;
+        gap:14px;
+      }
+
+      .container{
+        padding:20px;
+      }
+
+      .hero{
+        padding:24px;
+      }
+
+    }
+
+  </style>
 </head>
-
 <body>
 
-<!-- RESTO DE TU HTML Y JS ACTUAL -->
+  <div class="topbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo">
+      <div class="logo-text">Atención personalizada</div>
+    </div>
+
+    <div class="nav">
+      <button onclick="scrollToSection('planes')">Planes</button>
+      <button onclick="scrollToSection('beneficios')">Beneficios</button>
+      <button onclick="scrollToSection('contacto')">Contacto</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <section class="hero">
+
+      <div>
+        <div class="pill">
+          <i class="fa-brands fa-whatsapp"></i>
+          Atención directa por WhatsApp
+        </div>
+
+        <h1>
+          Internet de Fibra Óptica
+          <span>y TV para tu hogar</span>
+        </h1>
+
+        <p>
+          Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.
+        </p>
+
+        <div class="chips">
+          <div class="chip"><i class="fa-solid fa-gauge-high"></i> Fibra óptica</div>
+          <div class="chip"><i class="fa-solid fa-clock"></i> Instalación rápida</div>
+          <div class="chip"><i class="fa-solid fa-tv"></i> TV HD</div>
+          <div class="chip"><i class="fa-solid fa-map-location-dot"></i> Cobertura</div>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#planes" class="btn-primary">
+            <i class="fa-solid fa-list-check"></i>
+            Ver planes
+          </a>
+
+          <a href="#beneficios" class="btn-secondary">
+            Más información
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="images/7-1.jpg" alt="Internet hogar" loading="lazy">
+      </div>
+
+    </section>
+
+    <section id="planes">
+
+      <h2 class="section-title">Elige tu plan</h2>
+      <p class="section-sub">Selecciona una opción y continúa por WhatsApp.</p>
+
+      <div class="plans-layout">
+
+        <div class="plans-grid" id="plansGrid"></div>
+
+        <aside class="order-panel" id="contacto">
+
+          <h3>Tu pedido</h3>
+
+          <div class="selected-plan">
+            <strong id="selectedPlanName">Ningún plan seleccionado</strong><br>
+            <span id="selectedPlanPrice">—</span>
+          </div>
+
+          <div class="lead-form">
+            <input type="text" id="leadName" placeholder="Nombre completo *">
+            <input type="tel" id="leadPhone" placeholder="Número de celular *">
+            <input type="text" id="leadCity" placeholder="Ciudad o barrio">
+          </div>
+
+          <a id="whatsappBtn" class="whatsapp-btn" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+            Continuar por WhatsApp
+          </a>
+
+          <div class="requirements">
+            <strong>Requisitos:</strong><br><br>
+            ✔️ Cédula vigente<br>
+            ✔️ Mayor de edad<br>
+            ✔️ Verificación de cobertura
+          </div>
+
+        </aside>
+
+      </div>
+
+      <div class="testimonial">
+        <i class="fa-solid fa-quote-left"></i>
+        Atención rápida y acompañamiento durante todo el proceso de instalación.
+      </div>
+
+    </section>
+
+    <section id="beneficios">
+
+      <h2 class="section-title">¿Por qué contratar conmigo?</h2>
+      <p class="section-sub">Atención personalizada durante todo el proceso.</p>
+
+      <div class="why-grid">
+
+        <div class="why-card">
+          <i class="fa-solid fa-user-check"></i>
+          <h3>Atención personalizada</h3>
+          <p>Te ayudo a elegir el mejor plan para tu hogar.</p>
+        </div>
+
+        <div class="why-card">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Verificación rápida</h3>
+          <p>Confirmo cobertura antes de iniciar el proceso.</p>
+        </div>
+
+        <div class="why-card">
+          <i class="fa-solid fa-handshake"></i>
+          <h3>Acompañamiento directo</h3>
+          <p>Te acompaño hasta la instalación del servicio.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <footer>
+    Atención personalizada por WhatsApp.
+  </footer>
+
+<script>
+
+const VENDEDOR_NOMBRE = "Isidro Cabrera";
+const VENDEDOR_TELEFONO = "595984049651";
+
+const planes = [
+  {
+    nombre:"WiFi 100 Mbps",
+    precio:"Gs. 120.000",
+    tipo:"Internet hogar",
+    descripcion:"Ideal para uso diario y streaming.",
+    img:"images/3-4.jpg"
+  },
+  {
+    nombre:"WiFi 200 Mbps",
+    precio:"Gs. 170.000",
+    tipo:"Internet hogar",
+    descripcion:"Excelente para varios dispositivos.",
+    img:"images/4-3.jpg"
+  },
+  {
+    nombre:"WiFi 300 Mbps",
+    precio:"Gs. 200.000",
+    tipo:"Internet hogar",
+    descripcion:"Máximo rendimiento para gaming y 4K.",
+    img:"images/5-2.jpg"
+  },
+  {
+    nombre:"TV Inicial",
+    precio:"Gs. 99.000",
+    tipo:"TV hogar",
+    descripcion:"Canales esenciales para toda la familia.",
+    img:"images/6-1.jpg"
+  },
+  {
+    nombre:"Combo 200M + TV Familiar",
+    precio:"Gs. 205.000",
+    tipo:"Combo",
+    descripcion:"Uno de los planes más elegidos.",
+    img:"images/combo-popular.png",
+    popular:true
+  }
+];
+
+const plansGrid = document.getElementById("plansGrid");
+const selectedPlanName = document.getElementById("selectedPlanName");
+const selectedPlanPrice = document.getElementById("selectedPlanPrice");
+const whatsappBtn = document.getElementById("whatsappBtn");
+const leadName = document.getElementById("leadName");
+const leadPhone = document.getElementById("leadPhone");
+const leadCity = document.getElementById("leadCity");
+
+let planSeleccionado = null;
+
+function renderPlanes(){
+
+  plans.forEach(plan => {
+
+    const card = document.createElement("div");
+    card.className = "plan-card";
+
+    card.innerHTML = `
+      ${plan.popular ? '<div class="popular">Más elegido</div>' : ''}
+
+      <div class="plan-img">
+        <img src="${plan.img}" alt="${plan.nombre}" loading="lazy">
+      </div>
+
+      <div class="plan-info">
+        <div class="plan-cat">${plan.tipo}</div>
+        <h3>${plan.nombre}</h3>
+        <p>${plan.descripcion}</p>
+        <div class="price">${plan.precio} <small>/ mes</small></div>
+      </div>
+    `;
+
+    card.addEventListener("click",()=>seleccionarPlan(card,plan));
+
+    plansGrid.appendChild(card);
+
+  });
+}
+
+function seleccionarPlan(card,plan){
+
+  document.querySelectorAll(".plan-card").forEach(c=>c.classList.remove("selected"));
+
+  card.classList.add("selected");
+
+  planSeleccionado = plan;
+
+  selectedPlanName.textContent = plan.nombre;
+  selectedPlanPrice.textContent = plan.precio;
+
+  actualizarWhatsApp();
+}
+
+function actualizarWhatsApp(){
+
+  const nombre = leadName.value.trim();
+  const telefono = leadPhone.value.trim();
+  const ciudad = leadCity.value.trim();
+
+  if(!planSeleccionado || !nombre || !telefono){
+    whatsappBtn.classList.remove("visible");
+    return;
+  }
+
+  whatsappBtn.classList.add("visible");
+
+  const mensaje = `Hola ${VENDEDOR_NOMBRE}, quiero contratar el plan ${planSeleccionado.nombre} (${planSeleccionado.precio}). Mi nombre es ${nombre}. Mi celular es ${telefono}.${ciudad ? ` Zona: ${ciudad}.` : ''}`;
+
+  whatsappBtn.href = `https://wa.me/${VENDEDOR_TELEFONO}?text=${encodeURIComponent(mensaje)}`;
+}
+
+leadName.addEventListener("input",actualizarWhatsApp);
+leadPhone.addEventListener("input",actualizarWhatsApp);
+leadCity.addEventListener("input",actualizarWhatsApp);
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+renderPlanes();
+
+</script>
 
 </body>
 </html>
+```
