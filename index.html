@@ -4,80 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tigo Paraguay | Internet y TV</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-  body { background-color: #001f4d; color: #fff; }
-  a { text-decoration: none; }
-  
-  /* HERO */
-  .hero {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: url('images/13(2).jpg') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-  }
-  .hero::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background: rgba(0,0,0,0.38);
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-  }
-  .hero-logo { width: 140px; margin-bottom: 20px; }
-  .hero h1 { font-size:3rem; line-height:1.2; margin-bottom: 10px; }
-  .hero h1 span { color: #27c9ff; }
-  .hero h2 { font-size:1.4rem; margin-bottom:20px; max-width: 100%; }
-  .features { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; }
-  .feature { display: flex; flex-direction: column; align-items: center; text-align:center; font-size:0.9rem; }
-  .feature i { font-size:2rem; color: #00bfff; margin-bottom:5px; }
-  .btn-primary {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size:1.2rem;
-    background-color:#00bf3f;
-    color:#fff;
-    border-radius:8px;
-    cursor:pointer;
-  }
-  .btn-primary:hover { background-color:#00a636; }
+/* Reset y tipografía */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background-color: #001f4d; color: #fff; }
 
-  /* PLANS */
-  .plans { padding:60px 20px; background-color:#001f4d; display:flex; flex-wrap:wrap; justify-content:center; gap:30px; }
-  .plan-card {
-    background:#002f6c;
-    border-radius:12px;
-    padding:25px;
-    width:300px;
-    text-align:center;
-    transition:0.3s;
-    box-shadow:0 8px 20px rgba(0,0,0,0.4);
-  }
-  .plan-card:hover { transform: translateY(-5px); }
-  .plan-card h3 { font-size:1.6rem; margin-bottom:15px; }
-  .plan-card p { font-size:1rem; margin-bottom:15px; }
-  .plan-card .price { font-size:2rem; color:#ffcb00; font-weight:bold; margin-bottom:20px; }
-  .plan-card button { padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-size:1rem; transition:0.3s; }
-  .plan-card button.select-plan { background-color:#00bfff; color:#fff; margin-bottom:10px; }
-  .plan-card button.select-plan:hover { background-color:#0094c7; }
-  .plan-card button.whatsapp { background-color:#00bf3f; color:#fff; display:none; }
-  .plan-card button.whatsapp:hover { background-color:#00a636; }
+/* HERO */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: url('images/13(2).jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.38); /* overlay */
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.hero-logo { width: 140px; margin-bottom: 20px; }
+.hero h1 { font-size:3rem; line-height:1.2; margin-bottom: 10px; }
+.hero h1 span { color: #27c9ff; }
+.hero h2 { font-size:1.4rem; margin-bottom:20px; max-width: 100%; }
 
-  /* Responsive */
-  @media (max-width:768px){
-    .hero h1 { font-size:2.2rem; }
-    .hero h2 { font-size:1.1rem; }
-    .features { justify-content:center; }
-    .plans { flex-direction:column; align-items:center; }
-  }
+/* Iconos de beneficios */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align:center;
+  font-size:0.9rem;
+}
+.feature i { font-size:2rem; color: #00bfff; margin-bottom:5px; }
+
+/* Botón CTA */
+.btn-primary {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size:1.2rem;
+  background-color:#00bf3f;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
+  text-decoration:none;
+}
+.btn-primary:hover { background-color:#00a636; }
+
+/* PLAN CARDS */
+.plans {
+  padding:60px 20px;
+  background-color:#001f4d;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+.plan-card {
+  background:#002f6c;
+  border-radius:12px;
+  padding:25px;
+  width:300px;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+.plan-card:hover { transform: translateY(-5px); }
+.plan-card h3 { font-size:1.6rem; margin-bottom:15px; }
+.plan-card p { font-size:1rem; margin-bottom:15px; }
+.plan-card .price { font-size:2rem; color:#ffcb00; font-weight:bold; margin-bottom:20px; }
+.plan-card button {
+  padding:12px 25px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+}
+.plan-card button.select-plan { background-color:#00bfff; color:#fff; margin-bottom:10px; }
+.plan-card button.select-plan:hover { background-color:#0094c7; }
+.plan-card button.whatsapp { background-color:#00bf3f; color:#fff; display:none; }
+.plan-card button.whatsapp:hover { background-color:#00a636; }
+
+/* Responsive */
+@media (max-width:768px){
+  .hero h1 { font-size:2.2rem; }
+  .hero h2 { font-size:1.1rem; }
+  .features { justify-content:center; }
+  .plans { flex-direction:column; align-items:center; }
+}
 </style>
 </head>
 <body>
@@ -98,7 +128,7 @@
   </div>
 </section>
 
-<!-- PLANS -->
+<!-- PLANES -->
 <section class="plans" id="plans">
   <div class="plan-card">
     <h3>WiFi Ilimitado</h3>
@@ -107,7 +137,6 @@
     <button class="select-plan" onclick="showWhatsApp(this)">Seleccionar</button>
     <button class="whatsapp" onclick="goWhatsApp()">Enviar WhatsApp</button>
   </div>
-
   <div class="plan-card">
     <h3>WiFi + TV Inicial</h3>
     <p>Incluye 200 Mbps + TV Inicial</p>
@@ -115,7 +144,6 @@
     <button class="select-plan" onclick="showWhatsApp(this)">Seleccionar</button>
     <button class="whatsapp" onclick="goWhatsApp()">Enviar WhatsApp</button>
   </div>
-
   <div class="plan-card">
     <h3>WiFi + TV Familiar</h3>
     <p>Incluye 200 Mbps + TV Familiar + Disney+</p>
@@ -131,7 +159,7 @@ function showWhatsApp(btn){
   btn.nextElementSibling.style.display='inline-block';
 }
 function goWhatsApp(){
-  window.open('https://wa.me/595XXXXXXXXX','_blank');
+  window.open('https://wa.me/595984049651','_blank');
 }
 </script>
 
