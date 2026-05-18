@@ -42,8 +42,8 @@
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
     .plan-card { background: white; border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
     .plan-card.selected { border: 2px solid #25d366; }
-    .plan-image { height: 80px; background: #eef2ff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-    .plan-image img { width: 100%; height: 100%; object-fit: cover; }
+    .plan-image { height: 80px; background: #eef2ff; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .plan-image img { width: 100%; height: 100%; object-fit: contain; background: white; }
     .plan-body { padding: 0.5rem; }
     .plan-type { font-size: 0.6rem; color: #004aad; font-weight: 800; }
     .plan-card h3 { font-size: 0.85rem; margin: 0.2rem 0; }
@@ -70,6 +70,7 @@
 </head>
 <body>
 <main>
+  <!-- HOME VIEW (sin cambios) -->
   <section id="homeView" class="view active">
     <div class="home">
       <div class="home-container">
@@ -93,6 +94,7 @@
     </div>
   </section>
 
+  <!-- PLANS VIEW (con imágenes corregidas) -->
   <section id="plansView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -123,6 +125,7 @@
     </div>
   </section>
 
+  <!-- WHY VIEW -->
   <section id="whyView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -147,27 +150,27 @@
 
   const planesDB = {
     cable: { nombre: "TV Cable", planes: [
-      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/tv-cable-inicial.png", fallback: "📺" },
-      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/tv-cable-familiar.png", fallback: "📺" },
-      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + señales adicionales", imgSrc: "images/tv-cable-full.png", fallback: "⭐" }
+      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales", imgSrc: "images/tv-cable-inicial.png" },
+      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/tv-cable-familiar.png" },
+      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + adicionales", imgSrc: "images/tv-cable-full.png" }
     ] },
     satelital: { nombre: "TV Satelital", planes: [
-      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/tv-satelital-inicial.png", fallback: "📡" },
-      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/tv-satelital-familiar.png", fallback: "🛰️" },
-      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + señales adicionales", imgSrc: "images/tv-satelital-full.png", fallback: "⭐" }
+      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales", imgSrc: "images/tv-satelital-inicial.png" },
+      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/tv-satelital-familiar.png" },
+      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + adicionales", imgSrc: "images/tv-satelital-full.png" }
     ] },
     wifi: { nombre: "WiFi Ilimitado", planes: [
-      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/wifi-100mb.png", fallback: "🌐" },
-      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-200mb-disney.png", fallback: "⚡" },
-      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-300mb-disney.png", fallback: "🚀" },
-      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-400mb-disney.png", fallback: "⚡" }
+      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/wifi-100mb.png" },
+      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-200mb-disney.png" },
+      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-300mb-disney.png" },
+      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-400mb-disney.png" }
     ] },
     combos: { nombre: "Combos Especiales", planes: [
-      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/combo-inicial-200mb.png", fallback: "🎁" },
-      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-200mb-disney.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-300mb-disney.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-400mb-disney.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-familiar-600mb-disney.png", fallback: "🏆" }
+      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/combo-inicial-200mb.png" },
+      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-200mb-disney.png" },
+      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-300mb-disney.png" },
+      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-400mb-disney.png" },
+      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-familiar-600mb-disney.png" }
     ] }
   };
 
@@ -193,20 +196,20 @@
 
   let currentPlan = null;
 
+  // Validaciones (sin cambios)
   function validateName() {
     const name = leadName.value.trim();
     if (!name) return "Campo obligatorio";
     if (/\d/.test(name)) return "No debe contener números";
-    const parts = name.split(/\s+/);
-    if (parts.length < 2) return "Debe incluir nombre y apellido";
+    if (name.split(/\s+/).length < 2) return "Nombre y apellido";
     return "";
   }
   function validatePhone() {
     const phone = leadPhone.value.trim();
     if (!phone) return "Campo obligatorio";
     const digits = phone.replace(/\D/g, '');
-    if (digits.length !== 10) return "Debe tener 10 dígitos (ej: 0981 234 567)";
-    if (!digits.startsWith("09")) return "Debe comenzar con 09";
+    if (digits.length !== 10) return "10 dígitos";
+    if (!digits.startsWith("09")) return "Comienza con 09";
     return "";
   }
   function validateStreet() { return leadStreet.value.trim() ? "" : "Campo obligatorio"; }
@@ -218,54 +221,35 @@
   }
   function validateNeighborhood() { return leadNeighborhood.value.trim() ? "" : "Campo obligatorio"; }
 
-  function showError(input, errorDiv, message) {
-    if (message) {
-      input.classList.add("error");
-      errorDiv.textContent = message;
-      errorDiv.classList.add("show");
-    } else {
-      input.classList.remove("error");
-      errorDiv.classList.remove("show");
-      errorDiv.textContent = "";
-    }
+  function showError(input, errorDiv, msg) {
+    if (msg) { input.classList.add("error"); errorDiv.textContent = msg; errorDiv.classList.add("show"); }
+    else { input.classList.remove("error"); errorDiv.classList.remove("show"); errorDiv.textContent = ""; }
   }
 
   function validateAll() {
-    const nameMsg = validateName();
-    const phoneMsg = validatePhone();
-    const streetMsg = validateStreet();
-    const numberMsg = validateNumber();
-    const neighborhoodMsg = validateNeighborhood();
+    const nameMsg = validateName(), phoneMsg = validatePhone(), streetMsg = validateStreet(), numberMsg = validateNumber(), neighMsg = validateNeighborhood();
     showError(leadName, nameError, nameMsg);
     showError(leadPhone, phoneError, phoneMsg);
     showError(leadStreet, streetError, streetMsg);
     showError(leadNumber, numberError, numberMsg);
-    showError(leadNeighborhood, neighborhoodError, neighborhoodMsg);
-    return !nameMsg && !phoneMsg && !streetMsg && !numberMsg && !neighborhoodMsg;
+    showError(leadNeighborhood, neighborhoodError, neighMsg);
+    return !nameMsg && !phoneMsg && !streetMsg && !numberMsg && !neighMsg;
   }
 
   function formatPhone(value) {
-    let digits = value.replace(/\D/g, '');
-    if (digits.length > 10) digits = digits.slice(0, 10);
-    let formatted = '';
-    if (digits.length >= 4) {
-      formatted = digits.slice(0, 4);
-      if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
-      if (digits.length > 7) formatted += ' ' + digits.slice(7, 10);
-    } else formatted = digits;
-    return formatted;
+    let d = value.replace(/\D/g,'');
+    if(d.length>10) d=d.slice(0,10);
+    if(d.length>=4) return d.slice(0,4)+(d.length>4?' '+d.slice(4,7):'')+(d.length>7?' '+d.slice(7,10):'');
+    return d;
   }
 
   function updateWaButton() {
-    const formValid = validateAll();
-    if (currentPlan && formValid) {
+    if (currentPlan && validateAll()) {
       waBtn.classList.add("visible");
-      const rawPhone = leadPhone.value.replace(/\D/g, '');
+      const rawPhone = leadPhone.value.replace(/\D/g,'');
       const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${leadName.value.trim()}, teléfono ${rawPhone}. Dirección: ${leadStreet.value.trim()} ${leadNumber.value.trim()}, ${leadNeighborhood.value.trim()}. Necesito cobertura.`;
       waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
-    } else {
-      waBtn.classList.remove("visible");
-    }
+    } else { waBtn.classList.remove("visible"); }
   }
 
   leadName.addEventListener("blur", () => { validateAll(); updateWaButton(); });
@@ -278,42 +262,37 @@
 
   function actualizarCategorias() {
     const zona = zonaSelect.value;
-    const categorias = categoriasPorZona[zona] || ["satelital"];
+    const cats = categoriasPorZona[zona] || ["satelital"];
     categoriaSelect.innerHTML = "";
-    categorias.forEach(cat => {
-      const option = document.createElement("option");
-      option.value = cat;
-      option.textContent = planesDB[cat].nombre;
-      categoriaSelect.appendChild(option);
-    });
+    cats.forEach(c => { let opt = document.createElement("option"); opt.value = c; opt.textContent = planesDB[c].nombre; categoriaSelect.appendChild(opt); });
     renderizarPlanes();
   }
 
   function renderizarPlanes() {
-    const categoria = categoriaSelect.value;
-    if (!planesDB[categoria]) return;
-    const planes = planesDB[categoria].planes;
+    const cat = categoriaSelect.value;
+    if(!planesDB[cat]) return;
+    const planes = planesDB[cat].planes;
     plansGrid.innerHTML = "";
-    planes.forEach(plan => {
+    planes.forEach(p => {
       const card = document.createElement("div");
       card.className = "plan-card";
-      card.dataset.plan = plan.nombre;
-      card.dataset.price = plan.precio;
-      card.dataset.type = plan.tipo;
+      card.dataset.plan = p.nombre;
+      card.dataset.price = p.precio;
+      card.dataset.type = p.tipo;
+      // Imagen sin fallback agresivo: solo imagen, si no carga se ve espacio vacío pero sin texto extra
       card.innerHTML = `
-        <div class="plan-image">
-          <img src="${plan.imgSrc}" alt="${plan.nombre}" onerror="this.onerror=null; this.parentElement.innerHTML='<div style="font-size:1.5rem;">${plan.fallback}</div>'">
-        </div>
+        <div class="plan-image"><img src="${p.imgSrc}" alt="${p.nombre}" loading="lazy"></div>
         <div class="plan-body">
-          <div class="plan-type">${plan.tipo}</div>
-          <h3>${plan.nombre}</h3>
-          <p>${plan.descripcion}</p>
-          <div class="price">${plan.precio}<small>al mes</small></div>
+          <div class="plan-type">${p.tipo}</div>
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion}</p>
+          <div class="price">${p.precio}<small>al mes</small></div>
         </div>
       `;
       card.addEventListener("click", () => selectPlan(card));
       plansGrid.appendChild(card);
     });
+    // Reset selección
     document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
     currentPlan = null;
     selectedNameSpan.textContent = "Ninguno";
@@ -342,10 +321,10 @@
     plans: document.getElementById("plansView"),
     why: document.getElementById("whyView")
   };
-  function showView(view) {
-    Object.values(views).forEach(v => v.classList.remove("active"));
-    views[view].classList.add("active");
-    window.scrollTo(0, 0);
+  function showView(v) {
+    Object.values(views).forEach(vw => vw.classList.remove("active"));
+    views[v].classList.add("active");
+    window.scrollTo(0,0);
   }
   document.querySelectorAll("[data-go]").forEach(btn => btn.addEventListener("click", () => showView(btn.dataset.go)));
 
