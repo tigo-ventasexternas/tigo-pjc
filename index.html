@@ -61,7 +61,7 @@
     /* Botón continuar */
     .continue-btn { margin-top: 1rem; width: 100%; justify-content: center; }
 
-    /* Checkout (formulario) - sin colores de error */
+    /* Checkout (formulario) */
     .checkout-container { max-width: 500px; margin: 0 auto; width: 100%; background: white; border-radius: 24px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .selected-plan-summary { background: #f8fafc; border-radius: 16px; padding: 0.8rem; margin-bottom: 1rem; text-align: center; }
     .selected-plan-summary strong { font-size: 1rem; }
@@ -101,10 +101,10 @@
         <h1>WiFi ilimitado <span>y TV para tu hogar</span></h1>
         <p class="description">Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.</p>
         <div class="benefits">
-          <div class="benefit-item" data-categoria="cable" data-forzar-urbana="true"><i class="fas fa-tv"></i><span>TV cable</span></div>
-          <div class="benefit-item" data-categoria="satelital" data-forzar-urbana="false"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
-          <div class="benefit-item" data-categoria="wifi" data-forzar-urbana="true"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
-          <div class="benefit-item" data-categoria="combos" data-forzar-urbana="true"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
+          <div class="benefit-item" data-categoria="cable" data-forzar-urbana="true" data-mensaje="Disponible en zona urbana y rural"><i class="fas fa-tv"></i><span>TV cable</span></div>
+          <div class="benefit-item" data-categoria="satelital" data-forzar-urbana="false" data-mensaje="Disponible en zona urbana y rural"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
+          <div class="benefit-item" data-categoria="wifi" data-forzar-urbana="true" data-mensaje="Disponible solo en zona urbana"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
+          <div class="benefit-item" data-categoria="combos" data-forzar-urbana="true" data-mensaje="Disponible solo en zona urbana"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
         </div>
       </div>
     </div>
@@ -124,7 +124,7 @@
     <div class="page-main">
       <div class="page-header">
         <h2>Selecciona tu servicio</h2>
-        <p>Elige tu zona y luego el plan que prefieras.</p>
+        <p id="disponibilidadTexto" class="disponibilidad-text"></p>
       </div>
       <div class="filtros">
         <select id="zonaSelect">
@@ -156,7 +156,6 @@
           <span id="checkoutPlanPrice">—</span>
           <p id="checkoutPlanDesc" style="font-size: 0.7rem;"></p>
         </div>
-        <!-- Checkbox de requisitos (persuasivo) -->
         <div class="checkbox-group">
           <input type="checkbox" id="confirmRequirements">
           <label for="confirmRequirements">✅ Confirmo que tengo cédula vigente, soy mayor de edad, puedo abonar la primera cuota y acepto enviar mi ubicación por WhatsApp para la instalación.</label>
@@ -206,7 +205,6 @@
     ] }
   };
 
-  // Mapeo de zona a categorías (urbana tiene todas, rural solo satelital)
   function getCategoriasPorZona(zona) {
     return zona === "rural" ? ["satelital"] : ["satelital", "cable", "wifi", "combos"];
   }
@@ -216,6 +214,7 @@
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
   const continueBtn = document.getElementById("continueToCheckoutBtn");
+  const disponibilidadTexto = document.getElementById("disponibilidadTexto");
 
   // Checkout
   const leadName = document.getElementById("leadName");
@@ -237,7 +236,7 @@
 
   let currentPlan = null;
   let pendingCategory = null;
-  let pendingForceUrbana = null; // si se debe forzar zona urbana
+  let pendingMensaje = null;
 
   // Validaciones y formateo
   function normalizePhone(value) {
@@ -335,11 +334,9 @@
     }
   });
 
-  // Lógica de selección de planes con filtro por categoría y forzado de zona
   function actualizarCategorias() {
     const zona = zonaSelect.value;
     let categoriasDisponibles = getCategoriasPorZona(zona);
-    // Si hay una categoría pendiente, limitar el desplegable solo a esa categoría (si existe en la zona)
     if (pendingCategory && categoriasDisponibles.includes(pendingCategory)) {
       categoriasDisponibles = [pendingCategory];
     }
@@ -350,16 +347,17 @@
       opt.textContent = planesDB[cat].nombre;
       categoriaSelect.appendChild(opt);
     });
-    // Seleccionar la categoría pendiente si existe, si no la primera
     if (pendingCategory && categoriasDisponibles.includes(pendingCategory)) {
       categoriaSelect.value = pendingCategory;
     } else {
       categoriaSelect.value = categoriasDisponibles[0];
     }
-    // Limpiar pendiente después de usarla (para que no interfiera al volver a la vista)
-    pendingCategory = null;
-    sessionStorage.removeItem("pendingCategory");
-    sessionStorage.removeItem("pendingForceUrbana");
+    // Mostrar mensaje de disponibilidad
+    if (pendingMensaje) {
+      disponibilidadTexto.textContent = pendingMensaje;
+    } else {
+      disponibilidadTexto.textContent = "Elige tu zona y luego el plan que prefieras.";
+    }
     renderizarPlanes();
   }
 
@@ -419,7 +417,6 @@
   });
 
   zonaSelect.addEventListener("change", () => {
-    // Al cambiar zona, reseteamos selección de plan y también si hay categoría pendiente, la revalidamos
     window.tempSelectedPlan = null;
     continueBtn.disabled = true;
     document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
@@ -427,7 +424,7 @@
   });
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
-  // Navegación y persistencia
+  // Navegación
   const views = {
     home: document.getElementById("homeView"),
     selectPlan: document.getElementById("selectPlanView"),
@@ -461,7 +458,6 @@
     btn.addEventListener("click", (e) => {
       const target = btn.dataset.goto;
       if (target === "selectPlan") {
-        // Limpiar selección temporal
         window.tempSelectedPlan = null;
         continueBtn.disabled = true;
         document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
@@ -470,24 +466,21 @@
     });
   });
 
-  // Eventos de los íconos del home
+  // Eventos de íconos
   document.querySelectorAll(".benefit-item").forEach(item => {
     item.addEventListener("click", () => {
-      const categoria = item.dataset.categoria;
+      pendingCategory = item.dataset.categoria;
       const forzarUrbana = item.dataset.forzarUrbana === "true";
-      if (categoria) {
-        pendingCategory = categoria;
-        if (forzarUrbana) {
-          // Forzamos la zona a urbana
-          zonaSelect.value = "urbana";
-          // También guardamos para que al cargar la vista se mantenga
-          sessionStorage.setItem("pendingForceUrbana", "true");
-        }
-        sessionStorage.setItem("pendingCategory", pendingCategory);
+      pendingMensaje = item.dataset.mensaje || "";
+      if (forzarUrbana) {
+        zonaSelect.value = "urbana";
+        sessionStorage.setItem("pendingForceUrbana", "true");
+      } else {
+        sessionStorage.removeItem("pendingForceUrbana");
       }
-      // Al cambiar a la vista selectPlan, se disparará la actualización con la nueva zona y categoría pendiente
+      sessionStorage.setItem("pendingCategory", pendingCategory);
+      sessionStorage.setItem("pendingMensaje", pendingMensaje);
       showView("selectPlan");
-      // Asegurar que se actualicen los filtros después de que la vista esté activa
       setTimeout(() => {
         if (views.selectPlan.classList.contains("active")) {
           actualizarCategorias();
@@ -496,13 +489,16 @@
     });
   });
 
-  // Inicialización
   function init() {
-    // Si hay una categoría pendiente guardada en sessionStorage (por si recarga), la restauramos
     const savedCat = sessionStorage.getItem("pendingCategory");
     if (savedCat) {
       pendingCategory = savedCat;
       sessionStorage.removeItem("pendingCategory");
+    }
+    const savedMsg = sessionStorage.getItem("pendingMensaje");
+    if (savedMsg) {
+      pendingMensaje = savedMsg;
+      sessionStorage.removeItem("pendingMensaje");
     }
     const savedForce = sessionStorage.getItem("pendingForceUrbana");
     if (savedForce === "true") {
