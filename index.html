@@ -4,343 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tigo Hogar | Isidro Cabrera - Asesor Autorizado</title>
-  <meta name="description" content="Planes de Internet y TV con atención personalizada." />
   <link rel="icon" href="images/logo-tigo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-      background: white;
-      color: #001a49;
-      line-height: 1.3;
-    }
-
-    /* HOME - intacto */
-    .home {
-      min-height: 100dvh;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .home-container {
-      max-width: 500px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .logo {
-      margin-bottom: 0.8rem;
-    }
-    .logo img {
-      max-width: 130px;
-      height: auto;
-    }
-    .perfil {
-      margin: 0.8rem 0 0.8rem;
-    }
-    .perfil img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #004aad;
-      padding: 2px;
-      background: white;
-    }
-    .perfil h3 {
-      margin: 0.4rem 0 0.2rem;
-      font-size: 1.2rem;
-    }
-    .perfil p {
-      font-size: 0.75rem;
-      color: #075e54;
-      font-weight: 600;
-    }
-    .perfil span {
-      background: #e8f5e9;
-      padding: 2px 10px;
-      border-radius: 30px;
-      display: inline-block;
-      margin-top: 4px;
-      font-size: 0.7rem;
-      color: #25d366;
-    }
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    h1 span {
-      color: #004aad;
-    }
-    .description {
-      font-size: 0.85rem;
-      color: #333;
-      margin-bottom: 1.2rem;
-    }
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .benefit-item {
-      background: #f5f7fc;
-      border-radius: 20px;
-      padding: 10px 5px;
-      text-align: center;
-      border: 1px solid #e0e7ff;
-    }
-    .benefit-item i {
-      font-size: 1.6rem;
-      color: #004aad;
-      margin-bottom: 5px;
-      display: block;
-    }
-    .btn-primary {
-      background: #25d366;
-      color: white;
-      border: none;
-      border-radius: 40px;
-      padding: 10px 24px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: white; color: #001a49; line-height: 1.3; }
+    /* HOME */
+    .home { min-height: 100dvh; background: white; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .home-container { max-width: 500px; width: 100%; margin: 0 auto; text-align: center; }
+    .logo { margin-bottom: 0.8rem; }
+    .logo img { max-width: 130px; height: auto; }
+    .perfil { margin: 0.8rem 0 0.8rem; }
+    .perfil img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #004aad; padding: 2px; background: white; }
+    .perfil h3 { margin: 0.4rem 0 0.2rem; font-size: 1.2rem; }
+    .perfil p { font-size: 0.75rem; color: #075e54; font-weight: 600; }
+    .perfil span { background: #e8f5e9; padding: 2px 10px; border-radius: 30px; display: inline-block; margin-top: 4px; font-size: 0.7rem; color: #25d366; }
+    .perfil .codigo { background: #e8f5e9; padding: 2px 10px; border-radius: 30px; display: inline-block; margin-top: 6px; font-size: 0.7rem; color: #004aad; font-weight: bold; }
+    h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+    h1 span { color: #004aad; }
+    .description { font-size: 0.85rem; color: #333; margin-bottom: 1.2rem; }
+    .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 1.5rem; }
+    .benefit-item { background: #f5f7fc; border-radius: 20px; padding: 10px 5px; text-align: center; border: 1px solid #e0e7ff; }
+    .benefit-item i { font-size: 1.6rem; color: #004aad; margin-bottom: 5px; display: block; }
+    .btn-primary { background: #25d366; color: white; border: none; border-radius: 40px; padding: 10px 24px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
     /* VISTAS INTERNAS */
-    .view {
-      display: none;
-      background: #f4f6f9;
-      min-height: 100dvh;
-    }
-    .view.active {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0.6rem 1rem;
-      background: white;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-    .topbar-logo img {
-      max-width: 70px;
-      height: auto;
-    }
-    .topbar-buttons {
-      display: flex;
-      gap: 6px;
-    }
-    .topbar-buttons button {
-      background: #f0f2f5;
-      border: none;
-      border-radius: 40px;
-      padding: 5px 12px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #004aad;
-      cursor: pointer;
-    }
-
-    .plans-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 0.6rem 1rem;
-      overflow: hidden;
-    }
-    .page-header h2 {
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-    }
-    .page-header p {
-      font-size: 0.7rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .filtros {
-      background: white;
-      border-radius: 20px;
-      padding: 0.5rem;
-      margin-bottom: 0.6rem;
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-    .filtros select {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 40px;
-      padding: 5px 10px;
-      font-size: 0.75rem;
-      flex: 1;
-    }
-
-    .plans-layout {
-      display: flex;
-      gap: 0.8rem;
-      flex: 1;
-      min-height: 0;
-    }
-    .plans-grid-container {
-      flex: 2;
-      overflow-y: auto;
-      max-height: 48vh;
-    }
-    .plans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.6rem;
-    }
-    .plan-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .plan-card.selected {
-      border: 2px solid #25d366;
-    }
-    .plan-image {
-      height: 80px;
-      background: #eef2ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    .plan-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .plan-body {
-      padding: 0.5rem;
-    }
-    .plan-type {
-      font-size: 0.6rem;
-      color: #004aad;
-      font-weight: 800;
-    }
-    .plan-card h3 {
-      font-size: 0.85rem;
-      margin: 0.2rem 0;
-    }
-    .plan-card p {
-      font-size: 0.65rem;
-      color: #333;
-    }
-    .price {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: #ffc900;
-    }
-    .order-panel {
-      flex: 1;
-      background: white;
-      border-radius: 20px;
-      padding: 0.7rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      max-height: 48vh;
-      overflow-y: auto;
-    }
-    .selected-plan {
-      background: #f8fafc;
-      border-radius: 14px;
-      padding: 0.4rem;
-      margin: 0.5rem 0;
-    }
-    .lead-form input {
-      width: 100%;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 40px;
-      padding: 6px 10px;
-      margin-bottom: 6px;
-      font-size: 0.75rem;
-    }
-    .error-msg {
-      font-size: 0.65rem;
-      color: #dc3545;
-      margin-top: -4px;
-      margin-bottom: 6px;
-      display: none;
-    }
-    .whatsapp-btn {
-      display: none;
-      background: #25d366;
-      color: white;
-      border-radius: 40px;
-      padding: 8px;
-      font-weight: 800;
-      font-size: 0.75rem;
-      width: 100%;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 6px;
-      cursor: pointer;
-      border: none;
-    }
-    .whatsapp-btn.visible {
-      display: flex;
-    }
-    .requirements {
-      margin-top: 0.6rem;
-      background: #fff8e7;
-      border-radius: 14px;
-      padding: 0.5rem;
-    }
-    .requirements h4 {
-      font-size: 0.7rem;
-    }
-    .requirements li {
-      font-size: 0.65rem;
-    }
-    .testimonial {
-      margin-top: 0.6rem;
-      background: #f0f9ff;
-      border-radius: 14px;
-      padding: 0.5rem;
-      font-size: 0.7rem;
-      border-left: 3px solid #ffc900;
-    }
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 0.8rem;
-    }
-    .why-card {
-      background: white;
-      border-radius: 20px;
-      padding: 0.8rem;
-    }
+    .view { display: none; background: #f4f6f9; min-height: 100dvh; }
+    .view.active { display: flex; flex-direction: column; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 0.6rem 1rem; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .topbar-logo img { max-width: 70px; height: auto; }
+    .topbar-buttons { display: flex; gap: 6px; }
+    .topbar-buttons button { background: #f0f2f5; border: none; border-radius: 40px; padding: 5px 12px; font-size: 0.7rem; font-weight: 600; color: #004aad; cursor: pointer; }
+    .codigo-ventas { font-size: 0.65rem; background: #e8f5e9; padding: 2px 8px; border-radius: 30px; color: #004aad; font-weight: bold; }
+    .plans-main { flex: 1; display: flex; flex-direction: column; padding: 0.6rem 1rem; overflow: hidden; }
+    .page-header h2 { font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .page-header p { font-size: 0.7rem; margin-bottom: 0.4rem; }
+    .filtros { background: white; border-radius: 20px; padding: 0.5rem; margin-bottom: 0.6rem; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .filtros select { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 40px; padding: 5px 10px; font-size: 0.75rem; flex: 1; }
+    .plans-layout { display: flex; gap: 0.8rem; flex: 1; min-height: 0; }
+    .plans-grid-container { flex: 2; overflow-y: auto; max-height: 48vh; }
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.6rem; }
+    .plan-card { background: white; border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    .plan-card.selected { border: 2px solid #25d366; }
+    .plan-image { height: 80px; background: #eef2ff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .plan-image img { width: 100%; height: 100%; object-fit: cover; }
+    .plan-body { padding: 0.5rem; }
+    .plan-type { font-size: 0.6rem; color: #004aad; font-weight: 800; }
+    .plan-card h3 { font-size: 0.85rem; margin: 0.2rem 0; }
+    .plan-card p { font-size: 0.65rem; color: #333; }
+    .price { font-size: 0.9rem; font-weight: 800; color: #ffc900; }
+    .order-panel { flex: 1; background: white; border-radius: 20px; padding: 0.7rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; max-height: 48vh; overflow-y: auto; }
+    .selected-plan { background: #f8fafc; border-radius: 14px; padding: 0.4rem; margin: 0.5rem 0; }
+    .lead-form input { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 40px; padding: 6px 10px; margin-bottom: 6px; font-size: 0.75rem; }
+    .whatsapp-btn { display: none; background: #25d366; color: white; border-radius: 40px; padding: 8px; font-weight: 800; font-size: 0.75rem; width: 100%; justify-content: center; gap: 5px; margin-top: 6px; cursor: pointer; border: none; }
+    .whatsapp-btn.visible { display: flex; }
+    .requirements { margin-top: 0.6rem; background: #fff8e7; border-radius: 14px; padding: 0.5rem; }
+    .requirements h4 { font-size: 0.7rem; }
+    .requirements li { font-size: 0.65rem; }
+    .testimonial { margin-top: 0.6rem; background: #f0f9ff; border-radius: 14px; padding: 0.5rem; font-size: 0.7rem; border-left: 3px solid #ffc900; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.8rem; }
+    .why-card { background: white; border-radius: 20px; padding: 0.8rem; }
     @media (max-width: 700px) {
-      .plans-layout {
-        flex-direction: column;
-      }
-      .plans-grid-container, .order-panel {
-        max-height: 40vh;
-      }
+      .plans-layout { flex-direction: column; }
+      .plans-grid-container, .order-panel { max-height: 40vh; }
     }
   </style>
 </head>
@@ -356,6 +81,7 @@
           <h3>Isidro Cabrera</h3>
           <p>Asesor de Ventas Externas</p>
           <span>Autorizado</span>
+          <div class="codigo">Código: CH 102528</div>
         </div>
         <h1>WiFi ilimitado <span>y TV para tu hogar</span></h1>
         <p class="description">Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.</p>
@@ -378,6 +104,7 @@
         <button data-go="home">Inicio</button>
         <button data-go="why">Por qué aquí</button>
       </div>
+      <div class="codigo-ventas">CH 102528</div>
     </div>
     <div class="plans-main">
       <div class="page-header">
@@ -404,10 +131,11 @@
             <span id="selectedPlanPrice">—</span>
           </div>
           <div class="lead-form">
-            <input type="text" id="leadName" placeholder="Nombre completo (solo letras) *">
+            <input type="text" id="leadName" placeholder="Nombre completo *">
             <input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *">
-            <div id="phoneError" class="error-msg">Debe tener exactamente 10 dígitos (ej: 0981 234 567)</div>
-            <input type="text" id="leadCity" placeholder="Ciudad / Barrio">
+            <input type="text" id="leadStreet" placeholder="Calle *">
+            <input type="text" id="leadNumber" placeholder="Número *" inputmode="numeric">
+            <input type="text" id="leadNeighborhood" placeholder="Barrio *">
           </div>
           <a id="whatsappBtn" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido</a>
           <div class="requirements">
@@ -437,6 +165,7 @@
         <button data-go="home">Inicio</button>
         <button data-go="plans">Ver planes</button>
       </div>
+      <div class="codigo-ventas">CH 102528</div>
     </div>
     <div class="plans-main">
       <div class="page-header">
@@ -457,38 +186,27 @@
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595971992363";
+  const PHONE = "595971992363"; // Código de área 595, pero el número se valida en el formulario
 
+  // Planes de ejemplo (luego los reemplazarás con los correctos)
   const planesDB = {
-    satelital: {
-      nombre: "TV Satelital",
-      planes: [
-        { nombre: "TV Satelital Básico", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "46 canales", imgSrc: "images/6-1.jpg", fallback: "📡" },
-        { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "73 canales", imgSrc: "images/7-1.jpg", fallback: "🛰️" }
-      ]
-    },
-    cable: {
-      nombre: "TV Cable",
-      planes: [
-        { nombre: "TV Cable Básico", precio: "Gs. 110.000", tipo: "TV Cable", descripcion: "Canales básicos HD", imgSrc: "images/6-1.jpg", fallback: "📺" },
-        { nombre: "TV Cable Familiar", precio: "Gs. 150.000", tipo: "TV Cable", descripcion: "Canales HD + deportes", imgSrc: "images/7-1.jpg", fallback: "📺" }
-      ]
-    },
-    wifi: {
-      nombre: "WiFi Ilimitado",
-      planes: [
-        { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
-        { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Ideal para streaming", imgSrc: "images/4-3.jpg", fallback: "⚡" },
-        { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet", descripcion: "Máxima velocidad", imgSrc: "images/5-2.jpg", fallback: "🚀" }
-      ]
-    },
-    ofertas: {
-      nombre: "Ofertas Especiales",
-      planes: [
-        { nombre: "Combo 200M + TV Cable", precio: "Gs. 220.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
-        { nombre: "Pack Streaming + WiFi", precio: "Gs. 250.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🎬" }
-      ]
-    }
+    satelital: { nombre: "TV Satelital", planes: [
+      { nombre: "TV Satelital Básico", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "46 canales", imgSrc: "images/6-1.jpg", fallback: "📡" },
+      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "73 canales", imgSrc: "images/7-1.jpg", fallback: "🛰️" }
+    ] },
+    cable: { nombre: "TV Cable", planes: [
+      { nombre: "TV Cable Básico", precio: "Gs. 110.000", tipo: "TV Cable", descripcion: "Canales básicos HD", imgSrc: "images/6-1.jpg", fallback: "📺" },
+      { nombre: "TV Cable Familiar", precio: "Gs. 150.000", tipo: "TV Cable", descripcion: "Canales HD + deportes", imgSrc: "images/7-1.jpg", fallback: "📺" }
+    ] },
+    wifi: { nombre: "WiFi Ilimitado", planes: [
+      { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
+      { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Ideal para streaming", imgSrc: "images/4-3.jpg", fallback: "⚡" },
+      { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet", descripcion: "Máxima velocidad", imgSrc: "images/5-2.jpg", fallback: "🚀" }
+    ] },
+    ofertas: { nombre: "Ofertas Especiales", planes: [
+      { nombre: "Combo 200M + TV Cable", precio: "Gs. 220.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
+      { nombre: "Pack Streaming + WiFi", precio: "Gs. 250.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🎬" }
+    ] }
   };
 
   const categoriasPorZona = {
@@ -496,66 +214,73 @@
     urbana: ["satelital", "cable", "wifi", "ofertas"]
   };
 
+  // Elementos DOM
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
   const leadName = document.getElementById("leadName");
   const leadPhone = document.getElementById("leadPhone");
-  const leadCity = document.getElementById("leadCity");
+  const leadStreet = document.getElementById("leadStreet");
+  const leadNumber = document.getElementById("leadNumber");
+  const leadNeighborhood = document.getElementById("leadNeighborhood");
   const waBtn = document.getElementById("whatsappBtn");
   const selectedNameSpan = document.getElementById("selectedPlanName");
   const selectedPriceSpan = document.getElementById("selectedPlanPrice");
-  const phoneError = document.getElementById("phoneError");
 
   let currentPlan = null;
 
-  function validarSoloLetras(e) {
-    e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]/g, '');
-  }
-
-  function getRawPhone() {
-    return leadPhone.value.replace(/\D/g, '');
-  }
-
-  function formatearCelular(e) {
-    let value = e.target.value.replace(/\D/g, '');
-    if (value.length > 10) value = value.slice(0, 10);
+  // Funciones de validación y formato
+  function formatPhone(value) {
+    let digits = value.replace(/\D/g, '');
+    if (digits.length > 10) digits = digits.slice(0, 10);
     let formatted = '';
-    if (value.length >= 4) {
-      formatted = value.slice(0, 4);
-      if (value.length > 4) formatted += ' ' + value.slice(4, 7);
-      if (value.length > 7) formatted += ' ' + value.slice(7, 10);
-    } else if (value.length >= 1) {
-      formatted = value;
+    if (digits.length >= 4) {
+      formatted = digits.slice(0, 4);
+      if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
+      if (digits.length > 7) formatted += ' ' + digits.slice(7, 10);
+    } else {
+      formatted = digits;
     }
-    e.target.value = formatted;
-    updateWaButton();
+    return formatted;
   }
 
-  leadName.addEventListener("input", validarSoloLetras);
-  leadPhone.addEventListener("input", formatearCelular);
+  function isValidPhone(phoneStr) {
+    const digits = phoneStr.replace(/\D/g, '');
+    return digits.length === 10 && digits.startsWith("09");
+  }
+
+  function isFormComplete() {
+    const name = leadName.value.trim();
+    const phone = leadPhone.value.trim();
+    const street = leadStreet.value.trim();
+    const number = leadNumber.value.trim();
+    const neighborhood = leadNeighborhood.value.trim();
+    return currentPlan && name && isValidPhone(phone) && street && number && neighborhood;
+  }
 
   function updateWaButton() {
-    const nombre = leadName.value.trim();
-    const telefonoRaw = getRawPhone();
-    const ciudad = leadCity.value.trim();
-    const isValidPhone = telefonoRaw.length === 10;
-    if (isValidPhone) {
-      phoneError.style.display = "none";
-    } else {
-      phoneError.style.display = "block";
-    }
-    if (currentPlan && nombre && isValidPhone) {
+    if (isFormComplete()) {
       waBtn.classList.add("visible");
-      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${nombre}, teléfono ${telefonoRaw}. ${ciudad ? `Zona: ${ciudad}.` : ""} Necesito cobertura.`;
+      const rawPhone = leadPhone.value.replace(/\D/g, '');
+      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${leadName.value.trim()}, teléfono ${rawPhone}. Dirección: ${leadStreet.value.trim()} ${leadNumber.value.trim()}, ${leadNeighborhood.value.trim()}. Necesito cobertura.`;
       waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
     } else {
       waBtn.classList.remove("visible");
     }
   }
 
+  // Eventos
   leadName.addEventListener("input", updateWaButton);
-  leadCity.addEventListener("input", updateWaButton);
+  leadPhone.addEventListener("input", function(e) {
+    e.target.value = formatPhone(e.target.value);
+    updateWaButton();
+  });
+  leadStreet.addEventListener("input", updateWaButton);
+  leadNumber.addEventListener("input", function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+    updateWaButton();
+  });
+  leadNeighborhood.addEventListener("input", updateWaButton);
 
   function actualizarCategorias() {
     const zona = zonaSelect.value;
@@ -618,6 +343,7 @@
   zonaSelect.addEventListener("change", actualizarCategorias);
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
+  // Navegación entre vistas
   const views = {
     home: document.getElementById("homeView"),
     plans: document.getElementById("plansView"),
