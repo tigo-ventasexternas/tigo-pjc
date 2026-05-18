@@ -145,36 +145,34 @@
   const VENDEDOR = "Isidro Cabrera";
   const PHONE = "595971992363";
 
-  // Planes (mismos datos)
   const planesDB = {
     cable: { nombre: "TV Cable", planes: [
-      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/6-1.jpg", fallback: "📺" },
-      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/7-1.jpg", fallback: "📺" },
-      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + señales adicionales", imgSrc: "images/7-1.jpg", fallback: "⭐" }
+      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/tv-cable-inicial.png", fallback: "📺" },
+      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/tv-cable-familiar.png", fallback: "📺" },
+      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + señales adicionales", imgSrc: "images/tv-cable-full.png", fallback: "⭐" }
     ] },
     satelital: { nombre: "TV Satelital", planes: [
-      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/6-1.jpg", fallback: "📡" },
-      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/7-1.jpg", fallback: "🛰️" },
-      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + señales adicionales", imgSrc: "images/7-1.jpg", fallback: "⭐" }
+      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/tv-satelital-inicial.png", fallback: "📡" },
+      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/tv-satelital-familiar.png", fallback: "🛰️" },
+      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + señales adicionales", imgSrc: "images/tv-satelital-full.png", fallback: "⭐" }
     ] },
     wifi: { nombre: "WiFi Ilimitado", planes: [
-      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
-      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/4-3.jpg", fallback: "⚡" },
-      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/5-2.jpg", fallback: "🚀" },
-      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/5-2.jpg", fallback: "⚡" }
+      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/wifi-100mb.png", fallback: "🌐" },
+      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-200mb-disney.png", fallback: "⚡" },
+      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-300mb-disney.png", fallback: "🚀" },
+      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-400mb-disney.png", fallback: "⚡" }
     ] },
     combos: { nombre: "Combos Especiales", planes: [
-      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
-      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
-      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-popular.png", fallback: "🏆" }
+      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/combo-inicial-200mb.png", fallback: "🎁" },
+      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-200mb-disney.png", fallback: "🏆" },
+      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-300mb-disney.png", fallback: "🏆" },
+      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-400mb-disney.png", fallback: "🏆" },
+      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-familiar-600mb-disney.png", fallback: "🏆" }
     ] }
   };
 
   const categoriasPorZona = { rural: ["satelital"], urbana: ["satelital", "cable", "wifi", "combos"] };
 
-  // DOM elements
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
@@ -195,7 +193,6 @@
 
   let currentPlan = null;
 
-  // Validaciones
   function validateName() {
     const name = leadName.value.trim();
     if (!name) return "Campo obligatorio";
@@ -204,7 +201,6 @@
     if (parts.length < 2) return "Debe incluir nombre y apellido";
     return "";
   }
-
   function validatePhone() {
     const phone = leadPhone.value.trim();
     if (!phone) return "Campo obligatorio";
@@ -213,23 +209,14 @@
     if (!digits.startsWith("09")) return "Debe comenzar con 09";
     return "";
   }
-
-  function validateStreet() {
-    const val = leadStreet.value.trim();
-    return val ? "" : "Campo obligatorio";
-  }
-
+  function validateStreet() { return leadStreet.value.trim() ? "" : "Campo obligatorio"; }
   function validateNumber() {
     const val = leadNumber.value.trim();
     if (!val) return "Campo obligatorio";
     if (!/^\d+$/.test(val)) return "Solo números";
     return "";
   }
-
-  function validateNeighborhood() {
-    const val = leadNeighborhood.value.trim();
-    return val ? "" : "Campo obligatorio";
-  }
+  function validateNeighborhood() { return leadNeighborhood.value.trim() ? "" : "Campo obligatorio"; }
 
   function showError(input, errorDiv, message) {
     if (message) {
@@ -249,15 +236,12 @@
     const streetMsg = validateStreet();
     const numberMsg = validateNumber();
     const neighborhoodMsg = validateNeighborhood();
-
     showError(leadName, nameError, nameMsg);
     showError(leadPhone, phoneError, phoneMsg);
     showError(leadStreet, streetError, streetMsg);
     showError(leadNumber, numberError, numberMsg);
     showError(leadNeighborhood, neighborhoodError, neighborhoodMsg);
-
-    const isFormValid = !nameMsg && !phoneMsg && !streetMsg && !numberMsg && !neighborhoodMsg;
-    return isFormValid;
+    return !nameMsg && !phoneMsg && !streetMsg && !numberMsg && !neighborhoodMsg;
   }
 
   function formatPhone(value) {
@@ -268,9 +252,7 @@
       formatted = digits.slice(0, 4);
       if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
       if (digits.length > 7) formatted += ' ' + digits.slice(7, 10);
-    } else {
-      formatted = digits;
-    }
+    } else formatted = digits;
     return formatted;
   }
 
@@ -286,7 +268,6 @@
     }
   }
 
-  // Event listeners
   leadName.addEventListener("blur", () => { validateAll(); updateWaButton(); });
   leadPhone.addEventListener("blur", () => { validateAll(); updateWaButton(); });
   leadStreet.addEventListener("blur", () => { validateAll(); updateWaButton(); });
