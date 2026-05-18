@@ -405,7 +405,7 @@
           </div>
           <div class="lead-form">
             <input type="text" id="leadName" placeholder="Nombre completo (solo letras) *">
-            <input type="tel" id="leadPhone" placeholder="Celular 09XX XXX XXX *">
+            <input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *">
             <div id="phoneError" class="error-msg">Debe tener exactamente 10 dígitos (ej: 0981 234 567)</div>
             <input type="text" id="leadCity" placeholder="Ciudad / Barrio">
           </div>
@@ -521,15 +521,14 @@
     let value = e.target.value.replace(/\D/g, '');
     if (value.length > 10) value = value.slice(0, 10);
     let formatted = '';
-    if (value.length >= 2) {
-      formatted = value.slice(0,2);
-      if (value.length > 2) formatted += ' ' + value.slice(2,5);
-      if (value.length > 5) formatted += ' ' + value.slice(5,8);
-      if (value.length > 8) formatted += ' ' + value.slice(8,10);
-    } else {
+    if (value.length >= 4) {
+      formatted = value.slice(0, 4);
+      if (value.length > 4) formatted += ' ' + value.slice(4, 7);
+      if (value.length > 7) formatted += ' ' + value.slice(7, 10);
+    } else if (value.length >= 1) {
       formatted = value;
     }
-    e.target.value = formatted.trim();
+    e.target.value = formatted;
     updateWaButton();
   }
 
