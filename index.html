@@ -23,11 +23,10 @@
     h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
     h1 span { color: #004aad; }
     .description { font-size: 0.85rem; color: #333; margin-bottom: 1.2rem; }
-    .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 1.5rem; }
+    .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 0; }
     .benefit-item { background: #f5f7fc; border-radius: 20px; padding: 10px 5px; text-align: center; border: 1px solid #e0e7ff; cursor: pointer; transition: 0.1s; }
     .benefit-item:hover { background: #e0e7ff; }
     .benefit-item i { font-size: 1.6rem; color: #004aad; margin-bottom: 5px; display: block; }
-    .btn-primary { background: #25d366; color: white; border: none; border-radius: 40px; padding: 10px 24px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 
     /* Vistas generales */
     .view { display: none; background: #f4f6f9; min-height: 100dvh; }
@@ -71,15 +70,11 @@
     .input-group input { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 40px; padding: 8px 12px; font-size: 0.8rem; }
     .error-msg { font-size: 0.6rem; color: #6c757d; margin-top: 2px; margin-left: 10px; display: none; }
     .error-msg.show { display: block; }
-    .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 0.75rem; }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 0.75rem; background: #f0f9ff; padding: 10px; border-radius: 16px; }
     .checkbox-group input { width: 18px; height: 18px; margin: 0; }
     .whatsapp-btn { background: #25d366; color: white; border-radius: 40px; padding: 10px; font-weight: 800; font-size: 0.8rem; width: 100%; display: flex; justify-content: center; gap: 5px; margin-top: 6px; cursor: pointer; border: none; opacity: 0.6; transition: 0.1s; }
     .whatsapp-btn.active { opacity: 1; cursor: pointer; }
     .obligatorio-text { font-size: 0.65rem; color: #6c757d; text-align: center; margin: 8px 0; }
-    .requirements { background: #fff8e7; border-radius: 14px; padding: 0.5rem; margin-top: 0.5rem; }
-    .requirements h4 { font-size: 0.7rem; }
-    .requirements li { font-size: 0.65rem; list-style: none; margin-left: 0; }
-    .testimonial { margin-top: 0.6rem; background: #f0f9ff; border-radius: 14px; padding: 0.5rem; font-size: 0.7rem; border-left: 3px solid #ffc900; }
 
     @media (max-width: 500px) {
       .plan-image { width: 60px; height: 60px; }
@@ -106,12 +101,11 @@
         <h1>WiFi ilimitado <span>y TV para tu hogar</span></h1>
         <p class="description">Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.</p>
         <div class="benefits">
-          <div class="benefit-item" data-categoria="cable"><i class="fas fa-tv"></i><span>TV cable</span></div>
-          <div class="benefit-item" data-categoria="satelital"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
-          <div class="benefit-item" data-categoria="wifi"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
-          <div class="benefit-item" data-categoria="combos"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
+          <div class="benefit-item" data-categoria="cable" data-forzar-urbana="true"><i class="fas fa-tv"></i><span>TV cable</span></div>
+          <div class="benefit-item" data-categoria="satelital" data-forzar-urbana="false"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
+          <div class="benefit-item" data-categoria="wifi" data-forzar-urbana="true"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
+          <div class="benefit-item" data-categoria="combos" data-forzar-urbana="true"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
         </div>
-        <button class="btn-primary" data-goto="selectPlan"><i class="fas fa-list"></i> Ver planes</button>
       </div>
     </div>
   </section>
@@ -130,7 +124,7 @@
     <div class="page-main">
       <div class="page-header">
         <h2>Selecciona tu servicio</h2>
-        <p>Primero elige tu zona (Urbana/Rural), luego la categoría y el plan.</p>
+        <p>Elige tu zona y luego el plan que prefieras.</p>
       </div>
       <div class="filtros">
         <select id="zonaSelect">
@@ -139,7 +133,6 @@
         </select>
         <select id="categoriaSelect"></select>
       </div>
-      <div id="zonaMessage" style="font-size:0.7rem; color:#e67e22; margin-bottom:0.5rem; display:none;"></div>
       <div class="plans-grid" id="plansGrid"></div>
       <button id="continueToCheckoutBtn" class="btn-primary continue-btn" disabled>Continuar con mis datos →</button>
     </div>
@@ -152,7 +145,6 @@
         <img src="images/logo.png" alt="Tigo">
       </div>
       <div class="topbar-buttons">
-        <button data-goto="selectPlan">← Volver a planes</button>
         <button data-goto="home">Inicio</button>
       </div>
       <div class="autorizacion-top">Autorización 102598</div>
@@ -164,6 +156,11 @@
           <span id="checkoutPlanPrice">—</span>
           <p id="checkoutPlanDesc" style="font-size: 0.7rem;"></p>
         </div>
+        <!-- Checkbox de requisitos (persuasivo) -->
+        <div class="checkbox-group">
+          <input type="checkbox" id="confirmRequirements">
+          <label for="confirmRequirements">✅ Confirmo que tengo cédula vigente, soy mayor de edad, puedo abonar la primera cuota y acepto enviar mi ubicación por WhatsApp para la instalación.</label>
+        </div>
         <div class="lead-form">
           <div class="input-group"><input type="text" id="leadName" placeholder="Nombre y Apellido *"><div id="nameError" class="error-msg">Campo obligatorio</div></div>
           <div class="input-group"><input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *"><div id="phoneError" class="error-msg">Campo obligatorio</div></div>
@@ -171,15 +168,8 @@
           <div class="input-group"><input type="text" id="leadNumber" placeholder="Número *"><div id="numberError" class="error-msg">Campo obligatorio</div></div>
           <div class="input-group"><input type="text" id="leadNeighborhood" placeholder="Barrio *"><div id="neighborhoodError" class="error-msg">Campo obligatorio</div></div>
         </div>
-        <div class="checkbox-group">
-          <input type="checkbox" id="confirmRequirements">
-          <label for="confirmRequirements">Confirmo que cumplo con los requisitos: cédula vigente, mayor de edad y abono de primera cuota.</label>
-        </div>
         <div class="obligatorio-text">📱 Para la instalación, deberás enviar tu ubicación por WhatsApp.</div>
         <a id="whatsappBtn" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por WhatsApp</a>
-        <div class="requirements"><h4>Requisitos</h4><ul><li><i class="fas fa-id-card"></i> Cédula vigente</li><li><i class="fas fa-user-check"></i> Mayor de edad</li><li><i class="fas fa-receipt"></i> Abono primera cuota</li></ul></div>
-        <div class="testimonial"><i class="fas fa-quote-left"></i> "Contraté con Isidro, todo rápido. Instalación al día siguiente." – Carlos A.</div>
-        <div class="testimonial"><i class="fas fa-quote-left"></i> "Muy buena asesoría, me explicó cada detalle." – Laura G.</div>
       </div>
     </div>
   </section>
@@ -216,14 +206,16 @@
     ] }
   };
 
-  const categoriasPorZona = { rural: ["satelital"], urbana: ["satelital", "cable", "wifi", "combos"] };
+  // Mapeo de zona a categorías (urbana tiene todas, rural solo satelital)
+  function getCategoriasPorZona(zona) {
+    return zona === "rural" ? ["satelital"] : ["satelital", "cable", "wifi", "combos"];
+  }
 
   // Elementos
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
   const continueBtn = document.getElementById("continueToCheckoutBtn");
-  const zonaMessage = document.getElementById("zonaMessage");
 
   // Checkout
   const leadName = document.getElementById("leadName");
@@ -244,7 +236,8 @@
   const neighborhoodError = document.getElementById("neighborhoodError");
 
   let currentPlan = null;
-  let pendingCategory = null; // para guardar la categoría elegida desde home
+  let pendingCategory = null;
+  let pendingForceUrbana = null; // si se debe forzar zona urbana
 
   // Validaciones y formateo
   function normalizePhone(value) {
@@ -337,36 +330,36 @@
       if (!leadStreet.value.trim()) missing.push("Calle");
       if (!leadNumber.value.trim()) missing.push("Número");
       if (!leadNeighborhood.value.trim()) missing.push("Barrio");
-      if (!confirmCheckbox.checked) missing.push("Confirmar que cumple requisitos");
+      if (!confirmCheckbox.checked) missing.push("Confirmar que cumple requisitos y ubicación");
       alert("Completa los siguientes campos:\n- " + missing.join("\n- "));
     }
   });
 
-  // Lógica de selección de planes con categoría pendiente
+  // Lógica de selección de planes con filtro por categoría y forzado de zona
   function actualizarCategorias() {
     const zona = zonaSelect.value;
-    const categorias = categoriasPorZona[zona] || ["satelital"];
+    let categoriasDisponibles = getCategoriasPorZona(zona);
+    // Si hay una categoría pendiente, limitar el desplegable solo a esa categoría (si existe en la zona)
+    if (pendingCategory && categoriasDisponibles.includes(pendingCategory)) {
+      categoriasDisponibles = [pendingCategory];
+    }
     categoriaSelect.innerHTML = "";
-    categorias.forEach(cat => {
+    categoriasDisponibles.forEach(cat => {
       const opt = document.createElement("option");
       opt.value = cat;
       opt.textContent = planesDB[cat].nombre;
       categoriaSelect.appendChild(opt);
     });
-    // Si hay una categoría pendiente (desde home), intentar preseleccionarla
-    if (pendingCategory && categorias.includes(pendingCategory)) {
+    // Seleccionar la categoría pendiente si existe, si no la primera
+    if (pendingCategory && categoriasDisponibles.includes(pendingCategory)) {
       categoriaSelect.value = pendingCategory;
-      zonaMessage.style.display = "none";
-    } else if (pendingCategory) {
-      zonaMessage.textContent = `⚠️ La categoría seleccionada no está disponible en zona ${zona}. Se ha seleccionado ${planesDB[categorias[0]].nombre}.`;
-      zonaMessage.style.display = "block";
-      categoriaSelect.value = categorias[0];
     } else {
-      zonaMessage.style.display = "none";
+      categoriaSelect.value = categoriasDisponibles[0];
     }
-    // Limpiar la categoría pendiente después de usarla (para que no interfiera al volver)
+    // Limpiar pendiente después de usarla (para que no interfiera al volver a la vista)
     pendingCategory = null;
     sessionStorage.removeItem("pendingCategory");
+    sessionStorage.removeItem("pendingForceUrbana");
     renderizarPlanes();
   }
 
@@ -426,7 +419,7 @@
   });
 
   zonaSelect.addEventListener("change", () => {
-    // Al cambiar zona, se resetea la selección de plan y la categoría pendiente
+    // Al cambiar zona, reseteamos selección de plan y también si hay categoría pendiente, la revalidamos
     window.tempSelectedPlan = null;
     continueBtn.disabled = true;
     document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
@@ -468,10 +461,10 @@
     btn.addEventListener("click", (e) => {
       const target = btn.dataset.goto;
       if (target === "selectPlan") {
+        // Limpiar selección temporal
         window.tempSelectedPlan = null;
         continueBtn.disabled = true;
         document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
-        // No reseteamos pendingCategory aquí, porque podría venir de los íconos
       }
       showView(target);
     });
@@ -481,12 +474,20 @@
   document.querySelectorAll(".benefit-item").forEach(item => {
     item.addEventListener("click", () => {
       const categoria = item.dataset.categoria;
+      const forzarUrbana = item.dataset.forzarUrbana === "true";
       if (categoria) {
         pendingCategory = categoria;
+        if (forzarUrbana) {
+          // Forzamos la zona a urbana
+          zonaSelect.value = "urbana";
+          // También guardamos para que al cargar la vista se mantenga
+          sessionStorage.setItem("pendingForceUrbana", "true");
+        }
         sessionStorage.setItem("pendingCategory", pendingCategory);
       }
+      // Al cambiar a la vista selectPlan, se disparará la actualización con la nueva zona y categoría pendiente
       showView("selectPlan");
-      // Forzar actualización de categorías al llegar a selectPlan (se ejecuta al cambiar de vista, pero la vista aún no está activa)
+      // Asegurar que se actualicen los filtros después de que la vista esté activa
       setTimeout(() => {
         if (views.selectPlan.classList.contains("active")) {
           actualizarCategorias();
@@ -497,7 +498,18 @@
 
   // Inicialización
   function init() {
-    actualizarCategorias(); // llena el desplegable de categorías según zona por defecto (urbana)
+    // Si hay una categoría pendiente guardada en sessionStorage (por si recarga), la restauramos
+    const savedCat = sessionStorage.getItem("pendingCategory");
+    if (savedCat) {
+      pendingCategory = savedCat;
+      sessionStorage.removeItem("pendingCategory");
+    }
+    const savedForce = sessionStorage.getItem("pendingForceUrbana");
+    if (savedForce === "true") {
+      zonaSelect.value = "urbana";
+      sessionStorage.removeItem("pendingForceUrbana");
+    }
+    actualizarCategorias();
     restoreState();
   }
   init();
