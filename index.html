@@ -24,7 +24,8 @@
     h1 span { color: #004aad; }
     .description { font-size: 0.85rem; color: #333; margin-bottom: 1.2rem; }
     .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-bottom: 1.5rem; }
-    .benefit-item { background: #f5f7fc; border-radius: 20px; padding: 10px 5px; text-align: center; border: 1px solid #e0e7ff; }
+    .benefit-item { background: #f5f7fc; border-radius: 20px; padding: 10px 5px; text-align: center; border: 1px solid #e0e7ff; cursor: pointer; transition: 0.1s; }
+    .benefit-item:hover { background: #e0e7ff; }
     .benefit-item i { font-size: 1.6rem; color: #004aad; margin-bottom: 5px; display: block; }
     .btn-primary { background: #25d366; color: white; border: none; border-radius: 40px; padding: 10px 24px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 
@@ -61,15 +62,14 @@
     /* Botón continuar */
     .continue-btn { margin-top: 1rem; width: 100%; justify-content: center; }
 
-    /* Checkout (formulario) */
+    /* Checkout (formulario) - sin colores de error */
     .checkout-container { max-width: 500px; margin: 0 auto; width: 100%; background: white; border-radius: 24px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .selected-plan-summary { background: #f8fafc; border-radius: 16px; padding: 0.8rem; margin-bottom: 1rem; text-align: center; }
     .selected-plan-summary strong { font-size: 1rem; }
     .selected-plan-summary span { font-size: 1rem; font-weight: bold; color: #ffc900; display: block; }
     .lead-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
     .input-group input { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 40px; padding: 8px 12px; font-size: 0.8rem; }
-    .input-group input.error { border-color: #f39c12; background-color: #fff8f0; }
-    .error-msg { font-size: 0.6rem; color: #e67e22; margin-top: 2px; margin-left: 10px; display: none; }
+    .error-msg { font-size: 0.6rem; color: #6c757d; margin-top: 2px; margin-left: 10px; display: none; }
     .error-msg.show { display: block; }
     .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 0.75rem; }
     .checkbox-group input { width: 18px; height: 18px; margin: 0; }
@@ -106,17 +106,17 @@
         <h1>WiFi ilimitado <span>y TV para tu hogar</span></h1>
         <p class="description">Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.</p>
         <div class="benefits">
-          <div class="benefit-item"><i class="fas fa-tv"></i><span>TV cable</span></div>
-          <div class="benefit-item"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
-          <div class="benefit-item"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
-          <div class="benefit-item"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
+          <div class="benefit-item" data-categoria="cable"><i class="fas fa-tv"></i><span>TV cable</span></div>
+          <div class="benefit-item" data-categoria="satelital"><i class="fas fa-satellite-dish"></i><span>TV satelital</span></div>
+          <div class="benefit-item" data-categoria="wifi"><i class="fas fa-wifi"></i><span>WiFi ilimitado</span></div>
+          <div class="benefit-item" data-categoria="combos"><i class="fas fa-tags"></i><span>Oferta especial</span></div>
         </div>
         <button class="btn-primary" data-goto="selectPlan"><i class="fas fa-list"></i> Ver planes</button>
       </div>
     </div>
   </section>
 
-  <!-- VISTA 2: SELECCIONAR SERVICIO (planes horizontales) -->
+  <!-- VISTA 2: SELECCIONAR SERVICIO -->
   <section id="selectPlanView" class="view">
     <div class="topbar">
       <div class="topbar-logo" data-goto="home">
@@ -130,7 +130,7 @@
     <div class="page-main">
       <div class="page-header">
         <h2>Selecciona tu servicio</h2>
-        <p>Elige zona, categoría y plan. Luego continúa con tus datos.</p>
+        <p>Primero elige tu zona (Urbana/Rural), luego la categoría y el plan.</p>
       </div>
       <div class="filtros">
         <select id="zonaSelect">
@@ -139,6 +139,7 @@
         </select>
         <select id="categoriaSelect"></select>
       </div>
+      <div id="zonaMessage" style="font-size:0.7rem; color:#e67e22; margin-bottom:0.5rem; display:none;"></div>
       <div class="plans-grid" id="plansGrid"></div>
       <button id="continueToCheckoutBtn" class="btn-primary continue-btn" disabled>Continuar con mis datos →</button>
     </div>
@@ -186,9 +187,9 @@
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595984049651";   // Número actualizado
+  const PHONE = "595984049651";
 
-  // Planes DB (con descripciones oficiales cortas)
+  // Planes DB
   const planesDB = {
     cable: { nombre: "TV Cable", planes: [
       { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN)", imgSrc: "images/tv-cable-inicial.png" },
@@ -222,6 +223,7 @@
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
   const continueBtn = document.getElementById("continueToCheckoutBtn");
+  const zonaMessage = document.getElementById("zonaMessage");
 
   // Checkout
   const leadName = document.getElementById("leadName");
@@ -235,7 +237,6 @@
   const checkoutPlanDescP = document.getElementById("checkoutPlanDesc");
   const confirmCheckbox = document.getElementById("confirmRequirements");
 
-  // Errores (elementos de mensaje)
   const nameError = document.getElementById("nameError");
   const phoneError = document.getElementById("phoneError");
   const streetError = document.getElementById("streetError");
@@ -243,6 +244,7 @@
   const neighborhoodError = document.getElementById("neighborhoodError");
 
   let currentPlan = null;
+  let pendingCategory = null; // para guardar la categoría elegida desde home
 
   // Validaciones y formateo
   function normalizePhone(value) {
@@ -282,11 +284,9 @@
 
   function showError(input, errorDiv, message) {
     if (message) {
-      input.classList.add("error");
       errorDiv.textContent = message;
       errorDiv.classList.add("show");
     } else {
-      input.classList.remove("error");
       errorDiv.classList.remove("show");
     }
   }
@@ -317,7 +317,6 @@
     }
   }
 
-  // Eventos checkout
   function attachCheckoutEvents() {
     leadName.addEventListener("input", () => { validateAll(); updateWhatsAppButton(); });
     leadPhone.addEventListener("input", (e) => { e.target.value = formatPhone(e.target.value); validateAll(); updateWhatsAppButton(); });
@@ -343,7 +342,7 @@
     }
   });
 
-  // Lógica de selección de planes (vista selectPlan)
+  // Lógica de selección de planes con categoría pendiente
   function actualizarCategorias() {
     const zona = zonaSelect.value;
     const categorias = categoriasPorZona[zona] || ["satelital"];
@@ -354,6 +353,20 @@
       opt.textContent = planesDB[cat].nombre;
       categoriaSelect.appendChild(opt);
     });
+    // Si hay una categoría pendiente (desde home), intentar preseleccionarla
+    if (pendingCategory && categorias.includes(pendingCategory)) {
+      categoriaSelect.value = pendingCategory;
+      zonaMessage.style.display = "none";
+    } else if (pendingCategory) {
+      zonaMessage.textContent = `⚠️ La categoría seleccionada no está disponible en zona ${zona}. Se ha seleccionado ${planesDB[categorias[0]].nombre}.`;
+      zonaMessage.style.display = "block";
+      categoriaSelect.value = categorias[0];
+    } else {
+      zonaMessage.style.display = "none";
+    }
+    // Limpiar la categoría pendiente después de usarla (para que no interfiera al volver)
+    pendingCategory = null;
+    sessionStorage.removeItem("pendingCategory");
     renderizarPlanes();
   }
 
@@ -412,7 +425,13 @@
     }
   });
 
-  zonaSelect.addEventListener("change", actualizarCategorias);
+  zonaSelect.addEventListener("change", () => {
+    // Al cambiar zona, se resetea la selección de plan y la categoría pendiente
+    window.tempSelectedPlan = null;
+    continueBtn.disabled = true;
+    document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
+    actualizarCategorias();
+  });
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
   // Navegación y persistencia
@@ -452,13 +471,36 @@
         window.tempSelectedPlan = null;
         continueBtn.disabled = true;
         document.querySelectorAll(".plan-card").forEach(c => c.classList.remove("selected"));
+        // No reseteamos pendingCategory aquí, porque podría venir de los íconos
       }
       showView(target);
     });
   });
 
-  actualizarCategorias();
-  restoreState();
+  // Eventos de los íconos del home
+  document.querySelectorAll(".benefit-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const categoria = item.dataset.categoria;
+      if (categoria) {
+        pendingCategory = categoria;
+        sessionStorage.setItem("pendingCategory", pendingCategory);
+      }
+      showView("selectPlan");
+      // Forzar actualización de categorías al llegar a selectPlan (se ejecuta al cambiar de vista, pero la vista aún no está activa)
+      setTimeout(() => {
+        if (views.selectPlan.classList.contains("active")) {
+          actualizarCategorias();
+        }
+      }, 50);
+    });
+  });
+
+  // Inicialización
+  function init() {
+    actualizarCategorias(); // llena el desplegable de categorías según zona por defecto (urbana)
+    restoreState();
+  }
+  init();
 </script>
 </body>
 </html>
