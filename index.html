@@ -19,7 +19,7 @@
     .perfil h3 { margin: 0.4rem 0 0.2rem; font-size: 1.2rem; }
     .perfil p { font-size: 0.75rem; color: #075e54; font-weight: 600; }
     .perfil span { background: #e8f5e9; padding: 2px 10px; border-radius: 30px; display: inline-block; margin-top: 4px; font-size: 0.7rem; color: #25d366; }
-    .perfil .codigo { background: #e8f5e9; padding: 2px 10px; border-radius: 30px; display: inline-block; margin-top: 6px; font-size: 0.7rem; color: #004aad; font-weight: bold; }
+    .perfil .autorizacion { background: #e8f5e9; padding: 2px 10px; border-radius: 30px; display: inline-block; margin-top: 6px; font-size: 0.7rem; color: #004aad; font-weight: bold; }
     h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
     h1 span { color: #004aad; }
     .description { font-size: 0.85rem; color: #333; margin-bottom: 1.2rem; }
@@ -34,7 +34,7 @@
     .topbar-logo img { max-width: 70px; height: auto; }
     .topbar-buttons { display: flex; gap: 6px; }
     .topbar-buttons button { background: #f0f2f5; border: none; border-radius: 40px; padding: 5px 12px; font-size: 0.7rem; font-weight: 600; color: #004aad; cursor: pointer; }
-    .codigo-ventas { font-size: 0.65rem; background: #e8f5e9; padding: 2px 8px; border-radius: 30px; color: #004aad; font-weight: bold; }
+    .autorizacion-top { font-size: 0.65rem; background: #e8f5e9; padding: 2px 8px; border-radius: 30px; color: #004aad; font-weight: bold; }
     .plans-main { flex: 1; display: flex; flex-direction: column; padding: 0.6rem 1rem; overflow: hidden; }
     .page-header h2 { font-size: 1.2rem; margin-bottom: 0.2rem; }
     .page-header p { font-size: 0.7rem; margin-bottom: 0.4rem; }
@@ -81,7 +81,7 @@
           <h3>Isidro Cabrera</h3>
           <p>Asesor de Ventas Externas</p>
           <span>Autorizado</span>
-          <div class="codigo">Código: CH 102528</div>
+          <div class="autorizacion">Autorización 102598</div>
         </div>
         <h1>WiFi ilimitado <span>y TV para tu hogar</span></h1>
         <p class="description">Elige tu plan, verifico cobertura y te acompaño durante todo el proceso de contratación.</p>
@@ -104,7 +104,7 @@
         <button data-go="home">Inicio</button>
         <button data-go="why">Por qué aquí</button>
       </div>
-      <div class="codigo-ventas">CH 102528</div>
+      <div class="autorizacion-top">Autorización 102598</div>
     </div>
     <div class="plans-main">
       <div class="page-header">
@@ -165,7 +165,7 @@
         <button data-go="home">Inicio</button>
         <button data-go="plans">Ver planes</button>
       </div>
-      <div class="codigo-ventas">CH 102528</div>
+      <div class="autorizacion-top">Autorización 102598</div>
     </div>
     <div class="plans-main">
       <div class="page-header">
@@ -186,9 +186,9 @@
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595971992363"; // Código de área 595, pero el número se valida en el formulario
+  const PHONE = "595971992363";
 
-  // Planes de ejemplo (luego los reemplazarás con los correctos)
+  // Planes de ejemplo (luego los reemplazarás)
   const planesDB = {
     satelital: { nombre: "TV Satelital", planes: [
       { nombre: "TV Satelital Básico", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "46 canales", imgSrc: "images/6-1.jpg", fallback: "📡" },
@@ -214,7 +214,6 @@
     urbana: ["satelital", "cable", "wifi", "ofertas"]
   };
 
-  // Elementos DOM
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
@@ -229,7 +228,6 @@
 
   let currentPlan = null;
 
-  // Funciones de validación y formato
   function formatPhone(value) {
     let digits = value.replace(/\D/g, '');
     if (digits.length > 10) digits = digits.slice(0, 10);
@@ -269,7 +267,6 @@
     }
   }
 
-  // Eventos
   leadName.addEventListener("input", updateWaButton);
   leadPhone.addEventListener("input", function(e) {
     e.target.value = formatPhone(e.target.value);
@@ -343,7 +340,6 @@
   zonaSelect.addEventListener("change", actualizarCategorias);
   categoriaSelect.addEventListener("change", renderizarPlanes);
 
-  // Navegación entre vistas
   const views = {
     home: document.getElementById("homeView"),
     plans: document.getElementById("plansView"),
