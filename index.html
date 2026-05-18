@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, view-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tigo Hogar | Isidro Cabrera - Asesor Autorizado</title>
   <link rel="icon" href="images/logo-tigo.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: white; color: #001a49; line-height: 1.3; }
-    /* HOME */
     .home { min-height: 100dvh; background: white; display: flex; align-items: center; justify-content: center; padding: 1rem; }
     .home-container { max-width: 500px; width: 100%; margin: 0 auto; text-align: center; }
     .logo { margin-bottom: 0.8rem; }
@@ -26,7 +25,6 @@
     .benefit-item { background: #f5f7fc; border-radius: 20px; padding: 10px 5px; text-align: center; border: 1px solid #e0e7ff; }
     .benefit-item i { font-size: 1.6rem; color: #004aad; margin-bottom: 5px; display: block; }
     .btn-primary { background: #25d366; color: white; border: none; border-radius: 40px; padding: 10px 24px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
-    /* VISTAS INTERNAS */
     .view { display: none; background: #f4f6f9; min-height: 100dvh; }
     .view.active { display: flex; flex-direction: column; }
     .topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 0.6rem 1rem; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
@@ -62,15 +60,12 @@
     .testimonial { margin-top: 0.6rem; background: #f0f9ff; border-radius: 14px; padding: 0.5rem; font-size: 0.7rem; border-left: 3px solid #ffc900; }
     .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.8rem; }
     .why-card { background: white; border-radius: 20px; padding: 0.8rem; }
-    @media (max-width: 700px) {
-      .plans-layout { flex-direction: column; }
-      .plans-grid-container, .order-panel { max-height: 40vh; }
-    }
+    @media (max-width: 700px) { .plans-layout { flex-direction: column; } .plans-grid-container, .order-panel { max-height: 40vh; } }
   </style>
 </head>
 <body>
 <main>
-  <!-- HOME VIEW (sin la palabra "Autorizado" redundante) -->
+  <!-- HOME VIEW -->
   <section id="homeView" class="view active">
     <div class="home">
       <div class="home-container">
@@ -94,7 +89,7 @@
     </div>
   </section>
 
-  <!-- PLANS VIEW (igual que antes) -->
+  <!-- PLANS VIEW -->
   <section id="plansView" class="view">
     <div class="topbar">
       <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
@@ -129,7 +124,7 @@
             <span id="selectedPlanPrice">—</span>
           </div>
           <div class="lead-form">
-            <input type="text" id="leadName" placeholder="Nombre completo *">
+            <input type="text" id="leadName" placeholder="Nombre y Apellido *">
             <input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *">
             <input type="text" id="leadStreet" placeholder="Calle *">
             <input type="text" id="leadNumber" placeholder="Número *" inputmode="numeric">
@@ -186,32 +181,55 @@
   const VENDEDOR = "Isidro Cabrera";
   const PHONE = "595971992363";
 
-  // Planes de ejemplo (luego reemplazar con los correctos)
+  // ----- PLANES REALES SEGÚN LOS DATOS -----
   const planesDB = {
-    satelital: { nombre: "TV Satelital", planes: [
-      { nombre: "TV Satelital Básico", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "46 canales", imgSrc: "images/6-1.jpg", fallback: "📡" },
-      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "73 canales", imgSrc: "images/7-1.jpg", fallback: "🛰️" }
-    ] },
-    cable: { nombre: "TV Cable", planes: [
-      { nombre: "TV Cable Básico", precio: "Gs. 110.000", tipo: "TV Cable", descripcion: "Canales básicos HD", imgSrc: "images/6-1.jpg", fallback: "📺" },
-      { nombre: "TV Cable Familiar", precio: "Gs. 150.000", tipo: "TV Cable", descripcion: "Canales HD + deportes", imgSrc: "images/7-1.jpg", fallback: "📺" }
-    ] },
-    wifi: { nombre: "WiFi Ilimitado", planes: [
-      { nombre: "WiFi 100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
-      { nombre: "WiFi 200 Mbps", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Ideal para streaming", imgSrc: "images/4-3.jpg", fallback: "⚡" },
-      { nombre: "WiFi 300 Mbps", precio: "Gs. 200.000", tipo: "Internet", descripcion: "Máxima velocidad", imgSrc: "images/5-2.jpg", fallback: "🚀" }
-    ] },
-    ofertas: { nombre: "Ofertas Especiales", planes: [
-      { nombre: "Combo 200M + TV Cable", precio: "Gs. 220.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
-      { nombre: "Pack Streaming + WiFi", precio: "Gs. 250.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🎬" }
-    ] }
+    // TV Cable
+    cable: {
+      nombre: "TV Cable",
+      planes: [
+        { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/6-1.jpg", fallback: "📺" },
+        { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/7-1.jpg", fallback: "📺" },
+        { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + señales adicionales", imgSrc: "images/7-1.jpg", fallback: "⭐" }
+      ]
+    },
+    // TV Satelital
+    satelital: {
+      nombre: "TV Satelital",
+      planes: [
+        { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales (Tigo Sports, ESPN, Disney, Cinecanal)", imgSrc: "images/6-1.jpg", fallback: "📡" },
+        { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/7-1.jpg", fallback: "🛰️" },
+        { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + señales adicionales", imgSrc: "images/7-1.jpg", fallback: "⭐" }
+      ]
+    },
+    // WiFi
+    wifi: {
+      nombre: "WiFi Ilimitado",
+      planes: [
+        { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/3-4.jpg", fallback: "🌐" },
+        { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/4-3.jpg", fallback: "⚡" },
+        { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/5-2.jpg", fallback: "🚀" },
+        { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/5-2.jpg", fallback: "⚡" }
+      ]
+    },
+    // Combos especiales
+    combos: {
+      nombre: "Combos Especiales",
+      planes: [
+        { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/8-1.jpg", fallback: "🎁" },
+        { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
+        { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
+        { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-popular.png", fallback: "🏆" },
+        { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-popular.png", fallback: "🏆" }
+      ]
+    }
   };
 
   const categoriasPorZona = {
     rural: ["satelital"],
-    urbana: ["satelital", "cable", "wifi", "ofertas"]
+    urbana: ["satelital", "cable", "wifi", "combos"]
   };
 
+  // Elementos DOM
   const zonaSelect = document.getElementById("zonaSelect");
   const categoriaSelect = document.getElementById("categoriaSelect");
   const plansGrid = document.getElementById("plansGrid");
@@ -225,6 +243,13 @@
   const selectedPriceSpan = document.getElementById("selectedPlanPrice");
 
   let currentPlan = null;
+
+  // Validar nombre: al menos dos palabras (separadas por espacio)
+  function isValidName(name) {
+    const trimmed = name.trim();
+    const parts = trimmed.split(/\s+/);
+    return parts.length >= 2;
+  }
 
   function formatPhone(value) {
     let digits = value.replace(/\D/g, '');
@@ -251,7 +276,7 @@
     const street = leadStreet.value.trim();
     const number = leadNumber.value.trim();
     const neighborhood = leadNeighborhood.value.trim();
-    return currentPlan && name && isValidPhone(phone) && street && number && neighborhood;
+    return currentPlan && isValidName(name) && isValidPhone(phone) && street && number && neighborhood;
   }
 
   function updateWaButton() {
