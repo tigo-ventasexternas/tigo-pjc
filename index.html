@@ -13,7 +13,7 @@
     /* HOME */
     .home { min-height: 100dvh; background: white; display: flex; align-items: center; justify-content: center; padding: 1rem; }
     .home-container { max-width: 500px; width: 100%; margin: 0 auto; text-align: center; }
-    .logo { margin-bottom: 0.8rem; }
+    .logo { margin-bottom: 0.8rem; cursor: pointer; }
     .logo img { max-width: 130px; height: auto; }
     .perfil { margin: 0.8rem 0 0.8rem; }
     .perfil img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #004aad; padding: 2px; background: white; }
@@ -28,10 +28,11 @@
     .benefit-item i { font-size: 1.6rem; color: #004aad; margin-bottom: 5px; display: block; }
     .btn-primary { background: #25d366; color: white; border: none; border-radius: 40px; padding: 10px 24px; font-weight: 800; font-size: 0.9rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 
-    /* Vistas */
+    /* Vistas generales */
     .view { display: none; background: #f4f6f9; min-height: 100dvh; }
     .view.active { display: flex; flex-direction: column; }
     .topbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 0.6rem 1rem; background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+    .topbar-logo { cursor: pointer; }
     .topbar-logo img { max-width: 70px; height: auto; }
     .topbar-buttons { display: flex; gap: 6px; }
     .topbar-buttons button { background: #f0f2f5; border: none; border-radius: 40px; padding: 5px 12px; font-size: 0.7rem; font-weight: 600; color: #004aad; cursor: pointer; }
@@ -67,9 +68,11 @@
     .selected-plan-summary span { font-size: 1rem; font-weight: bold; color: #ffc900; display: block; }
     .lead-form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
     .input-group input { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 40px; padding: 8px 12px; font-size: 0.8rem; }
-    .input-group input.error { border-color: #dc3545; background-color: #fff8f8; }
-    .error-msg { font-size: 0.6rem; color: #dc3545; margin-top: 2px; margin-left: 10px; display: none; }
+    .input-group input.error { border-color: #f39c12; background-color: #fff8f0; }
+    .error-msg { font-size: 0.6rem; color: #e67e22; margin-top: 2px; margin-left: 10px; display: none; }
     .error-msg.show { display: block; }
+    .checkbox-group { display: flex; align-items: center; gap: 8px; margin: 8px 0; font-size: 0.75rem; }
+    .checkbox-group input { width: 18px; height: 18px; margin: 0; }
     .whatsapp-btn { background: #25d366; color: white; border-radius: 40px; padding: 10px; font-weight: 800; font-size: 0.8rem; width: 100%; display: flex; justify-content: center; gap: 5px; margin-top: 6px; cursor: pointer; border: none; opacity: 0.6; transition: 0.1s; }
     .whatsapp-btn.active { opacity: 1; cursor: pointer; }
     .obligatorio-text { font-size: 0.65rem; color: #6c757d; text-align: center; margin: 8px 0; }
@@ -77,8 +80,6 @@
     .requirements h4 { font-size: 0.7rem; }
     .requirements li { font-size: 0.65rem; list-style: none; margin-left: 0; }
     .testimonial { margin-top: 0.6rem; background: #f0f9ff; border-radius: 14px; padding: 0.5rem; font-size: 0.7rem; border-left: 3px solid #ffc900; }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.8rem; }
-    .why-card { background: white; border-radius: 20px; padding: 0.8rem; }
 
     @media (max-width: 500px) {
       .plan-image { width: 60px; height: 60px; }
@@ -93,7 +94,9 @@
   <section id="homeView" class="view active">
     <div class="home">
       <div class="home-container">
-        <div class="logo"><img src="images/logo.png" alt="tigo"></div>
+        <div class="logo" data-goto="home">
+          <img src="images/logo.png" alt="tigo">
+        </div>
         <div class="perfil">
           <img src="images/perfil.png" alt="Isidro Cabrera">
           <h3>Isidro Cabrera</h3>
@@ -116,10 +119,11 @@
   <!-- VISTA 2: SELECCIONAR SERVICIO (planes horizontales) -->
   <section id="selectPlanView" class="view">
     <div class="topbar">
-      <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
+      <div class="topbar-logo" data-goto="home">
+        <img src="images/logo.png" alt="Tigo">
+      </div>
       <div class="topbar-buttons">
         <button data-goto="home">Inicio</button>
-        <button data-goto="why">Por qué aquí</button>
       </div>
       <div class="autorizacion-top">Autorización 102598</div>
     </div>
@@ -143,7 +147,9 @@
   <!-- VISTA 3: CONFIRMACIÓN Y DATOS -->
   <section id="checkoutView" class="view">
     <div class="topbar">
-      <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
+      <div class="topbar-logo" data-goto="home">
+        <img src="images/logo.png" alt="Tigo">
+      </div>
       <div class="topbar-buttons">
         <button data-goto="selectPlan">← Volver a planes</button>
         <button data-goto="home">Inicio</button>
@@ -158,68 +164,54 @@
           <p id="checkoutPlanDesc" style="font-size: 0.7rem;"></p>
         </div>
         <div class="lead-form">
-          <div class="input-group"><input type="text" id="leadName" placeholder="Nombre y Apellido *"><div id="nameError" class="error-msg"></div></div>
-          <div class="input-group"><input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *"><div id="phoneError" class="error-msg"></div></div>
-          <div class="input-group"><input type="text" id="leadStreet" placeholder="Calle *"><div id="streetError" class="error-msg"></div></div>
-          <div class="input-group"><input type="text" id="leadNumber" placeholder="Número *"><div id="numberError" class="error-msg"></div></div>
-          <div class="input-group"><input type="text" id="leadNeighborhood" placeholder="Barrio *"><div id="neighborhoodError" class="error-msg"></div></div>
+          <div class="input-group"><input type="text" id="leadName" placeholder="Nombre y Apellido *"><div id="nameError" class="error-msg">Campo obligatorio</div></div>
+          <div class="input-group"><input type="tel" id="leadPhone" placeholder="Celular 0981 234 567 *"><div id="phoneError" class="error-msg">Campo obligatorio</div></div>
+          <div class="input-group"><input type="text" id="leadStreet" placeholder="Calle *"><div id="streetError" class="error-msg">Campo obligatorio</div></div>
+          <div class="input-group"><input type="text" id="leadNumber" placeholder="Número *"><div id="numberError" class="error-msg">Campo obligatorio</div></div>
+          <div class="input-group"><input type="text" id="leadNeighborhood" placeholder="Barrio *"><div id="neighborhoodError" class="error-msg">Campo obligatorio</div></div>
         </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="confirmRequirements">
+          <label for="confirmRequirements">Confirmo que cumplo con los requisitos: cédula vigente, mayor de edad y abono de primera cuota.</label>
+        </div>
+        <div class="obligatorio-text">📱 Para la instalación, deberás enviar tu ubicación por WhatsApp.</div>
         <a id="whatsappBtn" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> Enviar pedido por WhatsApp</a>
-        <div class="obligatorio-text">⚠️ Todos los campos son obligatorios</div>
         <div class="requirements"><h4>Requisitos</h4><ul><li><i class="fas fa-id-card"></i> Cédula vigente</li><li><i class="fas fa-user-check"></i> Mayor de edad</li><li><i class="fas fa-receipt"></i> Abono primera cuota</li></ul></div>
         <div class="testimonial"><i class="fas fa-quote-left"></i> "Contraté con Isidro, todo rápido. Instalación al día siguiente." – Carlos A.</div>
         <div class="testimonial"><i class="fas fa-quote-left"></i> "Muy buena asesoría, me explicó cada detalle." – Laura G.</div>
       </div>
     </div>
   </section>
-
-  <!-- VISTA WHY -->
-  <section id="whyView" class="view">
-    <div class="topbar">
-      <div class="topbar-logo"><img src="images/logo.png" alt="Tigo"></div>
-      <div class="topbar-buttons"><button data-goto="home">Inicio</button><button data-goto="selectPlan">Ver planes</button></div>
-      <div class="autorizacion-top">Autorización 102598</div>
-    </div>
-    <div class="page-main">
-      <div class="page-header"><h2>Por qué contratar <span>conmigo</span></h2><p>Confianza, transparencia y acompañamiento real.</p></div>
-      <div class="why-grid">
-        <div class="why-card"><i class="fas fa-user-check"></i><h3>Asesoría sin presiones</h3><p>Analizo tu caso y te recomiendo el mejor plan para tu hogar.</p></div>
-        <div class="why-card"><i class="fas fa-file-signature"></i><h3>Todo por escrito</h3><p>Cotización formal, requisitos claros y respaldo oficial.</p></div>
-        <div class="why-card"><i class="fas fa-headset"></i><h3>Acompañamiento total</h3><p>Te ayudo con la instalación y cualquier duda postventa.</p></div>
-      </div>
-      <div class="testimonial"><i class="fas fa-quote-left"></i> "Isidro me resolvió todo en un día. Súper atento." – Roberto M.</div>
-    </div>
-  </section>
 </main>
 
 <script>
   const VENDEDOR = "Isidro Cabrera";
-  const PHONE = "595971992363";
+  const PHONE = "595984049651";   // Número actualizado
 
-  // Planes DB
+  // Planes DB (con descripciones oficiales cortas)
   const planesDB = {
     cable: { nombre: "TV Cable", planes: [
-      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales", imgSrc: "images/tv-cable-inicial.png" },
-      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar", imgSrc: "images/tv-cable-familiar.png" },
-      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + adicionales", imgSrc: "images/tv-cable-full.png" }
+      { nombre: "TV Cable Inicial", precio: "Gs. 119.000", tipo: "TV Cable", descripcion: "31 señales (Tigo Sports, ESPN)", imgSrc: "images/tv-cable-inicial.png" },
+      { nombre: "TV Cable Familiar", precio: "Gs. 155.000", tipo: "TV Cable", descripcion: "Grilla familiar + canales HD", imgSrc: "images/tv-cable-familiar.png" },
+      { nombre: "TV Cable Full", precio: "Gs. 205.000", tipo: "TV Cable", descripcion: "Familiar + canales exclusivos", imgSrc: "images/tv-cable-full.png" }
     ] },
     satelital: { nombre: "TV Satelital", planes: [
-      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales", imgSrc: "images/tv-satelital-inicial.png" },
-      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar", imgSrc: "images/tv-satelital-familiar.png" },
-      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + adicionales", imgSrc: "images/tv-satelital-full.png" }
+      { nombre: "TV Satelital Inicial", precio: "Gs. 99.000", tipo: "TV Satelital", descripcion: "31 señales (Tigo Sports, ESPN)", imgSrc: "images/tv-satelital-inicial.png" },
+      { nombre: "TV Satelital Familiar", precio: "Gs. 139.000", tipo: "TV Satelital", descripcion: "Grilla familiar + canales HD", imgSrc: "images/tv-satelital-familiar.png" },
+      { nombre: "TV Satelital Full", precio: "Gs. 189.000", tipo: "TV Satelital", descripcion: "Familiar + señales adicionales", imgSrc: "images/tv-satelital-full.png" }
     ] },
     wifi: { nombre: "WiFi Ilimitado", planes: [
-      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica", imgSrc: "images/wifi-100mb.png" },
-      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-200mb-disney.png" },
-      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-300mb-disney.png" },
-      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+", imgSrc: "images/wifi-400mb-disney.png" }
+      { nombre: "100 Mbps", precio: "Gs. 120.000", tipo: "Internet", descripcion: "Fibra óptica | Navegación diaria", imgSrc: "images/wifi-100mb.png" },
+      { nombre: "200 Mbps con Disney+", precio: "Gs. 170.000", tipo: "Internet", descripcion: "Incluye Disney+ | Streaming 4K", imgSrc: "images/wifi-200mb-disney.png" },
+      { nombre: "300 Mbps con Disney+", precio: "Gs. 220.000", tipo: "Internet", descripcion: "Incluye Disney+ | Múltiples dispositivos", imgSrc: "images/wifi-300mb-disney.png" },
+      { nombre: "400 Mbps con Disney+", precio: "Gs. 280.000", tipo: "Internet", descripcion: "Incluye Disney+ | Máxima velocidad", imgSrc: "images/wifi-400mb-disney.png" }
     ] },
     combos: { nombre: "Combos Especiales", planes: [
-      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica", imgSrc: "images/combo-inicial-200mb.png" },
-      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-200mb-disney.png" },
-      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-300mb-disney.png" },
-      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "Incluye Disney+", imgSrc: "images/combo-familiar-400mb-disney.png" },
-      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "Incluye Disney+ (convergencia)", imgSrc: "images/combo-familiar-600mb-disney.png" }
+      { nombre: "TV Cable Inicial + 200 Mbps", precio: "Gs. 180.000", tipo: "Combo", descripcion: "Internet + TV básica | Ahorro", imgSrc: "images/combo-inicial-200mb.png" },
+      { nombre: "TV Cable Familiar + 200 Mbps con Disney+", precio: "Gs. 215.000", tipo: "Combo", descripcion: "TV Familiar + Internet 200 + Disney+", imgSrc: "images/combo-familiar-200mb-disney.png" },
+      { nombre: "TV Cable Familiar + 300 Mbps con Disney+", precio: "Gs. 255.000", tipo: "Combo", descripcion: "TV Familiar + Internet 300 + Disney+", imgSrc: "images/combo-familiar-300mb-disney.png" },
+      { nombre: "TV Cable Familiar + 400 Mbps con Disney+", precio: "Gs. 305.000", tipo: "Combo", descripcion: "TV Familiar + Internet 400 + Disney+", imgSrc: "images/combo-familiar-400mb-disney.png" },
+      { nombre: "TV Cable Familiar + 600 Mbps con Disney+", precio: "Gs. 365.000", tipo: "Combo", descripcion: "TV Familiar + Internet 600 + Disney+", imgSrc: "images/combo-familiar-600mb-disney.png" }
     ] }
   };
 
@@ -241,8 +233,9 @@
   const checkoutPlanNameSpan = document.getElementById("checkoutPlanName");
   const checkoutPlanPriceSpan = document.getElementById("checkoutPlanPrice");
   const checkoutPlanDescP = document.getElementById("checkoutPlanDesc");
+  const confirmCheckbox = document.getElementById("confirmRequirements");
 
-  // Errores
+  // Errores (elementos de mensaje)
   const nameError = document.getElementById("nameError");
   const phoneError = document.getElementById("phoneError");
   const streetError = document.getElementById("streetError");
@@ -287,9 +280,15 @@
   }
   function validateNeighborhood() { return leadNeighborhood.value.trim() ? "" : "Campo obligatorio"; }
 
-  function showError(input, errorDiv, msg) {
-    if (msg) { input.classList.add("error"); errorDiv.textContent = msg; errorDiv.classList.add("show"); }
-    else { input.classList.remove("error"); errorDiv.classList.remove("show"); errorDiv.textContent = ""; }
+  function showError(input, errorDiv, message) {
+    if (message) {
+      input.classList.add("error");
+      errorDiv.textContent = message;
+      errorDiv.classList.add("show");
+    } else {
+      input.classList.remove("error");
+      errorDiv.classList.remove("show");
+    }
   }
 
   function validateAll() {
@@ -304,11 +303,12 @@
 
   function updateWhatsAppButton() {
     const formValid = validateAll();
-    if (currentPlan && formValid) {
+    const checkboxChecked = confirmCheckbox.checked;
+    if (currentPlan && formValid && checkboxChecked) {
       waBtn.classList.add("active");
       waBtn.style.opacity = "1";
       const rawPhone = leadPhone.value.replace(/\D/g, '');
-      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${leadName.value.trim()}, teléfono ${rawPhone}. Dirección: ${leadStreet.value.trim()} ${leadNumber.value.trim()}, ${leadNeighborhood.value.trim()}. Necesito cobertura.`;
+      const msg = `Hola ${VENDEDOR}, quiero contratar ${currentPlan.nombre} (${currentPlan.precio}). Tipo: ${currentPlan.tipo}. Mis datos: ${leadName.value.trim()}, teléfono ${rawPhone}. Dirección: ${leadStreet.value.trim()} ${leadNumber.value.trim()}, ${leadNeighborhood.value.trim()}. Confirmo requisitos. Para la instalación enviaré mi ubicación. Necesito cobertura.`;
       waBtn.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
     } else {
       waBtn.classList.remove("active");
@@ -324,6 +324,7 @@
     leadStreet.addEventListener("input", () => { validateAll(); updateWhatsAppButton(); });
     leadNumber.addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, ''); validateAll(); updateWhatsAppButton(); });
     leadNeighborhood.addEventListener("input", () => { validateAll(); updateWhatsAppButton(); });
+    confirmCheckbox.addEventListener("change", updateWhatsAppButton);
   }
   attachCheckoutEvents();
 
@@ -337,6 +338,7 @@
       if (!leadStreet.value.trim()) missing.push("Calle");
       if (!leadNumber.value.trim()) missing.push("Número");
       if (!leadNeighborhood.value.trim()) missing.push("Barrio");
+      if (!confirmCheckbox.checked) missing.push("Confirmar que cumple requisitos");
       alert("Completa los siguientes campos:\n- " + missing.join("\n- "));
     }
   });
@@ -417,8 +419,7 @@
   const views = {
     home: document.getElementById("homeView"),
     selectPlan: document.getElementById("selectPlanView"),
-    checkout: document.getElementById("checkoutView"),
-    why: document.getElementById("whyView")
+    checkout: document.getElementById("checkoutView")
   };
 
   function showView(viewName) {
