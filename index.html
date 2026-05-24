@@ -13,6 +13,8 @@
     .page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1rem; }
     .container { width:90%; max-width:400px; background:white; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.15); text-align:center; padding:20px; }
 
+    .logo img { max-width:120px; height:auto; margin-bottom:15px; }
+
     .perfil img { width:70px; height:70px; border-radius:50%; border:2px solid #004aad; background:white; margin-bottom:5px; }
     .perfil h3 { font-size:1.1rem; margin-bottom:2px; font-weight:bold; }
     .perfil .autorizacion { background:#e8f5e9; padding:3px 10px; border-radius:20px; font-size:0.7rem; color:#004aad; font-weight:bold; display:inline-block; margin-top:4px; }
@@ -46,10 +48,11 @@
   <!-- Página 1: Persuasión -->
   <div class="page" id="page1">
     <div class="container">
+      <div class="logo"><img src="images/logo-tigo.png" alt="Tigo"></div>
       <div class="perfil">
         <img src="images/perfil.png" alt="Isidro Cabrera">
         <h3>Isidro Cabrera</h3>
-        <span class="autorizacion">Vendedor Externo Autorizado #102598</span>
+        <span class="autorizacion">Vendedor Externo Autorizado 102598</span>
       </div>
       <img src="images/combo-inicial-200mb-71canales.png" alt="Combo Internet + TV" class="combo">
       <h1>¡WiFi ilimitado + Tigo TV + Tigo Sports + Disney! 25% de descuento: solo Gs. 180.000</h1>
@@ -63,13 +66,19 @@
       <h1>Completa tus datos</h1>
       <form onsubmit="return enviarWhatsApp();">
         <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" title="Solo letras y espacios" required>
 
         <label for="edad">Edad</label>
-        <input type="number" id="edad" name="edad" min="18" required>
+        <input type="number" id="edad" name="edad" min="18" max="80" required>
 
-        <label for="direccion">Dirección (Calle, Número, Barrio)</label>
-        <textarea id="direccion" name="direccion" rows="2" required></textarea>
+        <label for="calle">Calle</label>
+        <input type="text" id="calle" name="calle" pattern="[A-Za-z0-9 ]+" title="Solo letras, números y espacios" required>
+
+        <label for="numero">Número</label>
+        <input type="number" id="numero" name="numero" min="0" required>
+
+        <label for="barrio">Barrio</label>
+        <input type="text" id="barrio" name="barrio" pattern="[A-Za-z0-9 ]+" title="Solo letras, números y espacios" required>
 
         <label><input type="checkbox" id="ubicacion" name="ubicacion" required> Acepto enviar mi ubicación por WhatsApp para verificar disponibilidad de servicio</label>
 
@@ -88,12 +97,14 @@
     function enviarWhatsApp() {
       const nombre = document.getElementById('nombre').value;
       const edad = document.getElementById('edad').value;
-      const direccion = document.getElementById('direccion').value;
+      const calle = document.getElementById('calle').value;
+      const numero = document.getElementById('numero').value;
+      const barrio = document.getElementById('barrio').value;
       const ubicacion = document.getElementById('ubicacion').checked;
 
       if(!ubicacion) { alert('Debes aceptar enviar tu ubicación.'); return false; }
 
-      const mensaje = `Hola, soy ${nombre}, ${edad} años, vivo en ${direccion}. Confirmo enviar ubicación para disponibilidad del combo Internet 200Mbps + TV 71 canales. Código de vendedor autorizado: 102598.`;
+      const mensaje = `Hola, soy ${nombre}, ${edad} años, vivo en ${calle} ${numero}, barrio ${barrio}. Confirmo enviar ubicación para disponibilidad del combo Internet 200Mbps + TV 71 canales. Código de vendedor autorizado: 102598.`;
       const url = `https://wa.me/595984049651?text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
       return false;
