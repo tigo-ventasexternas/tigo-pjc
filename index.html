@@ -10,10 +10,11 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; background: linear-gradient(to bottom, #0f2c5b, #004aad); color: #001a49; line-height:1.4; overflow:hidden; }
 
-    .page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1rem; }
+    .page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1rem; position:relative; }
     .container { width:90%; max-width:400px; background:white; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.15); text-align:center; padding:20px; overflow:hidden; }
 
-    .logo img { max-width:80px; height:auto; margin-bottom:10px; }
+    .logo { position:absolute; top:15px; left:15px; }
+    .logo img { max-width:80px; height:auto; }
 
     .perfil img { width:70px; height:70px; border-radius:50%; border:2px solid #004aad; background:white; margin-bottom:5px; }
     .perfil h3 { font-size:1.1rem; margin-bottom:2px; font-weight:bold; }
@@ -48,8 +49,8 @@
 
   <!-- Página 1: Persuasión -->
   <div class="page" id="page1">
+    <div class="logo"><img src="images/logo-tigo.png" alt="Tigo"></div>
     <div class="container">
-      <div class="logo"><img src="images/logo-tigo.png" alt="Tigo"></div>
       <div class="perfil">
         <img src="images/perfil.png" alt="Isidro Cabrera">
         <h3>Isidro Cabrera</h3>
@@ -67,7 +68,7 @@
       <h1>Completa tus datos</h1>
       <form onsubmit="return enviarWhatsApp();">
         <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" title="Solo letras y espacios" required>
+        <input type="text" id="nombre" name="nombre" pattern="^(?:[A-Za-zÁÉÍÓÚáéíóúñÑ]+\s){1,}[A-Za-zÁÉÍÓÚáéíóúñÑ]+$" title="Debe contener al menos dos palabras solo con letras" required>
 
         <label for="edad">Edad</label>
         <input type="number" id="edad" name="edad" min="18" max="80" required>
