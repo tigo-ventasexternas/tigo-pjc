@@ -21,11 +21,6 @@
     h1 span { color:#004aad; }
     .description { font-size:0.9rem; color:#333; margin-bottom:12px; line-height:1.5; }
 
-    .benefits { display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:20px; }
-    .benefit-item { background:#f5f7fc; border-radius:12px; padding:10px; border:1px solid #e0e7ff; display:flex; align-items:center; gap:8px; transition:0.1s; cursor:default; }
-    .benefit-item i { font-size:1.4rem; color:#004aad; min-width:24px; }
-    .benefit-item:hover { background:#e0e7ff; }
-
     .cta-button, .submit-btn { display:inline-block; margin-top:12px; padding:12px 20px; border-radius:40px; font-weight:bold; font-size:0.95rem; text-decoration:none; cursor:pointer; transition:0.2s; }
     .cta-button { background:#004aad; color:white; }
     .cta-button:hover { background:#0060ff; }
@@ -43,7 +38,6 @@
     @media (max-width: 480px) {
       h1 { font-size:1.2rem; }
       .description { font-size:0.85rem; }
-      .benefit-item { font-size:0.85rem; }
     }
   </style>
 </head>
@@ -59,14 +53,7 @@
       </div>
       <h1>¡Combo <span>Internet ilimitado con 200Mbps + Tigo TV con 71 canales, incluyendo 3 de Tigo Sports!</span></h1>
       <img src="images/combo-inicial-200mb-71canales.png" alt="Combo Internet + TV" class="combo">
-      <div class="benefits">
-        <div class="benefit-item"><i class="fas fa-wifi"></i> Internet ilimitado 200Mbps</div>
-        <div class="benefit-item"><i class="fas fa-tv"></i> TV inicial con 71 canales</div>
-        <div class="benefit-item"><i class="fas fa-futbol"></i> 3 señales de Tigo Sports (exclusivo)</div>
-        <div class="benefit-item"><i class="fas fa-star"></i> Disney incluido</div>
-        <div class="benefit-item"><i class="fas fa-user-check"></i> Sin revisar INFOMCONF, solo mayor de edad y cédula vigente</div>
-        <div class="benefit-item"><i class="fas fa-tools"></i> Instalación rápida y sin costo</div>
-      </div>
+      <p class="description">Incluye 3 señales de Tigo Sports y Disney. Instalación rápida y sin costo. Sin revisar INFOMCONF.</p>
       <a href="#page2" class="cta-button">Ver disponibilidad en mi zona</a>
     </div>
   </div>
