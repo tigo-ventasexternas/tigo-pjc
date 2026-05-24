@@ -26,4 +26,93 @@
     .benefit-item i { font-size:1.4rem; color:#004aad; min-width:24px; }
     .benefit-item:hover { background:#e0e7ff; }
 
-    .cta-button, .submit-btn { display:inline-block; margin-top:12px; padding:12px 20px; border-radius:40px; font-weight:bold; font-size:0.95rem;
+    .cta-button, .submit-btn { display:inline-block; margin-top:12px; padding:12px 20px; border-radius:40px; font-weight:bold; font-size:0.95rem; text-decoration:none; cursor:pointer; transition:0.2s; }
+    .cta-button { background:#004aad; color:white; }
+    .cta-button:hover { background:#0060ff; }
+    .submit-btn { background:#25D366; color:white; border:none; }
+    .submit-btn:hover { background:#20b857; }
+
+    form { display:flex; flex-direction:column; gap:10px; margin-top:12px; text-align:left; }
+    input, textarea { padding:10px; border-radius:10px; border:1px solid #ccc; width:100%; font-size:0.85rem; }
+    label { font-weight:bold; font-size:0.8rem; color:#004aad; }
+
+    .footer-info { font-size:0.7rem; color:#555; margin-top:10px; text-align:center; }
+
+    .page img.combo { width:100%; border-radius:12px; margin-bottom:15px; }
+
+    @media (max-width: 480px) {
+      h1 { font-size:1.2rem; }
+      .description { font-size:0.85rem; }
+      .benefit-item { font-size:0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Página 1: Persuasión -->
+  <div class="page" id="page1">
+    <div class="container">
+      <div class="perfil">
+        <img src="images/perfil.png" alt="Isidro Cabrera">
+        <h3>Isidro Cabrera</h3>
+        <span class="autorizacion">Vendedor Externo Autorizado</span>
+      </div>
+      <h1>¡Combo <span>Internet ilimitado con 200Mbps + Tigo TV con 71 canales, incluyendo 3 de Tigo Sports!</span></h1>
+      <img src="images/combo-inicial-200mb-71canales.png" alt="Combo Internet + TV" class="combo">
+      <div class="benefits">
+        <div class="benefit-item"><i class="fas fa-wifi"></i> Internet ilimitado 200Mbps</div>
+        <div class="benefit-item"><i class="fas fa-tv"></i> TV inicial con 71 canales</div>
+        <div class="benefit-item"><i class="fas fa-futbol"></i> 3 señales de Tigo Sports (exclusivo)</div>
+        <div class="benefit-item"><i class="fas fa-star"></i> Disney incluido</div>
+        <div class="benefit-item"><i class="fas fa-user-check"></i> Sin revisar INFOMCONF, solo mayor de edad y cédula vigente</div>
+        <div class="benefit-item"><i class="fas fa-tools"></i> Instalación rápida y sin costo</div>
+      </div>
+      <a href="#page2" class="cta-button">Ver disponibilidad en mi zona</a>
+    </div>
+  </div>
+
+  <!-- Página 2: Captura de datos -->
+  <div class="page" id="page2" style="display:none;">
+    <div class="container">
+      <h1>Completa tus datos</h1>
+      <form onsubmit="return enviarWhatsApp();">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" name="edad" min="18" required>
+
+        <label for="direccion">Dirección (Calle, Número, Barrio)</label>
+        <textarea id="direccion" name="direccion" rows="2" required></textarea>
+
+        <label><input type="checkbox" id="ubicacion" name="ubicacion" required> Acepto enviar mi ubicación por WhatsApp para verificar disponibilidad de servicio</label>
+
+        <button type="submit" class="submit-btn">Enviar mis datos por WhatsApp</button>
+      </form>
+      <p class="footer-info">Sin filas, sin papeleo. 100% online. Instalación rápida y soporte 24/7.</p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.cta-button').addEventListener('click', function(){
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'flex';
+    });
+
+    function enviarWhatsApp() {
+      const nombre = document.getElementById('nombre').value;
+      const edad = document.getElementById('edad').value;
+      const direccion = document.getElementById('direccion').value;
+      const ubicacion = document.getElementById('ubicacion').checked;
+
+      if(!ubicacion) { alert('Debes aceptar enviar tu ubicación.'); return false; }
+
+      const mensaje = `Hola, soy ${nombre}, ${edad} años, vivo en ${direccion}. Confirmo enviar ubicación para disponibilidad del combo Internet 200Mbps + TV 71 canales.`;
+      const url = `https://wa.me/595984049651?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+      return false;
+    }
+  </script>
+
+</body>
+</html>
