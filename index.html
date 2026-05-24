@@ -27,14 +27,13 @@
     .benefit-item i { font-size:1.7rem; color:#004aad; min-width:28px; }
     .benefit-item:hover { background:#e0e7ff; }
 
-    .cta-button { display:inline-block; margin-top:15px; padding:14px 25px; background:#25D366; color:white; border-radius:50px; font-weight:bold; font-size:1rem; text-decoration:none; transition:0.2s; }
-    .cta-button:hover { background:#20b857; }
+    form { display:flex; flex-direction:column; gap:12px; margin-top:15px; text-align:left; }
+    input, textarea { padding:10px; border-radius:10px; border:1px solid #ccc; width:100%; font-size:0.9rem; }
+    label { font-weight:bold; font-size:0.85rem; color:#004aad; }
+    .submit-btn { background:#25D366; color:white; font-weight:bold; padding:12px; border-radius:50px; border:none; cursor:pointer; font-size:1rem; transition:0.2s; }
+    .submit-btn:hover { background:#20b857; }
 
-    .section-title { font-weight:bold; font-size:1rem; margin-top:15px; margin-bottom:10px; color:#004aad; text-align:left; }
-
-    .combo-details { display:grid; grid-template-columns:1fr; gap:10px; text-align:left; margin-bottom:20px; }
-
-    .footer-info { font-size:0.75rem; color:#555; margin-top:10px; }
+    .footer-info { font-size:0.75rem; color:#555; margin-top:10px; text-align:center; }
   </style>
 </head>
 <body>
@@ -44,19 +43,49 @@
       <div class="perfil">
         <img src="images/perfil.jpg" alt="Isidro Cabrera">
         <h3>Isidro Cabrera</h3>
-        <span class="autorizacion">Asesor Autorizado</span>
+        <span class="autorizacion">Vendedor Externo Autorizado</span>
       </div>
       <h1>¡Combo <span>Internet 200Mbps + TV 71 señales!</span></h1>
       <p class="description">Incluye 3 señales de Tigo Sports y Disney. Internet ilimitado y TV con todos tus canales favoritos.</p>
-      <div class="combo-details">
+      <div class="benefits">
         <div class="benefit-item"><i class="fas fa-wifi"></i> Internet ilimitado 200Mbps</div>
         <div class="benefit-item"><i class="fas fa-tv"></i> TV inicial con 71 señales</div>
         <div class="benefit-item"><i class="fas fa-futbol"></i> 3 señales de Tigo Sports</div>
         <div class="benefit-item"><i class="fas fa-star"></i> Disney incluido</div>
+        <div class="benefit-item"><i class="fas fa-user-check"></i> Sin revisión de INFOMCONF, solo mayor de edad y cédula vigente</div>
+        <div class="benefit-item"><i class="fas fa-tools"></i> Instalación rápida y sin costo</div>
       </div>
-      <a href="https://wa.me/595XXXXXXXXX?text=Hola,%20quiero%20el%20combo%20Internet%20200Mbps%20+%20TV%2071%20señales" class="cta-button">¡Contrátalo ahora por WhatsApp!</a>
+      <form action="https://wa.me/595984049651" method="get" onsubmit="return enviarWhatsApp();">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" name="edad" min="18" required>
+
+        <label for="direccion">Dirección (Calle, Número, Barrio)</label>
+        <textarea id="direccion" name="direccion" rows="2" required></textarea>
+
+        <label><input type="checkbox" id="ubicacion" name="ubicacion" required> Acepto enviar mi ubicación por WhatsApp para verificar disponibilidad de servicio</label>
+
+        <button type="submit" class="submit-btn">Enviar datos y contratar por WhatsApp</button>
+      </form>
       <p class="footer-info">Sin filas, sin papeleo. 100% online. Instalación rápida y soporte 24/7.</p>
     </div>
   </div>
+  <script>
+    function enviarWhatsApp() {
+      const nombre = document.getElementById('nombre').value;
+      const edad = document.getElementById('edad').value;
+      const direccion = document.getElementById('direccion').value;
+      const ubicacion = document.getElementById('ubicacion').checked;
+
+      if(!ubicacion) { alert('Debes aceptar enviar tu ubicación.'); return false; }
+
+      const mensaje = `Hola, soy ${nombre}, ${edad} años, vivo en ${direccion}. Confirmo enviar ubicación para disponibilidad del combo Internet 200Mbps + TV 71 señales.`;
+      const url = `https://wa.me/595984049651?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+      return false;
+    }
+  </script>
 </body>
 </html>
